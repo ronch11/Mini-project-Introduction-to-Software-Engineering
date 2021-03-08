@@ -17,6 +17,13 @@ public class Ray {
         this.dir = dir;
     }
 
+    /**
+     * Test if 2 Rays are equals.
+     * 
+     * @param obj - An Object to test if it's equal to This Ray in algebric manner.
+     * @return boolean - True if it's the same Ray or with same characterisics,
+     *         False otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -29,6 +36,12 @@ public class Ray {
         return this.p0.equals(other.p0) && this.dir.equals(other.dir);
     }
 
+    /**
+     * Returning This Ray as String Using Point3D and Vector toString methods.
+     * 
+     * @return String - A 3-Dimensional coordinate Ray using point and Vector.
+     *         ex:"p0= (x, y, z), dir= (a, b, c)".
+     */
     @Override
     public String toString() {
         return "p0= " + p0.toString() + " " + ", dir= " + dir.toString() + " ";

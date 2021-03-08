@@ -20,14 +20,29 @@ public class Sphere implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * Getter for internal field Center
+     * 
+     * @return Point3D - The Center Point of this Sphere.
+     */
     public Point3D getCenter() {
         return center;
     }
 
+    /**
+     * Getter for internal field radius
+     * 
+     * @return double - the radius of this Sphere.
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     * 
+     * @param point3d
+     * @return Vector
+     */
     @Override
     public Vector getNormal(Point3D point3d) {
         return null;

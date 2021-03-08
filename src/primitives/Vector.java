@@ -26,25 +26,50 @@ public class Vector {
         this(x.coord, y.coord, z.coord);
     }
 
+    /**
+     * Getter for getting internal field - head.
+     * 
+     * @return head - type Point3D
+     */
     public Point3D getHead() {
         return head;
     }
 
+    /**
+     * @param vec - a Vector type
+     * @return Vector - a new Vector that it's the summary of the 2 vectors.
+     */
     public Vector add(Vector vec) {
         return new Vector(head.add(vec));
-
     }
 
+    /**
+     * @param vec - a Vector Type
+     * @return Vector - a new Vector that is the result of subtracting the vec from
+     *         this vector.
+     */
     public Vector substract(Vector vec) {
         return head.substract(vec.head);
-
     }
 
+    /**
+     * @param scalar - a Real number (type double) used by this function to grow or
+     *               shrink the vector, or even change the direction of the Vector
+     *               using a negative number.
+     * @return Vector - a new vector based on this vector and the scalar.
+     */
     public Vector scale(Double scalar) {
         return new Vector(scalar * head.x.coord, scalar * head.y.coord, scalar * head.z.coord);
-
     }
 
+    /**
+     * Calculating Cross Product between This Vector and vec using algebric
+     * equation.
+     * 
+     * @param vec - a Vector Type
+     * @return Vector - new Vector that is a orthogonalic to the 2 Vectors(this
+     *         Vector and the param vec)
+     */
     public Vector crossProduct(Vector vec) {
         double productYZ = this.head.y.coord * vec.head.z.coord;
         double productZX = this.head.z.coord * vec.head.x.coord;
@@ -55,9 +80,14 @@ public class Vector {
         double productYX = this.head.y.coord * vec.head.x.coord;
 
         return new Vector(productYZ - productZY, productZX - productXZ, productXY - productYX);
-
     }
 
+    /**
+     * Calculating Dot Product between This Vector and vec using algebric equation.
+     * 
+     * @param vec - a Vector Type
+     * @return double - the value of doing dot product between vec and this Vector.
+     */
     public double dotProduct(Vector vec) {
         double productX = this.head.x.coord * vec.head.x.coord;
         double productY = this.head.y.coord * vec.head.y.coord;
@@ -65,27 +95,55 @@ public class Vector {
         return productX + productY + productZ;
     }
 
+    /**
+     * Calculating the length of this Vector by the power of 2 using algebric
+     * equation.
+     * 
+     * @return double - a Real number (type double) representing the length^2 of the
+     *         vector.
+     */
     public double lengthSquared() {
         return head.distanceSquared(Point3D.ZERO);
-
     }
 
+    /**
+     * Calculating the length of this Vector using algebric equation.
+     * 
+     * @return double - a Real number (type double) representing the length of the
+     *         vector.
+     */
     public double length() {
         return head.distance(Point3D.ZERO);
     }
 
+    /**
+     * Reducing this Vector to be unit Vector (length == 1).
+     * 
+     * @return Vector - This Vector (for chaining capabilities).
+     */
     public Vector normalize() {
         head = normalized().head;
         return this;
-
     }
 
+    /**
+     * Creating copy of this Vector and reducing it to be unit Vector (length == 1).
+     * 
+     * @return Vector - a new unit Vector in the same direction of this Vector.
+     */
     public Vector normalized() {
         double factor = 1 / this.length();
         return scale(factor);
-
     }
 
+    /**
+     * Test if 2 Vectors are equals.
+     * 
+     * @param obj - An Object to test if it's equal to This Vector in algebric
+     *            manner.
+     * @return boolean - True if it's the same Vector or with same characterisics,
+     *         False otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -98,6 +156,11 @@ public class Vector {
         return this.head.equals(other.head);
     }
 
+    /**
+     * Print the Vector as String using it's head to represent it.
+     * 
+     * @return String - 3-Dimensional coordinate Point ex:"(x, y, z)".
+     */
     @Override
     public String toString() {
         return head.toString();

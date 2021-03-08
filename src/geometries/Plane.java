@@ -24,11 +24,18 @@ public class Plane implements Geometry {
         this.normal = null;
     }
 
+    /**
+     * @param point3d
+     * @return Vector
+     */
     @Override
     public Vector getNormal(Point3D point3d) {
         return null;
     }
 
+    /**
+     * @return Vector
+     */
     public Vector getNormal() {
         return getNormal(q0);
     }

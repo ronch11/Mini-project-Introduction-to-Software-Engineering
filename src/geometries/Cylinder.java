@@ -8,7 +8,6 @@ import primitives.Ray;
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
-
 public class Cylinder extends Tube {
     double height;
 
@@ -17,6 +16,11 @@ public class Cylinder extends Tube {
         this.height = height;
     }
 
+    /**
+     * Getter for the internal field height.
+     * 
+     * @return double - this Cylinder height.
+     */
     public double getHeight() {
         return height;
     }

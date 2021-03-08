@@ -12,8 +12,9 @@ public abstract class Util {
     /**
      * Empty private ctor to hide the public one
      */
-    private Util() {}
-    
+    private Util() {
+    }
+
     // double store format (bit level): seee eeee eeee (1.)mmmm � mmmm
     // 1 bit sign, 11 bits exponent, 53 bits (52 stored) normalized mantissa
     // the number is m+2^e where 1<=m<2
@@ -23,7 +24,7 @@ public abstract class Util {
         // 2. Shift all 52 bits to the right (removing mantissa)
         // 3. Zero the sign of number bit by mask 0x7FF
         // 4. "De-normalize" the exponent by subtracting 1023
-        return (int)((Double.doubleToRawLongBits(num) >> 52) & 0x7FFL) - 1023;
+        return (int) ((Double.doubleToRawLongBits(num) >> 52) & 0x7FFL) - 1023;
     }
 
     /**
@@ -45,26 +46,27 @@ public abstract class Util {
     public static double alignZero(double number) {
         return getExp(number) < ACCURACY ? 0.0 : number;
     }
-    
-	/**
-	 * Check whether two numbers have the same sign
-	 * 
-	 * @param n1 1st number
-	 * @param n2 2nd number
-	 * @return true if the numbers have the same sign
-	 */
-	public static boolean checkSign(double n1, double n2) {
-		return (n1 < 0 && n2 < 0) || (n1 > 0 && n2 > 0);
-	}
-	
-	/**
-	 * Provide a real random number in range between min and max
-	 * @param min
-	 * @param max
-	 * @return the random value
-	 */
-	public static double random(double min, double max) {
-		return Math.random() * (max - min) + min;
-	}
-	
+
+    /**
+     * Check whether two numbers have the same sign
+     * 
+     * @param n1 1st number
+     * @param n2 2nd number
+     * @return true if the numbers have the same sign
+     */
+    public static boolean checkSign(double n1, double n2) {
+        return (n1 < 0 && n2 < 0) || (n1 > 0 && n2 > 0);
+    }
+
+    /**
+     * Provide a real random number in range between min and max
+     * 
+     * @param min
+     * @param max
+     * @return the random value
+     */
+    public static double random(double min, double max) {
+        return Math.random() * (max - min) + min;
+    }
+
 }

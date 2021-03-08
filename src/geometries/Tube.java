@@ -20,14 +20,30 @@ public class Tube implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * Getter for internal field axisRay.
+     * 
+     * @return Ray - This Tube axisRay.
+     */
     public Ray getAxisRay() {
         return axisRay;
     }
 
+    /**
+     * Getter for internal field radius.
+     * 
+     * @return double - This Tube radius.
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     * 
+     * 
+     * @param point3d
+     * @return Vector
+     */
     @Override
     public Vector getNormal(Point3D point3d) {
         return null;
