@@ -2,6 +2,11 @@ import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
 
+/** 
+*   Shai Falach         307854356 shaifalach18@gmail.com
+*   Ron Haim Hodadedi   318668381 ronchaim318@gmail.com
+**/
+
 /**
  * Test program for the 1st stage
  *
