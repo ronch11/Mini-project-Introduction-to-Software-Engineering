@@ -9,19 +9,29 @@ package primitives;
 
 public class Ray {
 
-    Point3D p0;
-    Vector dir;
+    private final Point3D p0;
+    private final Vector dir;
 
+    /**
+     * Constructor for Vector Class.
+     * 
+     * @param p0  - A Point3D to indicate the starting point of the ray in the
+     *            Cartesian 3-Dimensional coordinate system.
+     * 
+     * @param dir - A normalized Vector (unit vector) to indicate the direction of
+     *            the ray in the Cartesian 3-Dimensional coordinate system.
+     * 
+     */
     public Ray(Point3D p0, Vector dir) {
         this.p0 = p0;
-        this.dir = dir;
+        this.dir = dir.normalized();
     }
 
     /**
-     * Test if 2 Rays are equals.
+     * Test if two Rays are equals.
      * 
-     * @param obj - An Object to test if it's equal to This Ray in algebric manner.
-     * @return boolean - True if it's the same Ray or with same characterisics,
+     * @param obj - An Object to test if it's equal to This Ray in algebraic manner.
+     * @return boolean - True if it's the same Ray or with same characteristics,
      *         False otherwise.
      */
     @Override

@@ -6,14 +6,39 @@ package primitives;
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
-
 public class Vector {
-    Point3D head;
+    private Point3D head;
 
+    /**
+     * Constructor for Vector Class.
+     * 
+     * @param head - A Point3D to indicate the head of the Vector "arrow" in
+     *             Cartesian 3-Dimensional coordinate system.
+     * @throws IllegalArgumentException - In case of passing Zero Point3D (head is
+     *                                  on the origin (0,0,0) of the) Cartesian
+     *                                  3-Dimensional coordinate system.
+     */
     public Vector(Point3D head) {
+        if (head.equals(Point3D.ZERO)) {
+            throw new IllegalArgumentException("Vector can not be zero vector.");
+        }
         this.head = head;
     }
 
+    /**
+     * Constructor for Vector Class.
+     * 
+     * @param x - A Coordinate for the x axis in Cartesian 3-Dimensional coordinate
+     *          system.
+     * @param y - A Coordinate for the y axis in Cartesian 3-Dimensional coordinate
+     *          system.
+     * @param z - A Coordinate for the z axis in Cartesian 3-Dimensional coordinate
+     *          system.
+     * 
+     * @throws IllegalArgumentException - In case of passing Zero in all parameters
+     *                                  (head is on the origin (0,0,0) of the)
+     *                                  Cartesian 3-Dimensional coordinate system.
+     */
     public Vector(double x, double y, double z) {
         Point3D temp = new Point3D(x, y, z);
         if (temp.equals(Point3D.ZERO)) {
@@ -22,6 +47,21 @@ public class Vector {
         this.head = temp;
     }
 
+    /**
+     * Constructor for Vector Class.
+     * 
+     * @param x - A real number (type double) for the x axis in Cartesian
+     *          3-Dimensional coordinate system.
+     * 
+     * @param y - A real number (type double) for the y axis in Cartesian
+     *          3-Dimensional coordinate system.
+     * @param z - A real number (type double) for the z axis in Cartesian
+     *          3-Dimensional coordinate system.
+     * 
+     * @throws IllegalArgumentException - In case of passing Zero in all parameters
+     *                                  (head is on the origin (0,0,0) of the)
+     *                                  Cartesian 3-Dimensional coordinate system.
+     */
     public Vector(Coordinate x, Coordinate y, Coordinate z) {
         this(x.coord, y.coord, z.coord);
     }
@@ -48,8 +88,8 @@ public class Vector {
      * @return Vector - a new Vector that is the result of subtracting the vec from
      *         this vector.
      */
-    public Vector substract(Vector vec) {
-        return head.substract(vec.head);
+    public Vector subtract(Vector vec) {
+        return head.subtract(vec.head);
     }
 
     /**
@@ -63,11 +103,11 @@ public class Vector {
     }
 
     /**
-     * Calculating Cross Product between This Vector and vec using algebric
+     * Calculating Cross Product between This Vector and vec using algebraic
      * equation.
      * 
      * @param vec - a Vector Type
-     * @return Vector - new Vector that is a orthogonalic to the 2 Vectors(this
+     * @return Vector - new Vector that is a orthogonally to the 2 Vectors(this
      *         Vector and the param vec)
      */
     public Vector crossProduct(Vector vec) {
@@ -83,7 +123,7 @@ public class Vector {
     }
 
     /**
-     * Calculating Dot Product between This Vector and vec using algebric equation.
+     * Calculating Dot Product between This Vector and vec using algebraic equation.
      * 
      * @param vec - a Vector Type
      * @return double - the value of doing dot product between vec and this Vector.
@@ -96,7 +136,7 @@ public class Vector {
     }
 
     /**
-     * Calculating the length of this Vector by the power of 2 using algebric
+     * Calculating the length of this Vector by the power of 2 using algebraic
      * equation.
      * 
      * @return double - a Real number (type double) representing the length^2 of the
@@ -107,7 +147,7 @@ public class Vector {
     }
 
     /**
-     * Calculating the length of this Vector using algebric equation.
+     * Calculating the length of this Vector using algebraic equation.
      * 
      * @return double - a Real number (type double) representing the length of the
      *         vector.
@@ -137,11 +177,11 @@ public class Vector {
     }
 
     /**
-     * Test if 2 Vectors are equals.
+     * Test if two Vectors are equals.
      * 
-     * @param obj - An Object to test if it's equal to This Vector in algebric
+     * @param obj - An Object to test if it's equal to This Vector in algebraic
      *            manner.
-     * @return boolean - True if it's the same Vector or with same characterisics,
+     * @return boolean - True if it's the same Vector or with same characteristics,
      *         False otherwise.
      */
     @Override
