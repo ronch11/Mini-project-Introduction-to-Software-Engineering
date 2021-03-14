@@ -15,6 +15,12 @@ public class Sphere implements Geometry {
     Point3D center;
     double radius;
 
+    /**
+     * Constructor for building Sphere object.
+     * 
+     * @param point  - The Center of the sphere(Point3D).
+     * @param radius - The radius of the sphere(double).
+     */
     public Sphere(Point3D point, double radius) {
         this.center = point;
         this.radius = radius;
@@ -39,9 +45,11 @@ public class Sphere implements Geometry {
     }
 
     /**
+     * Calculating Normal to the Sphere in a given point(need to be on the surface
+     * of the Sphere).
      * 
-     * @param point3d
-     * @return Vector
+     * @param point3d - A Point3D on the surface.
+     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
      */
     @Override
     public Vector getNormal(Point3D point3d) {

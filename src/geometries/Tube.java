@@ -15,6 +15,12 @@ public class Tube implements Geometry {
     Ray axisRay;
     double radius;
 
+    /**
+     * Constructor for building Tube Object.
+     * 
+     * @param ray    - The axis Ray of the Tube.
+     * @param radius - The radius of the tube's circle(side cute pane).
+     */
     public Tube(Ray ray, double radius) {
         this.axisRay = ray;
         this.radius = radius;
@@ -39,10 +45,11 @@ public class Tube implements Geometry {
     }
 
     /**
+     * Calculating Normal to the Tube in a given point(need to be on the surface of
+     * the Tube).
      * 
-     * 
-     * @param point3d
-     * @return Vector
+     * @param point3d - A Point3D on the surface.
+     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
      */
     @Override
     public Vector getNormal(Point3D point3d) {
