@@ -28,6 +28,24 @@ public class Ray {
     }
 
     /**
+     * Getter for private field dir
+     * 
+     * @return - A Vector (unit vector that indicate the direction of the Ray).
+     */
+    public Vector getDir() {
+        return dir;
+    }
+
+    /**
+     * Getter for private field p0
+     * 
+     * @return - A Point3D (the starting point of the Ray).
+     */
+    public Point3D getP0() {
+        return p0;
+    }
+
+    /**
      * Test if two Rays are equals.
      * 
      * @param obj - An Object to test if it's equal to This Ray in algebraic manner.
