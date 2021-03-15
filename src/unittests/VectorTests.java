@@ -305,7 +305,6 @@ public class VectorTests {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Testing for normalized()
         Vector vector = new Vector(1, 2, 3);
-        Vector normalizeVector = vector.normalize();
         Vector normalizedVector = vector.normalized();
 
         assertFalse("normalized() function does not create a new vector", normalizedVector.equals(vector));
