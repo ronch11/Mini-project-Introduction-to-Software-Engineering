@@ -20,7 +20,7 @@ public class Plane implements Geometry {
      * @param point  - A Point3D for indicating the plane using Vector and a point.
      * @param vector - A Vector for indicating the plane using Vector and a point.
      */
-    Plane(Point3D point, Vector vector) {
+    public Plane(Point3D point, Vector vector) {
         this.q0 = point;
         this.normal = vector.normalized();
     }
@@ -34,10 +34,14 @@ public class Plane implements Geometry {
      *           point @param p1.
      * @param p3 - A Point3D for creating Vector between it and the base
      *           point @param p1.
+     * @throws IllegalArgumentException - in case of parallel vectors created in the
+     *                                  equation v1 = p2-p1 and v2 = p3-p1.
      */
     Plane(Point3D p1, Point3D p2, Point3D p3) {
         this.q0 = p1;
-        this.normal = null;
+        Vector v1 = p2.subtract(p1);
+        Vector v2 = p3.subtract(p1);
+        this.normal = v1.crossProduct(v2).normalize();
     }
 
     /**
@@ -49,7 +53,7 @@ public class Plane implements Geometry {
      */
     @Override
     public Vector getNormal(Point3D point3d) {
-        return null;
+        return this.normal;
     }
 
     /**

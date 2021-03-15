@@ -53,7 +53,9 @@ public class Tube implements Geometry {
      */
     @Override
     public Vector getNormal(Point3D point3d) {
-        return null;
+        double t = this.axisRay.getDir().dotProduct(point3d.subtract(this.axisRay.getP0()));
+        Point3D projection = this.axisRay.getP0().add(this.axisRay.getDir().scale(t));
+        return point3d.subtract(projection).normalize();
     }
 
 }
