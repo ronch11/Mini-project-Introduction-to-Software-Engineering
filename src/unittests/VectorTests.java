@@ -184,8 +184,11 @@ public class VectorTests {
     @Test
     public void testCrossProduct() {
 
-        Vector vector = new Vector(1.0, 1.0, 1.0);
-        Vector otherVector = new Vector(2.0, 2.0, 2.0);
+        // Vector vector = new Vector(1.0, 1.0, 1.0);
+        // Vector otherVector = new Vector(2.0, 2.0, 2.0);
+        // Vector differentVector = new Vector(0, 3, -2);
+        Vector vector = new Vector(1, 2, 3);
+        Vector otherVector = new Vector(-2, -4, -6);
         Vector differentVector = new Vector(0, 3, -2);
 
         // ============ Equivalence Partitions Tests ==============
@@ -195,8 +198,8 @@ public class VectorTests {
 
         boolean lengthTestOk = isZero(crossVector.length() - vector.length() * differentVector.length());
         assertTrue("crossProduct() wrong result length", lengthTestOk);
-        boolean vectorOrthogonalToCrossVectorOK = (!isZero(crossVector.dotProduct(vector))
-                || !isZero(crossVector.dotProduct(differentVector)));
+        boolean vectorOrthogonalToCrossVectorOK = (isZero(crossVector.dotProduct(vector))
+                || isZero(crossVector.dotProduct(differentVector)));
 
         assertTrue("crossProduct() result is not orthogonal to its operands", vectorOrthogonalToCrossVectorOK);
 
@@ -226,7 +229,7 @@ public class VectorTests {
 
         // ============ Equivalence Partitions Tests ==============
         // TC01: testing two linearly independent Vectors.
-        double expected = 6.0;
+        double expected = 7.0;
         double actualValue = vector.dotProduct(otherVector);
 
         assertEquals("Should Get back Real Number(double): 7.0", expected, actualValue, 0.00000001);
@@ -290,7 +293,7 @@ public class VectorTests {
         Vector vectorCopy = new Vector(vector.getHead());
         Vector normalizeVectorCopy = vectorCopy.normalize();
 
-        assertFalse("normalize() function should not create a new vector", vectorCopy.equals(normalizeVectorCopy));
+        assertTrue("normalize() function should not create a new vector", vectorCopy.equals(normalizeVectorCopy));
 
         boolean unitVectorLengthOK = isZero(normalizeVectorCopy.length() - 1);
         assertTrue("normalize() result is not a unit vector", unitVectorLengthOK);
