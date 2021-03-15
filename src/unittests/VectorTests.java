@@ -17,6 +17,7 @@ public class VectorTests {
      */
     @Test
     public void testConstructor() {
+        // ============ Equivalence Partitions Tests ==============
         // TC01: no Zero length Vector was created.
         try {
             new Vector(0, 0, 0);
@@ -32,6 +33,7 @@ public class VectorTests {
      */
     @Test
     public void testGetHead() {
+        // ============ Equivalence Partitions Tests ==============
         // TC01: Correct head point3D of Vector is returned via Getter.
         Point3D expected = new Point3D(1.0, 1.0, 1.0);
         Vector vector = new Vector(1.0, 1.0, 1.0);
