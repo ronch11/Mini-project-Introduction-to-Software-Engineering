@@ -1,5 +1,7 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -44,18 +46,17 @@ public class Tube implements Geometry {
         return radius;
     }
 
-    /**
-     * Calculating Normal to the Tube in a given point(need to be on the surface of
-     * the Tube).
-     * 
-     * @param point3d - A Point3D on the surface.
-     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
-     */
     @Override
     public Vector getNormal(Point3D point3d) {
         double t = this.axisRay.getDir().dotProduct(point3d.subtract(this.axisRay.getP0()));
         Point3D projection = this.axisRay.getP0().add(this.axisRay.getDir().scale(t));
         return point3d.subtract(projection).normalize();
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

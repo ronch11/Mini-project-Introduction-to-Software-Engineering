@@ -1,6 +1,9 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -44,16 +47,15 @@ public class Sphere implements Geometry {
         return radius;
     }
 
-    /**
-     * Calculating Normal to the Sphere in a given point(need to be on the surface
-     * of the Sphere).
-     * 
-     * @param point3d - A Point3D on the surface.
-     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
-     */
     @Override
     public Vector getNormal(Point3D point3d) {
         return point3d.subtract(this.center).normalize();
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

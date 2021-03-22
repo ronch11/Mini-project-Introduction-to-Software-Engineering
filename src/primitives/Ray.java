@@ -46,6 +46,19 @@ public class Ray {
     }
 
     /**
+     * get the Point3D on the Ray that is in distance of t from Ray starting Point3D
+     * (p0).
+     * 
+     * @param t
+     * @return Point3D - point on Ray axis with distance of t from Ray origin
+     *         point(p0).
+     */
+    public Point3D getPoint(double t) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
      * Test if two Rays are equals.
      * 
      * @param obj - An Object to test if it's equal to This Ray in algebraic manner.

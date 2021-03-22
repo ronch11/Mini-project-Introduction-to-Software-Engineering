@@ -10,7 +10,7 @@ import primitives.Vector;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 
-public interface Geometry {
+public interface Geometry extends Intersectable {
 
     /**
      * A function that return unit vector (length equal to 1) of perpendicular

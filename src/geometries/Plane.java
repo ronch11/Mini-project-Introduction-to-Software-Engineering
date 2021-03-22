@@ -1,6 +1,9 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -61,15 +64,14 @@ public class Plane implements Geometry {
         return normal;
     }
 
-    /**
-     * Calculating Normal to the Plane in a given point(need to be on the surface of
-     * the Plane).
-     * 
-     * @param point3d - A Point3D on the surface.
-     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
-     */
     @Override
     public Vector getNormal(Point3D point3d) {
         return this.normal;
+    }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
