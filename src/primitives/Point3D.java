@@ -50,6 +50,36 @@ public class Point3D {
     }
 
     /**
+     * Getter for getting the x value as double.
+     * 
+     * @return double -A real number the represent the distance on the x axis from
+     *         origin.
+     */
+    public double getX() {
+        return x.coord;
+    }
+
+    /**
+     * Getter for getting the y value as double.
+     * 
+     * @return double -A real number the represent the distance on the y axis from
+     *         origin.
+     */
+    public double getY() {
+        return y.coord;
+    }
+
+    /**
+     * Getter for getting the z value as double.
+     * 
+     * @return double -A real number the represent the distance on the z axis from
+     *         origin.
+     */
+    public double getZ() {
+        return z.coord;
+    }
+
+    /**
      * Calculate new Point3D using Vector to indicate the direction and length to
      * go, using algebraic equation.
      * 
