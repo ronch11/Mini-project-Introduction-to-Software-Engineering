@@ -40,11 +40,10 @@ public class Vector {
      *                                  Cartesian 3-Dimensional coordinate system.
      */
     public Vector(double x, double y, double z) {
-        Point3D temp = new Point3D(x, y, z);
-        if (temp.equals(Point3D.ZERO)) {
+        head = new Point3D(x, y, z);
+        if (head.equals(Point3D.ZERO)) {
             throw new IllegalArgumentException("Vector can not be zero vector.");
         }
-        this.head = temp;
     }
 
     /**
@@ -62,9 +61,9 @@ public class Vector {
      *                                  (head is on the origin (0,0,0) of the)
      *                                  Cartesian 3-Dimensional coordinate system.
      */
-    public Vector(Coordinate x, Coordinate y, Coordinate z) {
-        this(x.coord, y.coord, z.coord);
-    }
+    // public Vector(Coordinate x, Coordinate y, Coordinate z) {
+    // this(x.coord, y.coord, z.coord);
+    // }
 
     /**
      * Getter for getting internal field - head.
@@ -162,7 +161,8 @@ public class Vector {
      * @return Vector - This Vector (for chaining capabilities).
      */
     public Vector normalize() {
-        head = normalized().head;
+        double factor = 1 / this.length();
+        head = new Point3D(factor * head.x.coord, factor * head.y.coord, factor * head.z.coord);
         return this;
     }
 
