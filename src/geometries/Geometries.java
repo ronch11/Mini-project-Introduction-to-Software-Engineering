@@ -23,8 +23,22 @@ public class Geometries implements Intersectable {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        // TODO Auto-generated method stub
-        return null;
+        if (geometries_list.isEmpty()) {
+            return null;
+        } else {
+            List<Point3D> intersections = null;
+            for (Intersectable intersectable : geometries_list) {
+                List<Point3D> intersectableIntersections = intersectable.findIntersections(ray);
+                if (intersectableIntersections != null) {
+                    if (intersections != null) {
+                        intersections.addAll(intersectableIntersections);
+                    } else {
+                        intersections = new ArrayList<>(intersectableIntersections);
+                    }
+                }
+            }
+            return intersections;
+        }
     }
 
 }
