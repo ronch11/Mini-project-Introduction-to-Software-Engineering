@@ -12,8 +12,8 @@ import primitives.Vector;
  */
 
 public class Tube implements Geometry {
-    Ray axisRay;
-    double radius;
+    protected Ray axisRay;
+    protected double radius;
 
     /**
      * Constructor for building Tube Object.

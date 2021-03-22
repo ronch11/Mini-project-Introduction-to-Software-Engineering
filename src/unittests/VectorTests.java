@@ -19,13 +19,7 @@ public class VectorTests {
     public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: no Zero length Vector was created.
-        try {
-            new Vector(0, 0, 0);
-            fail("can not create ZERO Vector.");
-        } catch (Exception e) {
-            assertTrue(true);
-        }
-
+        assertThrows("can not create ZERO Vector.", IllegalArgumentException.class, () -> new Vector(0, 0, 0));
     }
 
     /**
@@ -76,11 +70,8 @@ public class VectorTests {
 
         // =============== Boundary Values Tests ==================
         // TC04: adding 2 numbers equal in size but different signs (sum equal to ZERO).
-        try {
-            positiveVector.add(negativeVector);
-            fail("Vector ZERO should not be created by adding 2 equal size vectors.");
-        } catch (Exception e) {
-        }
+        assertThrows("Vector ZERO should not be created by adding 2 equal size vectors.",
+                IllegalArgumentException.class, () -> positiveVector.add(negativeVector));
     }
 
     /**
@@ -116,12 +107,8 @@ public class VectorTests {
         // =============== Boundary Values Tests ==================
         // TC04: subtracting vector from himself or on that equal to him (result in
         // Vector ZERO).
-        try {
-            positiveVector.subtract(positiveVector);
-            fail("Vector ZERO should not be created");
-        } catch (Exception e) {
-        }
-
+        assertThrows("Vector ZERO should not be created.", IllegalArgumentException.class,
+                () -> positiveVector.subtract(positiveVector));
     }
 
     /**
@@ -159,11 +146,8 @@ public class VectorTests {
 
         // =============== Boundary Values Tests ==================
         // TC05: Scaling with zero should not return Vector ZERO.
-        try {
-            positiveVector.scale(0.0);
-            fail("Vector ZERO should not be created");
-        } catch (Exception e) {
-        }
+        assertThrows("Vector should not be scaled to ZERO.", IllegalArgumentException.class,
+                () -> positiveVector.scale(0.0));
 
         // TC06: Scaling with 1 return same Vector
         expected = new Vector(1.0, 1.0, 1.0);
@@ -183,10 +167,6 @@ public class VectorTests {
      */
     @Test
     public void testCrossProduct() {
-
-        // Vector vector = new Vector(1.0, 1.0, 1.0);
-        // Vector otherVector = new Vector(2.0, 2.0, 2.0);
-        // Vector differentVector = new Vector(0, 3, -2);
         Vector vector = new Vector(1, 2, 3);
         Vector otherVector = new Vector(-2, -4, -6);
         Vector differentVector = new Vector(0, 3, -2);
@@ -199,20 +179,15 @@ public class VectorTests {
         boolean lengthTestOk = isZero(crossVector.length() - vector.length() * differentVector.length());
         assertTrue("crossProduct() wrong result length", lengthTestOk);
         boolean vectorOrthogonalToCrossVectorOK = (isZero(crossVector.dotProduct(vector))
-                || isZero(crossVector.dotProduct(differentVector)));
+                && isZero(crossVector.dotProduct(differentVector)));
 
         assertTrue("crossProduct() result is not orthogonal to its operands", vectorOrthogonalToCrossVectorOK);
 
         // =============== Boundary Values Tests ==================
         // TC02: Test parallel vectors.
 
-        try { // test zero vector
-            vector.crossProduct(otherVector);
-            fail("crossProduct() for parallel vectors does not throw an zero Vector exception");
-        } catch (Exception e) {
-            assertTrue(true);
-        }
-
+        assertThrows("crossProduct() for parallel vectors does not throw an zero Vector exception.",
+                IllegalArgumentException.class, () -> vector.crossProduct(otherVector));
     }
 
     /**

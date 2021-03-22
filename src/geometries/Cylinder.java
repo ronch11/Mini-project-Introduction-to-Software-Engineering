@@ -9,7 +9,7 @@ import primitives.Ray;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 public class Cylinder extends Tube {
-    double height;
+    private double height;
 
     /**
      * Constructor for building Cylinder object

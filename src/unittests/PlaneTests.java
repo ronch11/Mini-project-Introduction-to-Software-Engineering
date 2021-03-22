@@ -6,6 +6,9 @@ import org.junit.Test;
 import geometries.*;
 import primitives.*;
 
+/**
+ * Unit tests for geometries.Plane class
+ */
 public class PlaneTests {
     /**
      * Test method for {@link geometries.Plane#getNormal(primitives.Point3D)}.

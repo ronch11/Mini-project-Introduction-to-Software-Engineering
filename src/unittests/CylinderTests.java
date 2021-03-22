@@ -53,8 +53,10 @@ public class CylinderTests {
         firstPoint = new Point3D(p0.x.coord, p0.y.coord + cylinder.getRadius(), p0.z.coord + cylinder.getHeight());
         secondPoint = new Point3D(p0.x.coord + cylinder.getRadius(), p0.y.coord, p0.z.coord + cylinder.getHeight());
 
-        v1 = firstPoint.subtract(p0);
-        v2 = secondPoint.subtract(p0);
+        // p1 is the center of the second circular "base".
+        Point3D p1 = p0.add(cylinder.getAxisRay().getDir().scale(cylinder.getHeight()));
+        v1 = firstPoint.subtract(p1);
+        v2 = secondPoint.subtract(p1);
 
         crossVector = v1.crossProduct(v2).normalize();
 
@@ -65,6 +67,7 @@ public class CylinderTests {
 
         // =============== Boundary Values Tests ==================
         // TC04: the "corner" of the first base and the side of the cylinder
+
         // TC05: the "corner" of the second base and the side of the cylinder
     }
 }

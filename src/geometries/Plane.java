@@ -9,10 +9,9 @@ import primitives.Vector;
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
-
 public class Plane implements Geometry {
-    Point3D q0;
-    Vector normal;
+    private Point3D q0;
+    private Vector normal;
 
     /**
      * Constructor for Building Plane object
@@ -45,6 +44,24 @@ public class Plane implements Geometry {
     }
 
     /**
+     * Getter for the private field q0.
+     * 
+     * @return Point3D - q0 (the base point used to describe the plane).
+     */
+    public Point3D getQ0() {
+        return q0;
+    }
+
+    /**
+     * Getter for the private field normal
+     * 
+     * @return Vector - unit Vector(length of 1) that is orthogonal to the plane.
+     */
+    public Vector getNormal() {
+        return normal;
+    }
+
+    /**
      * Calculating Normal to the Plane in a given point(need to be on the surface of
      * the Plane).
      * 
@@ -54,15 +71,5 @@ public class Plane implements Geometry {
     @Override
     public Vector getNormal(Point3D point3d) {
         return this.normal;
-    }
-
-    /**
-     * Calculating Normal to the Plane in a given point(need to be on the surface of
-     * the Plane). (using the base point of the plane as point for the calculation)
-     * 
-     * @return Vector - unit Vector(length of 1) that is orthogonal to the point.
-     */
-    public Vector getNormal() {
-        return getNormal(q0);
     }
 }

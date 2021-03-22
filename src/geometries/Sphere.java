@@ -12,8 +12,8 @@ import primitives.Vector;
 
 public class Sphere implements Geometry {
 
-    Point3D center;
-    double radius;
+    private Point3D center;
+    private double radius;
 
     /**
      * Constructor for building Sphere object.

@@ -6,6 +6,9 @@ import org.junit.Test;
 import geometries.*;
 import primitives.*;
 
+/**
+ * Unit tests for geometries.Sphere class
+ */
 public class SphereTests {
 
     /**

@@ -6,6 +6,9 @@ import org.junit.Test;
 import geometries.*;
 import primitives.*;
 
+/**
+ * Unit tests for geometries.Tube class
+ */
 public class TubeTests {
 
     /**
