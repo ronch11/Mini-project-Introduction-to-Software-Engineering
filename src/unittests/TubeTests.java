@@ -31,9 +31,9 @@ public class TubeTests {
         Point3D o = tube.getAxisRay().getP0().add(tube.getAxisRay().getDir().scale(t));
 
         // test for normal
-        Vector normal = p.subtract(o).normalize();
+        Vector actual = p.subtract(o).normalize();
 
         Vector expected = new Vector(-1, 0, 0);
-        assertEquals("normal was not correct.", expected, normal);
+        assertEquals("normal was not correct.", expected, actual);
     }
 }

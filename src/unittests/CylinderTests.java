@@ -28,7 +28,7 @@ public class CylinderTests {
         Point3D o = cylinder.getAxisRay().getP0().add(cylinder.getAxisRay().getDir().scale(t));
 
         // test for normal
-        Vector normal = p.subtract(o).normalize();
+        Vector normal = p.subtract(o).normalize(); // new Vector (x,y,z)
 
         Vector expected = new Vector(-1, 0, 0);
         assertEquals("normal was not correct.", expected, normal);
@@ -69,5 +69,9 @@ public class CylinderTests {
         // TC04: the "corner" of the first base and the side of the cylinder
 
         // TC05: the "corner" of the second base and the side of the cylinder
+
+        // TC04: the center of the first base and the side of the cylinder
+
+        // TC05: the center of the second base and the side of the cylinder
     }
 }
