@@ -7,14 +7,14 @@ import primitives.Point3D;
 import primitives.Ray;
 
 public class Geometries implements Intersectable {
-    private List<Intersectable> geometries_list;
+    private List<Intersectable> geometriesList;
 
     public Geometries() {
-        geometries_list = new ArrayList<>();
+        geometriesList = new ArrayList<>();
     }
 
     public Geometries(Intersectable... geometries) {
-        geometries_list = List.of(geometries);
+        geometriesList = List.of(geometries);
     }
 
     public void add(Intersectable... geometries) {
@@ -23,11 +23,11 @@ public class Geometries implements Intersectable {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        if (geometries_list.isEmpty()) {
+        if (geometriesList.isEmpty()) {
             return null;
         } else {
             List<Point3D> intersections = null;
-            for (Intersectable intersectable : geometries_list) {
+            for (Intersectable intersectable : geometriesList) {
                 List<Point3D> intersectableIntersections = intersectable.findIntersections(ray);
                 if (intersectableIntersections != null) {
                     if (intersections != null) {
