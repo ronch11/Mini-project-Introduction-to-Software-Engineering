@@ -5,6 +5,7 @@ import java.util.List;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Class point3D is the basic class representing a point in space of Euclidean
@@ -71,7 +72,18 @@ public class Plane implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        // TODO Auto-generated method stub
+        double nv = this.normal.dotProduct(ray.getDir());
+        if (isZero(nv) || ray.getP0() == this.q0) {
+            return null;
+        }
+        Vector vec = q0.subtract(ray.getP0());
+
+        double nQMinusP0 = normal.dotProduct(vec);
+        double t = alignZero(nQMinusP0 / nv);
+        if (t > 0) {
+            return List.of(ray.getP0().add(ray.getDir().scale(t)));
+        }
         return null;
+
     }
 }
