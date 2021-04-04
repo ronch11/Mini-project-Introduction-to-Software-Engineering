@@ -27,6 +27,9 @@ public class PlaneTests {
         assertEquals("Bad normal to Plane", new Vector(sqrt3, sqrt3, sqrt3), plane.getNormal(new Point3D(0, 0, 1)));
     }
 
+    /**
+     * Test method for {@link geometries.Plane#findIntersections(primitives.Ray)}.
+     */
     @Test
     public void testFindIntersection() {
         // setup
