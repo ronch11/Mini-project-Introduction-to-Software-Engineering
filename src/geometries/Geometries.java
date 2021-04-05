@@ -18,7 +18,7 @@ public class Geometries implements Intersectable {
     }
 
     public void add(Intersectable... geometries) {
-        // TODO Auto-generated method stub
+        geometriesList.addAll(List.of(geometries));
     }
 
     @Override
