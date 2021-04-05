@@ -54,8 +54,7 @@ public class Ray {
      *         point(p0).
      */
     public Point3D getPoint(double t) {
-        // TODO Auto-generated method stub
-        return null;
+        return p0.add(dir.scale(t));
     }
 
     /**
