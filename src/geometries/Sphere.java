@@ -1,10 +1,12 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Class point3D is the basic class representing a point in space of Euclidean
@@ -54,7 +56,39 @@ public class Sphere implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        // TODO Auto-generated method stub
+        double tM, d;
+        try {
+            Vector u = center.subtract(ray.getP0());
+            tM = alignZero(ray.getDir().dotProduct(u));
+            d = alignZero(Math.sqrt(u.lengthSquared() - tM * tM));
+        } catch (IllegalArgumentException e) {
+            tM = 0;
+            d = 0;
+        }
+
+        if (d >= radius) {
+            return null;
+        }
+
+        double tH = alignZero(Math.sqrt(radius * radius - d * d));
+        double t1 = alignZero(tM + tH);
+        double t2 = alignZero(tM - tH);
+
+        if (t1 > 0) {
+            List<Point3D> tentativeIntersections = new ArrayList<>();
+            tentativeIntersections.add(ray.getP0().add(ray.getDir().scale(t1)));
+            if (t2 > 0) {
+                tentativeIntersections.add(ray.getP0().add(ray.getDir().scale(t2)));
+            }
+            return tentativeIntersections;
+
+        } else {
+            if (t2 > 0) {
+                List<Point3D> tentativeIntersections = new ArrayList<>();
+                tentativeIntersections.add(ray.getP0().add(ray.getDir().scale(t2)));
+                return tentativeIntersections;
+            }
+        }
         return null;
     }
 
