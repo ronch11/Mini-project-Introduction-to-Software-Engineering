@@ -81,7 +81,7 @@ public class Plane implements Geometry {
         double nQMinusP0 = normal.dotProduct(vec);
         double t = alignZero(nQMinusP0 / nv);
         if (t > 0) {
-            return List.of(ray.getP0().add(ray.getDir().scale(t)));
+            return List.of(ray.getPoint(t));
         }
         return null;
 
