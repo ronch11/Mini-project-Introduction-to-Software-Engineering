@@ -58,7 +58,7 @@ public class Sphere implements Geometry {
     public List<Point3D> findIntersections(Ray ray) {
         double tM, d;
         try {
-            Vector u = center.subtract(ray.getPoint(t)));
+            Vector u = center.subtract(ray.getP0());
             tM = alignZero(ray.getDir().dotProduct(u));
             d = alignZero(Math.sqrt(u.lengthSquared() - tM * tM));
         } catch (IllegalArgumentException e) {
