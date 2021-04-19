@@ -1,4 +1,4 @@
-package unittests;
+package unittests.geometries;
 
 import static org.junit.Assert.*;
 
@@ -64,8 +64,8 @@ public class TriangleTests {
                                 triangle.findIntersections(new Ray(p0, new Vector(6, 1.6, 0.5))));
                 // =============== Boundary Values Tests ==================
                 // TC04: Ray intersect Triangle on edge
-                Ray r2 = new Ray(p0, new Vector(0.5, 4, 1.5));                
-                assertNull("TC04: The ray should intersected the triangle once.",triangle.findIntersections(r2));
+                Ray r2 = new Ray(p0, new Vector(0.5, 4, 1.5));
+                assertNull("TC04: The ray should intersected the triangle once.", triangle.findIntersections(r2));
 
                 // TC05: Ray intersect Triangle on vertex
                 assertNull("TC05: triangle should not intersected by Ray.",
