@@ -7,8 +7,8 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * Class point3D is the basic class representing a point in space of Euclidean
- * geometry in Cartesian 3-Dimensional coordinate system.
+ * Class Tube is the Geometry class representing a Tube shape in space of
+ * Euclidean geometry in Cartesian 3-Dimensional coordinate system.
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */

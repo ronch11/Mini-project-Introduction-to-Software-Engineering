@@ -4,8 +4,8 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * Class point3D is the basic class representing a point in space of Euclidean
- * geometry in Cartesian 3-Dimensional coordinate system.
+ * Interface Geometry is the common interface for all Geomtry classes to
+ * implement.
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */

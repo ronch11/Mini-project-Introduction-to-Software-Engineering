@@ -9,8 +9,8 @@ import primitives.Vector;
 import static primitives.Util.*;
 
 /**
- * Class point3D is the basic class representing a point in space of Euclidean
- * geometry in Cartesian 3-Dimensional coordinate system.
+ * Class Sphere is the Geometry class representing a Sphere shape in space of
+ * Euclidean geometry in Cartesian 3-Dimensional coordinate system.
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
