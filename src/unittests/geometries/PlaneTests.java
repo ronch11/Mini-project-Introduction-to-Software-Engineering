@@ -7,11 +7,12 @@ import java.util.List;
 import org.junit.Test;
 
 import geometries.*;
-import junit.framework.Assert;
 import primitives.*;
 
 /**
- * Unit tests for geometries.Plane class
+ * Unit Testing Cylinders
+ * 
+ * @author SHAI FALACH and RON HAIM HODADEDI
  */
 public class PlaneTests {
     /**

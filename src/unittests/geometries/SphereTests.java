@@ -10,6 +10,8 @@ import primitives.*;
 
 /**
  * Unit tests for geometries.Sphere class
+ * 
+ * @author SHAI FALACH and RON HAIM HODADEDI
  */
 public class SphereTests {
 

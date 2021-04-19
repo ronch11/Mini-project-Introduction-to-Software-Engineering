@@ -17,6 +17,11 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+/**
+ * Testing eometries.
+ * 
+ * @author SHAI FALACH and RON HAIM HODADEDI
+ */
 public class GeometriesTests {
     /**
      * Test method for {@link geometries.Geometries} Constructor.

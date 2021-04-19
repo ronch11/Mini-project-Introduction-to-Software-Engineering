@@ -11,6 +11,8 @@ import primitives.*;
 
 /**
  * Unit tests for geometries.Triangle class
+ * 
+ * @author SHAI FALACH and RON HAIM HODADEDI
  */
 public class TriangleTests {
 

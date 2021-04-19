@@ -6,6 +6,11 @@ import org.junit.Test;
 import geometries.*;
 import primitives.*;
 
+/**
+ * Testing Cylinders
+ * 
+ * @author SHAI FALACH and RON HAIM HODADEDI
+ */
 public class CylinderTests {
 
     /**
