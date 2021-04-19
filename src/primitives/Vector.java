@@ -97,7 +97,7 @@ public class Vector {
      *               using a negative number.
      * @return Vector - a new vector based on this vector and the scalar.
      */
-    public Vector scale(Double scalar) {
+    public Vector scale(double scalar) {
         return new Vector(scalar * head.x.coord, scalar * head.y.coord, scalar * head.z.coord);
     }
 

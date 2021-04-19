@@ -112,7 +112,7 @@ public class VectorTests {
     }
 
     /**
-     * Test method for {@link Vector#scale(Double)}.
+     * Test method for {@link Vector#scale(double)}.
      */
     @Test
     public void testScale() {
