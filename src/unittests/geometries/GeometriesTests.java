@@ -38,7 +38,7 @@ public class GeometriesTests {
         Sphere sphere = new Sphere(new Point3D(0, 0, 10), 5);
         Polygon polygon = new Polygon(new Point3D(0, -5, 5), new Point3D(5, -5, 0), new Point3D(0, 5, 0),
                 new Point3D(-5, 5, 5));
-        Geometries geom = new Geometries(cylinder, plane, polygon, sphere, triangle, tube);
+        Geometries geom = new Geometries(plane, polygon, sphere, triangle);
         Geometries empty = new Geometries();
 
         // ============ Equivalence Partitions Tests ==============
@@ -50,11 +50,11 @@ public class GeometriesTests {
         // =============== Boundary Values Tests ==================
         // TC02: There is no intersections (no shapes).
         actualValue = empty.findIntersections(axisRay);
-        assertEquals(0, actualValue.size());
+        assertNull("There should not be any intersections without shapes", actualValue);
 
         // TC03: There is no intersections (with shapes).
         actualValue = geom.findIntersections(new Ray(new Point3D(0, 0, -1), unitVectorXAxis));
-        assertEquals("There should not be any intersections with our shapes.", 0, actualValue.size());
+        assertNull("There should not be any intersections with our shapes.", actualValue);
 
         // TC04: There is only one intersection.
         intersectingRay = new Ray(new Point3D(0, 0, 2), unitVectorXAxis);
@@ -64,7 +64,7 @@ public class GeometriesTests {
         // TC05: There is intersections with all shapes.
         intersectingRay = new Ray(new Point3D(2, 0, 0), axisRay.getDir());
         actualValue = geom.findIntersections(intersectingRay);
-        assertEquals("There should be 9 intersections with our shapes.", 9, actualValue.size());
+        assertEquals("There should be 5 intersections with our shapes.", 5, actualValue.size());
     }
 
 }
