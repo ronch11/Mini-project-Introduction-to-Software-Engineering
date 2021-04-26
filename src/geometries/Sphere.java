@@ -51,7 +51,7 @@ public class Sphere implements Geometry {
 
     @Override
     public Vector getNormal(Point3D point3d) {
-        return point3d.subtract(this.center).normalize();
+        return point3d.subtract(center).normalize();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Sphere implements Geometry {
             d = 0;
         }
 
-        if (d >= radius) {
+        if (alignZero(d - radius) == 0) {
             return null;
         }
 
