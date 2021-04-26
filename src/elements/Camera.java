@@ -3,6 +3,7 @@ package elements;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Class point3D is the basic class representing a point in space of Euclidean
@@ -16,7 +17,7 @@ public class Camera {
     private double width, height, distance;
 
     /**
-     * Only Consturctor for Camera. must given position and 2 directions(forward and
+     * Only Constructor for Camera. must given position and 2 directions(forward and
      * up).
      * 
      * @param camPos - Point3D A position for the camera.
@@ -93,8 +94,30 @@ public class Camera {
         return this;
     }
 
+    /**
+     * gets Ray that align with 2 points (camera position and a viewPanel pixel).
+     * 
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @return
+     */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        // TODO: implement after tests.
-        return null;
+
+        double rX = alignZero(width / nX);
+        double rY = alignZero(height / nY);
+        Point3D pc = position.add(vTo.scale(distance));
+
+        double yI = alignZero(-(i - ((nY - 1) / 2d)) * rY);
+        double xJ = alignZero((j - ((nX - 1) / 2d)) * rX);
+
+        Point3D pIJ = pc;
+        if (xJ != 0)
+            pIJ = pIJ.add(vRight.scale(xJ));
+        if (yI != 0)
+            pIJ = pIJ.add(vUp.scale(yI));
+
+        return new Ray(position, pIJ.subtract(position));
     }
 }
