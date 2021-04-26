@@ -29,7 +29,7 @@ public class Camera {
         vTo = camVTo.normalized();
         vUp = camVUp.normalized();
         if (vTo.dotProduct(vUp) != 0) {
-            // TODO: SHOULD EXECPTION NEED TO BE THROWN.
+            throw new IllegalArgumentException("The Vectors supplied should be orthogonal to each other");
         }
         vRight = vTo.crossProduct(vUp).normalize();
     }
