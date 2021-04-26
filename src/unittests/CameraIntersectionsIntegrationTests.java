@@ -15,8 +15,10 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- * Integration Test of the Camera Ray constructs function with intersection
- * finding capabilities of intersectable geometries.
+ * Integration Test of the Camera Ray constructs function
+ * {@link elements.Camera#constructRayThroughPixel(int, int, int, int)} with
+ * intersection finding capabilities of intersectable geometries
+ * {@link geometries.Intersectable#findIntersections(Ray)}.
  */
 public class CameraIntersectionsIntegrationTests {
 
