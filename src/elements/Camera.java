@@ -29,7 +29,7 @@ public class Camera {
         vTo = camVTo.normalized();
         vUp = camVUp.normalized();
         if (vTo.dotProduct(vUp) != 0) {
-            // TODO: MAYBE EXECPTION NEED TO BE THROWN.
+            // TODO: SHOULD EXECPTION NEED TO BE THROWN.
         }
         vRight = vTo.crossProduct(vUp).normalize();
     }
