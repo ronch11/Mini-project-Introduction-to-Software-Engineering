@@ -97,11 +97,11 @@ public class Camera {
     /**
      * gets Ray that align with 2 points (camera position and a viewPanel pixel).
      * 
-     * @param nX
-     * @param nY
-     * @param j
-     * @param i
-     * @return
+     * @param nX - int number of columns in the View panel.
+     * @param nY - int number of rows in the View panel.
+     * @param j  - int column index of the pixel in the View panel.
+     * @param i  - int row index of the pixel in the View panel.
+     * @return - Ray that start at the camera and goes through the pixel[i,j].
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
 

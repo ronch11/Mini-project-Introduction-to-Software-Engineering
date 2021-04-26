@@ -26,8 +26,8 @@ public class CameraIntersectionsIntegrationTests {
     @Test
     public void testCameraFindIntersection() {
         // setup constants
-        int pixelWidth = 1;
-        int pixelHeight = 1;
+        int pixelNumberOfCols = 3;
+        int pixelNumberOfRows = 3;
         double distance = 1d;
         double vpWidth = 3d;
         double vpHeight = 3d;
@@ -42,7 +42,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = sphere.findIntersections(cameraRay);
                 if (i == 1 && j == 1) {
                     assertEquals("TC01: The Center Ray should intersect the sphere 2 times.", 2, actualValue.size());
@@ -60,7 +60,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = sphere.findIntersections(cameraRay);
                 assertEquals("TC02: All Rays should intersect the sphere 2 times.", 2, actualValue.size());
             }
@@ -71,7 +71,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = sphere.findIntersections(cameraRay);
                 if (i == 1 || j == 1) { // if it's not a corner ray
                     assertEquals("TC03: The Center Ray should intersect the sphere 2 times.", 2, actualValue.size());
@@ -86,7 +86,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = sphere.findIntersections(cameraRay);
                 assertEquals("TC04: All Rays should intersect the sphere one time only.", 1, actualValue.size());
             }
@@ -97,7 +97,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = sphere.findIntersections(cameraRay);
                 assertNull("TC05: All rays should not intersect the sphere.", actualValue);
             }
@@ -108,7 +108,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = plane.findIntersections(cameraRay);
                 assertEquals("TC06: All Rays should intersect the Plane one time only.", 1, actualValue.size());
             }
@@ -120,7 +120,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = plane.findIntersections(cameraRay);
                 assertEquals("TC07: All Rays should intersect the Plane one time only.", 1, actualValue.size());
             }
@@ -132,10 +132,10 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = plane.findIntersections(cameraRay);
-                if (i == 1 || j == 1) { // if it's not a corner ray
-                    assertEquals("TC08: Rays in first adn second row should intersect the plane one time only.", 1,
+                if (i <= 1) {
+                    assertEquals("TC08: Rays in first and second row should intersect the plane one time only.", 1,
                             actualValue.size());
                 } else {
                     assertNull("TC08: Last row rays should not intersect the plane.", actualValue);
@@ -148,7 +148,7 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = triangle.findIntersections(cameraRay);
                 if (i == 1 && j == 1) {
                     assertEquals("TC09: The Center Ray should intersect the triangle once.", 1, actualValue.size());
@@ -164,13 +164,13 @@ public class CameraIntersectionsIntegrationTests {
 
         for (int i = 0; i < vpHeight; i++) {
             for (int j = 0; j < vpWidth; j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(pixelWidth, pixelHeight, j, i);
+                Ray cameraRay = camera.constructRayThroughPixel(pixelNumberOfCols, pixelNumberOfRows, j, i);
                 List<Point3D> actualValue = triangle.findIntersections(cameraRay);
                 if ((i == 1 || i == 0) && j == 1) {
-                    assertEquals("TC09: The center/upper Ray should intersect the triangle once.", 1,
+                    assertEquals("TC10: The center/upper Ray should intersect the triangle once.", 1,
                             actualValue.size());
                 } else {
-                    assertNull("TC09: Only the center/upper ray should intersect the triangle.", actualValue);
+                    assertNull("TC10: Only the center/upper ray should intersect the triangle.", actualValue);
                 }
             }
         }
