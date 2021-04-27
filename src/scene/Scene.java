@@ -10,7 +10,7 @@ public class Scene {
     public AmbientLight ambientLight;
     public Geometries geometries;
 
-    Scene(String name) {
+    public Scene(String name) {
         this.name = name;
         geometries = new Geometries();
         background.setColor();
