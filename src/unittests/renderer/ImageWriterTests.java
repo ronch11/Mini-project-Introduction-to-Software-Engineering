@@ -23,7 +23,6 @@ public class ImageWriterTests {
                     writer.writePixel(j, i, color);
                 }
             }
-
         }
         writer.writeToImage();
     }
