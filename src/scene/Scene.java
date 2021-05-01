@@ -1,20 +1,29 @@
 package scene;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import elements.AmbientLight;
 import geometries.Geometries;
 import primitives.Color;
 
+@XmlRootElement
 public class Scene {
+    @XmlAttribute
     public String name;
+    @XmlElement
     public Color background;
+    @XmlElement
     public AmbientLight ambientLight;
+    @XmlElement
     public Geometries geometries;
 
     public Scene(String name) {
         this.name = name;
         geometries = new Geometries();
-        background.setColor();
-        ambientLight = new AmbientLight(background);
+        background = new Color(Color.BLACK);
+        ambientLight = new AmbientLight(background, 1);
     }
 
     public Scene setName(String name) {
