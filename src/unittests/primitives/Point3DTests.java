@@ -6,6 +6,9 @@ import org.junit.Test;
 import primitives.Point3D;
 import static primitives.Util.*;
 
+/**
+ * Unit tests for primitives.Point3D class
+ */
 public class Point3DTests {
 
     @Test
