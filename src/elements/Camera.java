@@ -70,6 +70,10 @@ public class Camera {
         return vRight;
     }
 
+    public double getWidth() {
+        return width;
+    }
+
     /**
      * A Setter for View panel size. need to provide width and height.
      * 
