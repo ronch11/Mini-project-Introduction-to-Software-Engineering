@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import elements.*;
 import geometries.*;
+import jakarta.xml.bind.JAXBException;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
@@ -41,10 +42,10 @@ public class RenderTests {
 
 		ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);
 		Render render = new Render() //
-				.setImageWriter(imageWriter) //
+				.setWriter(imageWriter) //
 				.setScene(scene) //
 				.setCamera(camera) //
-				.setRayTracer(new BasicRayTracer(scene));
+				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();
 		render.printGrid(100, new Color(java.awt.Color.YELLOW));
@@ -53,19 +54,21 @@ public class RenderTests {
 
 	/**
 	 * Test for XML based scene - for bonus
+	 * 
+	 * @throws JAXBException
 	 */
 	@Test
-	public void basicRenderXml() {
-		Scene scene = new Scene("XML Test scene");
+	public void basicRenderXml() throws JAXBException {
 		// enter XML file name and parse from XML file into scene object
-		// ...
-
+		String xmlFileName = "basicRenderTestTwoColors";
+		Render render = new Render();
+		Scene scene = render.buildSceneFromXml(xmlFileName);
 		ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
-		Render render = new Render() //
-				.setImageWriter(imageWriter) //
+
+		render.setWriter(imageWriter) //
 				.setScene(scene) //
 				.setCamera(camera) //
-				.setRayTracer(new BasicRayTracer(scene));
+				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();
 		render.printGrid(100, new Color(java.awt.Color.YELLOW));
