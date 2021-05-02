@@ -22,7 +22,7 @@ public class Scene {
     public Scene(String name) {
         this.name = name;
         geometries = new Geometries();
-        background = new Color(Color.BLACK);
+        background = Color.BLACK;
         ambientLight = new AmbientLight(background, 1);
     }
 
