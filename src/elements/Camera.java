@@ -113,7 +113,7 @@ public class Camera {
         double rY = alignZero(height / nY);
         Point3D pc = position.add(vTo.scale(distance));
 
-        double yI = alignZero(-(i - ((nY - 1) / 2d)) * rY);
+        double yI = alignZero((((nY - 1) / 2d) - i) * rY);
         double xJ = alignZero((j - ((nX - 1) / 2d)) * rX);
 
         Point3D pIJ = pc;
