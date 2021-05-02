@@ -69,4 +69,17 @@ public abstract class Util {
         return Math.random() * (max - min) + min;
     }
 
+    public static double[] getDoublesFromString(String stringValue) {
+        String[] doubleValues = stringValue.split(" ");
+        double[] rgbDoubleValues = new double[3];
+        for (int i = 0; i < doubleValues.length; i++) {
+            try {
+                rgbDoubleValues[i] = Double.parseDouble(doubleValues[i]);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("bad format for rgb string");
+            }
+        }
+        return rgbDoubleValues;
+    }
+
 }
