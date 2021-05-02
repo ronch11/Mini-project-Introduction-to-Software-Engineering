@@ -69,6 +69,9 @@ public class Ray {
      *         P0(starting point).
      */
     public Point3D findClosestPoint(List<Point3D> points) {
+        if (points == null || points.isEmpty()) {
+            return null;
+        }
         double minimal = Double.MAX_VALUE;
         Point3D closest = null;
         for (Point3D point3d : points) {
