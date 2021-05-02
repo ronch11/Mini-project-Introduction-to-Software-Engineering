@@ -1,12 +1,13 @@
 package geometries;
 
+import static primitives.Util.alignZero;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import static primitives.Util.*;
 
 /**
  * Class Sphere is the Geometry class representing a Sphere shape in space of
@@ -16,7 +17,6 @@ import static primitives.Util.*;
  */
 
 public class Sphere implements Geometry {
-
     private Point3D center;
     private double radius;
 

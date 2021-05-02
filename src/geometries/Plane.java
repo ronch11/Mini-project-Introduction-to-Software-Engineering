@@ -1,11 +1,13 @@
 package geometries;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-import static primitives.Util.*;
 
 /**
  * Class Plane is the Geometry class representing a Plane shape in space of

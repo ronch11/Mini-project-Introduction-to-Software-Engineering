@@ -1,12 +1,12 @@
 package geometries;
 
+import static primitives.Util.isZero;
+
 import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-
-import static primitives.Util.*;
 
 /**
  * Class Triangle is the Geometry class representing a Triangle shape in space
@@ -14,7 +14,6 @@ import static primitives.Util.*;
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
-
 public class Triangle extends Polygon {
     /**
      * Constructor for building Triangle object.
