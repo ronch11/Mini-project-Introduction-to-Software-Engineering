@@ -2,12 +2,11 @@ package geometries;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import primitives.Point3D;
 import primitives.Ray;
 
 /**
- * Geometries class represents compsition of Geometries in 3D Cartesian
+ * Geometries class represents composition of Geometries in 3D Cartesian
  * coordinate system
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
@@ -16,7 +15,7 @@ public class Geometries implements Intersectable {
     private List<Intersectable> geometriesList;
 
     /**
-     * A Constructor the sets the objevct to be with empty list of intersectable
+     * A Constructor the sets the object to be with empty list of intersectable
      * shapes.
      */
     public Geometries() {
