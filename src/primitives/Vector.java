@@ -47,25 +47,6 @@ public class Vector {
     }
 
     /**
-     * Constructor for Vector Class.
-     * 
-     * @param x - A real number (type double) for the x axis in Cartesian
-     *          3-Dimensional coordinate system.
-     * 
-     * @param y - A real number (type double) for the y axis in Cartesian
-     *          3-Dimensional coordinate system.
-     * @param z - A real number (type double) for the z axis in Cartesian
-     *          3-Dimensional coordinate system.
-     * 
-     * @throws IllegalArgumentException - In case of passing Zero in all parameters
-     *                                  (head is on the origin (0,0,0) of the)
-     *                                  Cartesian 3-Dimensional coordinate system.
-     */
-    // public Vector(Coordinate x, Coordinate y, Coordinate z) {
-    // this(x.coord, y.coord, z.coord);
-    // }
-
-    /**
      * Getter for getting internal field - head.
      * 
      * @return head - type Point3D
