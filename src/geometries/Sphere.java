@@ -1,6 +1,6 @@
 package geometries;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -75,7 +75,7 @@ public class Sphere implements Geometry {
         double t2 = alignZero(tM - tH);
 
         if (t1 > 0) {
-            List<Point3D> tentativeIntersections = new ArrayList<>();
+            List<Point3D> tentativeIntersections = new LinkedList<>();
             tentativeIntersections.add(ray.getPoint(t1));
             if (t2 > 0) {
                 tentativeIntersections.add(ray.getPoint(t2));
@@ -84,7 +84,7 @@ public class Sphere implements Geometry {
 
         } else {
             if (t2 > 0) {
-                List<Point3D> tentativeIntersections = new ArrayList<>();
+                List<Point3D> tentativeIntersections = new LinkedList<>();
                 tentativeIntersections.add(ray.getPoint(t2));
                 return tentativeIntersections;
             }

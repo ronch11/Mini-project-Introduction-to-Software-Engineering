@@ -1,6 +1,6 @@
 package geometries;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -20,7 +20,7 @@ public class Geometries implements Intersectable {
      * shapes.
      */
     public Geometries() {
-        geometriesList = new ArrayList<>();
+        geometriesList = new LinkedList<>();
     }
 
     /**
@@ -54,7 +54,7 @@ public class Geometries implements Intersectable {
                     if (intersections != null) {
                         intersections.addAll(intersectableIntersections);
                     } else {
-                        intersections = new ArrayList<>(intersectableIntersections);
+                        intersections = new LinkedList<>(intersectableIntersections);
                     }
                 }
             }
