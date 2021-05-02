@@ -12,4 +12,9 @@ public class AmbientLight {
     public Color getIntensity() {
         return intensity;
     }
+
+    @Override
+    public String toString() {
+        return intensity.toString();
+    }
 }
