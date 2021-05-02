@@ -1,12 +1,12 @@
 package unittests.primitives;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
-import static primitives.Util.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import org.junit.Test;
 
 import primitives.Point3D;
 import primitives.Ray;

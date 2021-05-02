@@ -1,24 +1,23 @@
 package unittests.geometries;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
 import org.junit.Test;
 
-import geometries.Cylinder;
 import geometries.Geometries;
 import geometries.Plane;
 import geometries.Polygon;
 import geometries.Sphere;
 import geometries.Triangle;
-import geometries.Tube;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
 /**
- * Testing eometries.
+ * Testing Geometries.
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
@@ -31,9 +30,7 @@ public class GeometriesTests {
         // setup
         Ray axisRay = new Ray(new Point3D(0, 0, 1), new Vector(0, 0, 1));
         Vector unitVectorXAxis = new Vector(1, 0, 0);
-        Tube tube = new Tube(new Ray(new Point3D(0, 0, 50), unitVectorXAxis), 5);
         Plane plane = new Plane(new Point3D(0, 0, 30), axisRay.getDir());
-        Cylinder cylinder = new Cylinder(axisRay, 5, 25);
         Triangle triangle = new Triangle(new Point3D(0, 20, 6), new Point3D(0, -20, 6), new Point3D(10, 0, 10));
         Sphere sphere = new Sphere(new Point3D(0, 0, 10), 5);
         Polygon polygon = new Polygon(new Point3D(0, -5, 5), new Point3D(5, -5, 0), new Point3D(0, 5, 0),
