@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import elements.*;
 import geometries.*;
-import jakarta.xml.bind.JAXBException;
 import primitives.*;
 import renderer.*;
 import scene.Scene;
@@ -55,19 +54,17 @@ public class RenderTests {
 	/**
 	 * Test for XML based scene - for bonus
 	 * 
-	 * @throws JAXBException
+	 * @throws Exception
 	 */
 	@Test
-	public void basicRenderXml() throws JAXBException {
+	public void basicRenderXml() {
+		Scene scene = new Scene("XML Test scene");
 		// enter XML file name and parse from XML file into scene object
 		String xmlFileName = "basicRenderTestTwoColors";
-		Render render = new Render();
-		Scene scene = render.buildSceneFromXml(xmlFileName);
 		ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
 
-		render.setWriter(imageWriter) //
-				.setScene(scene) //
-				.setCamera(camera) //
+		Render render = new Render().setWriter(imageWriter).setScene(scene) //
+				.readFromXml(xmlFileName).setCamera(camera) //
 				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();

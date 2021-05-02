@@ -1,22 +1,13 @@
 package scene;
 
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-
 import elements.AmbientLight;
 import geometries.Geometries;
 import primitives.Color;
 
-@XmlRootElement
 public class Scene {
-    @XmlAttribute
     public String name;
-    @XmlElement
     public Color background;
-    @XmlElement
     public AmbientLight ambientLight;
-    @XmlElement
     public Geometries geometries;
 
     public Scene(String name) {
@@ -45,4 +36,5 @@ public class Scene {
         this.geometries = geometries;
         return this;
     }
+
 }
