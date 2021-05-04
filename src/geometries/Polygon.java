@@ -87,46 +87,6 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		List<Point3D> tentativeIntersection = plane.findIntersections(ray);
-		// if we do not intersect with plane we can not possibly intersect the triangle.
-		if (tentativeIntersection == null) {
-			return null;
-		}
-		// algorithm to test if given point P we got from plane findIntersections is
-		// inside the triangle.
-		Point3D p0 = ray.getP0();
-		Vector v = ray.getDir();
-		int size = vertices.size();
-		Vector[] vectorsToP0 = new Vector[size];
-		Vector[] crossVectors = new Vector[size];
-		for (int i = 0; i < size; i++) {
-			vectorsToP0[i] = (vertices.get(i).subtract(p0));
-		}
-		for (int i = 0; i < size; i++) {
-			crossVectors[i] = vectorsToP0[i].crossProduct(vectorsToP0[(i + 1) % size]).normalize();
-		}
-		int numOfPositiveNumbers = 0;
-		for (Vector vector : crossVectors) {
-			double vn = v.dotProduct(vector);
-			if (isZero(vn)) {
-				return null;
-			}
-			if (vn > 0) {
-				numOfPositiveNumbers++;
-			}
-		}
-
-		// if numOfPositiveNumbers is not 0 or size(number of vertices) it's mean there
-		// is at least 1 number with odd sign.
-		if (numOfPositiveNumbers != 0 && numOfPositiveNumbers != size) {
-			return null;
-		}
-
-		return tentativeIntersection;
-	}
-
-	@Override
 	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		List<GeoPoint> tentativeIntersection = plane.findGeoIntersections(ray);
 		// if we do not intersect with plane we can not possibly intersect the triangle.
