@@ -41,7 +41,7 @@ import scene.Scene;
  */
 public class Render {
     private Camera camera;
-    private ImageWriter writer;
+    private ImageWriter imageWriter;
     private RayTracerBase rayTracer;
     private Scene scene;
 
@@ -87,8 +87,8 @@ public class Render {
      * @param writer - the writer we will use to output the rendered image.
      * @return Render - the modifying object (self return).
      */
-    public Render setWriter(ImageWriter writer) {
-        this.writer = writer;
+    public Render setImageWriter(ImageWriter writer) {
+        this.imageWriter = writer;
         return this;
     }
 
@@ -100,7 +100,7 @@ public class Render {
         if (camera == null) {
             throw new MissingResourceException("Camera was not set can not render image.", "Render", "Camera");
         }
-        if (writer == null) {
+        if (imageWriter == null) {
             throw new MissingResourceException("Writer was not set can not render image.", "Render", "ImageWriter");
         }
         if (rayTracer == null) {
@@ -111,10 +111,10 @@ public class Render {
             throw new MissingResourceException("Scene was not set can not render image.", "Render", "Scene");
         }
 
-        for (int i = 0; i < writer.getNy(); i++) {
-            for (int j = 0; j < writer.getNx(); j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(writer.getNx(), writer.getNy(), j, i);
-                writer.writePixel(j, i, rayTracer.traceRay(cameraRay));
+        for (int i = 0; i < imageWriter.getNy(); i++) {
+            for (int j = 0; j < imageWriter.getNx(); j++) {
+                Ray cameraRay = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
+                imageWriter.writePixel(j, i, rayTracer.traceRay(cameraRay));
             }
         }
     }
@@ -126,13 +126,13 @@ public class Render {
      * @param color    Color - the color of the grid lines.
      */
     public void printGrid(int interval, Color color) {
-        if (writer == null) {
+        if (imageWriter == null) {
             throw new MissingResourceException("Writer was not set can not render Grid.", "Render", "ImageWriter");
         }
-        for (int i = 0; i < writer.getNy(); i++) {
-            for (int j = 0; j < writer.getNx(); j++) {
+        for (int i = 0; i < imageWriter.getNy(); i++) {
+            for (int j = 0; j < imageWriter.getNx(); j++) {
                 if (i % interval == 0 || j % interval == 0) {
-                    writer.writePixel(j, i, color);
+                    imageWriter.writePixel(j, i, color);
                 }
             }
         }
@@ -142,10 +142,10 @@ public class Render {
      * save rendered image to file.
      */
     public void writeToImage() {
-        if (writer == null) {
+        if (imageWriter == null) {
             throw new MissingResourceException("Writer was not set can not save to image.", "Render", "ImageWriter");
         }
-        writer.writeToImage();
+        imageWriter.writeToImage();
     }
 
     /**
