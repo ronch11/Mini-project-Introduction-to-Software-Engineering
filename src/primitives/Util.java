@@ -69,9 +69,16 @@ public abstract class Util {
         return Math.random() * (max - min) + min;
     }
 
+    /**
+     * get a string that contains space separated numeric values adn return them as
+     * doubles.
+     * 
+     * @param stringValue String - the space separated values string
+     * @return double[] - Array of doubles that was inside the string.
+     */
     public static double[] getDoublesFromString(String stringValue) {
         String[] doubleValues = stringValue.split(" ");
-        double[] rgbDoubleValues = new double[3];
+        double[] rgbDoubleValues = new double[doubleValues.length];
         for (int i = 0; i < doubleValues.length; i++) {
             try {
                 rgbDoubleValues[i] = Double.parseDouble(doubleValues[i]);

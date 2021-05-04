@@ -5,8 +5,14 @@ import org.junit.Test;
 import primitives.Color;
 import renderer.ImageWriter;
 
+/**
+ * A unit testing for {@link renderer.ImageWriter}
+ */
 public class ImageWriterTests {
 
+    /**
+     * Test for { @link renderer.ImageWriter#writeToImage() }
+     */
     @Test
     public void writeImageTest() {
         int nX = 800;

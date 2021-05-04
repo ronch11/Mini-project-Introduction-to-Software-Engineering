@@ -148,6 +148,12 @@ public class Render {
         writer.writeToImage();
     }
 
+    /**
+     * An XML loader function - read data of scene from XML file and update scene.
+     * 
+     * @param xmlFilePath String - Name of the xml file without extension.
+     * @return Render - Self return for builder pattern.
+     */
     public Render readFromXml(String xmlFilePath) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -175,6 +181,12 @@ public class Render {
         }
     }
 
+    /**
+     * A helper function for setting backgroundLight of Scene from XML.
+     * 
+     * @param rootElement Element - the root Dom element.
+     * @return Render - Self return for builder pattern.
+     */
     private Render getBackgroundLight(Element rootElement) {
         double[] rgbBackground = getDoublesFromString(rootElement.getAttribute("background-color"));
         Color background = new Color(rgbBackground[0], rgbBackground[1], rgbBackground[2]);
@@ -182,6 +194,12 @@ public class Render {
         return this;
     }
 
+    /**
+     * A helper function for setting AmbientLight of Scene from XML.
+     * 
+     * @param rootElement Element - the root Dom element.
+     * @return Render - Self return for builder pattern.
+     */
     private Render getAmbientLight(Element rootElement) {
         Element ambientElement = (Element) rootElement.getElementsByTagName("ambient-light").item(0);
         double[] rgbLight = getDoublesFromString(ambientElement.getAttribute("color"));
@@ -190,6 +208,12 @@ public class Render {
         return this;
     }
 
+    /**
+     * A helper function for setting Geometries of Scene from XML.
+     * 
+     * @param rootElement Element - the root Dom element.
+     * @return Render - Self return for builder pattern.
+     */
     private Render getGeometries(Element rootElement) {
         Geometries geometries = new Geometries();
         Element geometriesElement = (Element) rootElement.getElementsByTagName("geometries").item(0);

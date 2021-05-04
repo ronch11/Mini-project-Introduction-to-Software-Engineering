@@ -21,6 +21,13 @@ public class RayTracerBasic extends RayTracerBase {
         super(scene);
     }
 
+    /**
+     * Calculate what color the intersection of Ray with scene should be.
+     * 
+     * @param ray Ray - A Ray that need to be checked against the scene.
+     * @return Color - The Color of the point in the scene or the background color
+     *         if Ray does not intersect any shape in the scene.
+     */
     @Override
     public Color traceRay(Ray ray) {
         List<Point3D> points = scene.geometries.findIntersections(ray);
