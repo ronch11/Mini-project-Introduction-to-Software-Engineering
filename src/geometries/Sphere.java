@@ -16,7 +16,7 @@ import primitives.Vector;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     private Point3D center;
     private double radius;
 
