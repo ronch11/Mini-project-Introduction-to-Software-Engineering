@@ -32,7 +32,7 @@ public class RayTests {
         assertEquals("TC01: Should get the (1,1,2) point", p1, actualValue);
         // =============== Boundary Values Tests ==================
         // TC02: The list is empty - returns null.
-        actualValue = ray.findClosestPoint(new LinkedList<Point3D>());
+        actualValue = ray.findClosestPoint(new LinkedList<>());
         assertNull("TC02: should get back null on empty list.", actualValue);
         // TC03: The point is the head of list.
         actualValue = ray.findClosestPoint(List.of(p1, p2, p3));
