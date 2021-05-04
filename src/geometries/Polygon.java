@@ -163,6 +163,7 @@ public class Polygon extends Geometry {
 			return null;
 		}
 
+		tentativeIntersection.get(0).geometry = this;
 		return tentativeIntersection;
 	}
 }

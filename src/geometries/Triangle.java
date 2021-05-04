@@ -101,6 +101,7 @@ public class Triangle extends Polygon {
             return null;
         }
 
+        tentativeIntersection.get(0).geometry = this;
         return tentativeIntersection;
     }
 }
