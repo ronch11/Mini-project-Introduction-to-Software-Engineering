@@ -92,4 +92,42 @@ public class Sphere extends Geometry {
         return null;
     }
 
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        double tM, d;
+        try {
+            Vector u = center.subtract(ray.getP0());
+            tM = alignZero(ray.getDir().dotProduct(u));
+            d = alignZero(Math.sqrt(u.lengthSquared() - tM * tM));
+        } catch (IllegalArgumentException e) {
+            tM = 0;
+            d = 0;
+        }
+
+        if (alignZero(d - radius) == 0) {
+            return null;
+        }
+
+        double tH = alignZero(Math.sqrt(radius * radius - d * d));
+        double t1 = alignZero(tM + tH);
+        double t2 = alignZero(tM - tH);
+
+        if (t1 > 0) {
+            List<GeoPoint> tentativeIntersections = new LinkedList<>();
+            tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t1)));
+            if (t2 > 0) {
+                tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t2)));
+            }
+            return tentativeIntersections;
+
+        } else {
+            if (t2 > 0) {
+                List<GeoPoint> tentativeIntersections = new LinkedList<>();
+                tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t2)));
+                return tentativeIntersections;
+            }
+        }
+        return null;
+    }
+
 }
