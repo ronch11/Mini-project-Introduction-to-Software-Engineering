@@ -1,6 +1,10 @@
 package scene;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
 
@@ -10,8 +14,9 @@ import primitives.Color;
 public class Scene {
     public String name;
     public Color background;
-    public AmbientLight ambientLight;
     public Geometries geometries;
+    public List<LightSource> lights;
+    public AmbientLight ambientLight;
 
     /**
      * A Constructor for creating new Scene
@@ -20,8 +25,9 @@ public class Scene {
      */
     public Scene(String name) {
         this.name = name;
-        geometries = new Geometries();
         background = Color.BLACK;
+        lights = new LinkedList<>();
+        geometries = new Geometries();
         ambientLight = new AmbientLight(background, 1);
     }
 
@@ -70,4 +76,14 @@ public class Scene {
         return this;
     }
 
+    /**
+     * a Setter for lights field using builder pattern.
+     * 
+     * @param lights List<LightSource> - a list of all light sources in the scene.
+     * @return Scene - self return for builder patter.
+     */
+    public Scene setLights(List<LightSource> lights) {
+        this.lights = lights;
+        return this;
+    }
 }
