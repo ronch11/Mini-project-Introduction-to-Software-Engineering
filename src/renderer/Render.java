@@ -111,9 +111,12 @@ public class Render {
             throw new MissingResourceException("Scene was not set can not render image.", "Render", "Scene");
         }
 
-        for (int i = 0; i < imageWriter.getNy(); i++) {
-            for (int j = 0; j < imageWriter.getNx(); j++) {
-                Ray cameraRay = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
+        int ny = imageWriter.getNy();
+        int nx = imageWriter.getNx();
+
+        for (int i = 0; i < ny; i++) {
+            for (int j = 0; j < nx; j++) {
+                Ray cameraRay = camera.constructRayThroughPixel(nx, ny, j, i);
                 imageWriter.writePixel(j, i, rayTracer.traceRay(cameraRay));
             }
         }
