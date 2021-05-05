@@ -92,8 +92,8 @@ public class Ray {
             return null;
         }
         // reduce the list to the one GeoPoint with minimal distance to ray.
-        Optional<GeoPoint> closest = geoPoints.stream()
-                .reduce((gp1, gp2) -> gp1.point.distance(p0) > gp2.point.distance(p0) ? gp2 : gp1);
+        Optional<GeoPoint> closest = geoPoints.stream().parallel()
+                .reduce((gp1, gp2) -> alignZero(gp2.point.distance(p0) - gp1.point.distance(p0)) < 0 ? gp2 : gp1);
         // return it if it exists or null.
         return closest.isPresent() ? closest.get() : null;
     }
