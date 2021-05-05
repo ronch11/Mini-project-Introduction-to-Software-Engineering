@@ -11,6 +11,7 @@ import static primitives.Util.alignZero;
  */
 public class SpotLight extends PointLight {
     private Vector direction;
+    private int narrowBeam;
 
     /**
      * A constructor for Spot light sources.
@@ -23,16 +24,23 @@ public class SpotLight extends PointLight {
     public SpotLight(Color intensity, Point3D position, Vector direction) {
         super(intensity, position);
         this.direction = direction.normalized();
+        narrowBeam = 0;
     }
 
     @Override
     public Color getIntensity(Point3D p) {
-        Color i = super.getIntensity(p);
-        double numerator = alignZero(direction.dotProduct(getL(p)));
-        return i.scale(numerator < 0 ? 0 : numerator);
+
+        double numerator = Math.pow(alignZero(direction.dotProduct(getL(p))), narrowBeam);
+        if (numerator <= 0) {
+            return Color.BLACK;
+        }
+        Color i = super.getIntensity(p); // get intensity / the denominator part of the equation.
+        // scale it with the numerator part of the equation.
+        return i.scale(numerator);
     }
 
     public PointLight setNarrowBeam(int narrowBeam) {
+        this.narrowBeam = narrowBeam;
         return this;
     }
 }
