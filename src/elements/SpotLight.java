@@ -31,4 +31,8 @@ public class SpotLight extends PointLight {
         double numerator = alignZero(direction.dotProduct(getL(p)));
         return i.scale(numerator < 0 ? 0 : numerator);
     }
+
+    public PointLight setNarrowBeam(int narrowBeam) {
+        return this;
+    }
 }
