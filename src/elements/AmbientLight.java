@@ -2,19 +2,21 @@ package elements;
 
 import primitives.Color;
 
-public class AmbientLight {
-    private Color intensity;
+public class AmbientLight extends Light {
 
+    /**
+     * the constructor for Ambient light get Color and a scalar that dictate the
+     * ambient intensity of the light.
+     * 
+     * @param light     Color - Color of the light.
+     * @param intensity double - Intensity of the light.
+     */
     public AmbientLight(Color light, double intensity) {
-        this.intensity = light.scale(intensity);
-    }
-
-    public Color getIntensity() {
-        return intensity;
+        super(light.scale(intensity));
     }
 
     @Override
     public String toString() {
-        return intensity.toString();
+        return getIntensity().toString();
     }
 }
