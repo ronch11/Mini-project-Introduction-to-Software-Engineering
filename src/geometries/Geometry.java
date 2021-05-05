@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Color;
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Vector;
 
@@ -13,24 +14,45 @@ import primitives.Vector;
 public abstract class Geometry implements Intersectable {
 
     protected Color emission = Color.BLACK;
+    private Material material = new Material();
 
     /**
      * Getter for protected field emissions
      * 
-     * @return
+     * @return Color - The shape "emitted" Color.
      */
     public Color getEmission() {
         return emission;
     }
 
     /**
-     * A setter using builder pattern for protected field emissions
+     * A getter for private field material.
      * 
-     * @param emissions
-     * @return
+     * @return Material - the material the shape is made from.
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * A setter using builder pattern for protected field emissions.
+     * 
+     * @param emissions Color - The color that the geometry shape is "emitting".
+     * @return Geometry - self return for builder patter.
      */
     public Geometry setEmission(Color emissions) {
         this.emission = emissions;
+        return this;
+    }
+
+    /**
+     * A setter using builder pattern for private field material.
+     * 
+     * @param material Material - the material of the Geometry shape.
+     * @return Geometry - self return for builder patter.
+     */
+    public Geometry setMaterial(Material material) {
+        this.material = material;
         return this;
     }
 
