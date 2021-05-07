@@ -24,7 +24,7 @@ public class SpotLight extends PointLight {
     public SpotLight(Color intensity, Point3D position, Vector direction) {
         super(intensity, position);
         this.direction = direction.normalized();
-        narrowBeam = 0;
+        narrowBeam = 1;
     }
 
     @Override
