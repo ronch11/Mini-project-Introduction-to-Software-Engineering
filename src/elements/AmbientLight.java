@@ -4,8 +4,12 @@ import primitives.Color;
 
 public class AmbientLight extends Light {
 
+    public AmbientLight() {
+        super(Color.BLACK);
+    }
+
     /**
-     * the constructor for Ambient light get Color and a scalar that dictate the
+     * The constructor for Ambient light get Color and a scalar that dictate the
      * ambient intensity of the light.
      * 
      * @param light     Color - Color of the light.
