@@ -178,4 +178,49 @@ public class LightsTests {
 		render.writeToImage();
 	}
 
+	/**
+	 * Produce a picture of a sphere lighted by all light sources
+	 */
+	@Test
+	public void sphereOmniLights() {
+		scene1.geometries.add(sphere);
+		scene1.lights.add(new DirectionalLight(new Color(190, 115, 255).scale(2), new Vector(0.5, -0.5, -0.5)));
+		scene1.lights.add(new PointLight(new Color(java.awt.Color.green).scale(2), new Point3D(60, 10, 10)) //
+				.setkL(0.0005).setkQ(0.0005));
+		scene1.lights.add(
+				new SpotLight(new Color(java.awt.Color.red).scale(1.5), new Point3D(-30, -50, 40), new Vector(4, 2, -4)) //
+						.setNarrowBeam(10).setkL(0.000005).setkQ(0.00000025));
+
+		ImageWriter imageWriter = new ImageWriter("lightSphereOmniLights", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setCamera(camera1) //
+				.setRayTracer(new RayTracerBasic(scene1));//
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
+	 * Produce a picture of a two triangles lighted by all light sources.
+	 */
+	@Test
+	public void trianglesOmniLight() {
+		scene2.geometries.add(triangle1.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)), //
+				triangle2.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)));
+		scene2.lights.add(new DirectionalLight(new Color(java.awt.Color.yellow), new Vector(2, 3, -0.5)));
+		scene2.lights.add(new PointLight(new Color(java.awt.Color.pink).scale(2), new Point3D(60, 10, 10)) //
+				.setkL(0.0005).setkQ(0.0005));
+		scene2.lights.add(new SpotLight(new Color(java.awt.Color.magenta).scale(1.5), new Point3D(-30, -50, 40),
+				new Vector(4, 2, -4)) //
+						.setNarrowBeam(10).setkL(0.000005).setkQ(0.00000025));
+
+		ImageWriter imageWriter = new ImageWriter("lightTrianglesOmniLight", 500, 500);
+		Render render = new Render()//
+				.setImageWriter(imageWriter) //
+				.setCamera(camera2) //
+				.setRayTracer(new RayTracerBasic(scene2));//
+		render.renderImage();
+		render.writeToImage();
+	}
+
 }
