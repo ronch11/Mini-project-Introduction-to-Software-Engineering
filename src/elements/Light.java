@@ -6,7 +6,7 @@ import primitives.Color;
  * An abstract class that give the common field for all light classes.
  */
 abstract class Light {
-    private final Color intensity;
+    protected final Color intensity;
 
     /**
      * default constructor for all light based classes.

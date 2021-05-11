@@ -13,9 +13,9 @@ public class Point3D {
      */
     public static final Point3D ZERO = new Point3D(0, 0, 0);
 
-    public final Coordinate x;
-    public final Coordinate y;
-    public final Coordinate z;
+    final Coordinate x;
+    final Coordinate y;
+    final Coordinate z;
 
     /**
      * Constructor for Point3D Class.
@@ -88,8 +88,8 @@ public class Point3D {
      *         Points(this point and the Vector Head.)
      */
     public Point3D add(Vector vec) {
-        return new Point3D(this.x.coord + vec.getHead().x.coord, this.y.coord + vec.getHead().y.coord,
-                this.z.coord + vec.getHead().z.coord);
+        return new Point3D(this.x.coord + vec.head.x.coord, this.y.coord + vec.head.y.coord,
+                this.z.coord + vec.head.z.coord);
     }
 
     /**
@@ -128,7 +128,6 @@ public class Point3D {
         double deltaY = (this.y.coord - point.y.coord);
         double deltaZ = (this.z.coord - point.z.coord);
         return (deltaX * deltaX) + (deltaY * deltaY) + (deltaZ * deltaZ);
-
     }
 
     /**

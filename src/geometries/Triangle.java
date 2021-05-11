@@ -1,12 +1,10 @@
 package geometries;
 
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 import java.util.List;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * Class Triangle is the Geometry class representing a Triangle shape in space
@@ -31,9 +29,8 @@ public class Triangle extends Polygon {
 
         List<GeoPoint> tentativeIntersection = plane.findGeoIntersections(ray);
         // if we do not intersect with plane we can not possibly intersect the triangle.
-        if (tentativeIntersection == null) {
+        if (tentativeIntersection == null)
             return null;
-        }
 
         // algorithm to test if given point P we got from plane findIntersections is
         // inside the triangle.
@@ -43,24 +40,13 @@ public class Triangle extends Polygon {
         Vector v2 = vertices.get(1).subtract(p0);
         Vector v3 = vertices.get(2).subtract(p0);
 
-        Vector[] crossVectors = { v1.crossProduct(v2).normalize(), v2.crossProduct(v3).normalize(),
-                v3.crossProduct(v1).normalize() };
-
-        int numOfPositiveNumbers = 0;
-        for (Vector vector : crossVectors) {
-            double vn = v.dotProduct(vector);
-            if (isZero(vn)) {
-                return null;
-            }
-            if (vn > 0) {
-                numOfPositiveNumbers++;
-            }
-        }
-        // if numOfPositiveNumbers is not 0 or 3 it's mean there is at least 1 number
-        // with odd sign.
-        if (numOfPositiveNumbers != 0 && numOfPositiveNumbers != 3) {
+        double s1 = v.dotProduct(v1.crossProduct(v2));
+        double s2 = v.dotProduct(v2.crossProduct(v3));
+        if (alignZero(s1 * s2) <= 0)
             return null;
-        }
+        double s3 = v.dotProduct(v3.crossProduct(v1));
+        if (alignZero(s1 * s3) <= 0)
+            return null;
 
         tentativeIntersection.get(0).geometry = this;
         return tentativeIntersection;

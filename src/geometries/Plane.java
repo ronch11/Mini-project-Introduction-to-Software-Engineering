@@ -75,16 +75,17 @@ public class Plane extends Geometry {
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         double nv = alignZero(normal.dotProduct(ray.getDir()));
-        if (isZero(nv) || ray.getP0() == q0) {
+        if (isZero(nv))
+            return null;
+        Vector vec;
+        try {
+            vec = q0.subtract(ray.getP0());
+        } catch (IllegalArgumentException e) {
             return null;
         }
-        Vector vec = q0.subtract(ray.getP0());
 
         double nQMinusP0 = alignZero(normal.dotProduct(vec));
         double t = alignZero(nQMinusP0 / nv);
-        if (t > 0) {
-            return List.of(new GeoPoint(this, ray.getPoint(t)));
-        }
-        return null;
+        return t <= 0 ? null : List.of(new GeoPoint(this, ray.getPoint(t)));
     }
 }

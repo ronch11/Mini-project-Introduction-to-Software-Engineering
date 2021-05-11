@@ -29,14 +29,10 @@ public class SpotLight extends PointLight {
 
     @Override
     public Color getIntensity(Point3D p) {
-
-        double numerator = Math.pow(alignZero(direction.dotProduct(getL(p))), narrowBeam);
-        if (numerator <= 0) {
-            return Color.BLACK;
-        }
-        Color i = super.getIntensity(p); // get intensity / the denominator part of the equation.
-        // scale it with the numerator part of the equation.
-        return i.scale(numerator);
+        double numerator = alignZero(direction.dotProduct(getL(p)));
+        if (narrowBeam != 1)
+            numerator = alignZero(Math.pow(numerator, narrowBeam));
+        return numerator <= 0 ? Color.BLACK : super.getIntensity(p).scale(numerator);
     }
 
     public PointLight setNarrowBeam(int narrowBeam) {

@@ -62,14 +62,11 @@ public class PointLight extends Light implements LightSource {
     @Override
     public Color getIntensity(Point3D p) {
         double dSquared = alignZero(p.distanceSquared(position));
-        double d = alignZero(Math.sqrt(dSquared)); // no reason to calculate the distance^2 again only to sqrt it.
-        double denominator = alignZero(kC + d * kL + dSquared * kQ);
-        return getIntensity().scale(1 / denominator);
+        return intensity.reduce(alignZero(kC + Math.sqrt(dSquared) * kL + dSquared * kQ));
     }
 
     @Override
     public Vector getL(Point3D p) {
         return p.subtract(position).normalize();
     }
-
 }

@@ -40,8 +40,8 @@ public class CylinderTests {
 
         // TC02: Test getNormal of Cylinder in first base.
         // two point that are on the same plane of the "circle" base in on.
-        Point3D firstPoint = new Point3D(p0.x.coord, p0.y.coord + cylinder.getRadius(), p0.z.coord);
-        Point3D secondPoint = new Point3D(p0.x.coord + cylinder.getRadius(), p0.y.coord, p0.z.coord);
+        Point3D firstPoint = new Point3D(p0.getX(), p0.getY() + cylinder.getRadius(), p0.getZ());
+        Point3D secondPoint = new Point3D(p0.getX() + cylinder.getRadius(), p0.getY(), p0.getZ());
 
         Vector v1 = firstPoint.subtract(p0);
         Vector v2 = secondPoint.subtract(p0);
@@ -55,8 +55,8 @@ public class CylinderTests {
 
         // TC03: Test getNormal of Cylinder in second base.
         // two point that are on the same plane of the "circle" base in on.
-        firstPoint = new Point3D(p0.x.coord, p0.y.coord + cylinder.getRadius(), p0.z.coord + cylinder.getHeight());
-        secondPoint = new Point3D(p0.x.coord + cylinder.getRadius(), p0.y.coord, p0.z.coord + cylinder.getHeight());
+        firstPoint = new Point3D(p0.getX(), p0.getY() + cylinder.getRadius(), p0.getZ() + cylinder.getHeight());
+        secondPoint = new Point3D(p0.getX() + cylinder.getRadius(), p0.getY(), p0.getZ() + cylinder.getHeight());
 
         // p1 is the center of the second circular "base".
         Point3D p1 = p0.add(cylinder.getAxisRay().getDir().scale(cylinder.getHeight()));

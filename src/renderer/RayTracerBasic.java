@@ -38,7 +38,7 @@ public class RayTracerBasic extends RayTracerBase {
     public Color traceRay(Ray ray) {
         List<GeoPoint> points = scene.geometries.findGeoIntersections(ray);
         GeoPoint closest = ray.findClosestGeoPoint(points);
-        return calcColor(closest, ray);
+        return closest == null ? scene.background : calcColor(closest, ray);
     }
 
     /**
@@ -49,9 +49,6 @@ public class RayTracerBasic extends RayTracerBase {
      *         if param is null.
      */
     private Color calcColor(GeoPoint closest, Ray ray) {
-        if (closest == null) {
-            return scene.background;
-        }
         return scene.ambientLight.getIntensity().add(closest.geometry.getEmission())
                 // add calculated light contribution from all light sources)
                 .add(calcLocalEffects(closest, ray));
@@ -106,10 +103,7 @@ public class RayTracerBasic extends RayTracerBase {
             return Color.BLACK;
         }
         double diffusionFactor = alignZero(kd * Math.abs(ln));
-        if (isZero(diffusionFactor)) {
-            return Color.BLACK;
-        }
-        return lightIntensity.scale((diffusionFactor));
+        return isZero(diffusionFactor) ? Color.BLACK : lightIntensity.scale((diffusionFactor));
     }
 
     /**
@@ -133,16 +127,11 @@ public class RayTracerBasic extends RayTracerBase {
             return Color.BLACK;
         }
         Vector r = l.subtract(n.scale(2 * ln)).normalize();
-        double minusVR = alignZero(v.scale(-1).dotProduct(r));
-        minusVR = minusVR < 0 ? 0 : minusVR;
-        if (isZero(minusVR)) {
+        double minusVR = -alignZero(v.dotProduct(r));
+        if (minusVR <= 0)
             return Color.BLACK;
-        }
 
-        double specularFactor = alignZero(ks * alignZero(Math.pow(minusVR, nShininess)));
-        if (isZero(specularFactor)) {
-            return Color.BLACK;
-        }
-        return lightIntensity.scale(specularFactor);
+        double specularFactor = ks * Math.pow(minusVR, nShininess);
+        return isZero(specularFactor) ? Color.BLACK : lightIntensity.scale(specularFactor);
     }
 }

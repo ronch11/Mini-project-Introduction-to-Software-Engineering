@@ -2,7 +2,6 @@ package geometries;
 
 import static primitives.Util.alignZero;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import primitives.Point3D;
@@ -19,6 +18,7 @@ import primitives.Vector;
 public class Sphere extends Geometry {
     private Point3D center;
     private double radius;
+    private double radiusSquared;
 
     /**
      * Constructor for building Sphere object.
@@ -29,6 +29,7 @@ public class Sphere extends Geometry {
     public Sphere(Point3D point, double radius) {
         this.center = point;
         this.radius = radius;
+        this.radiusSquared = radius * radius;
     }
 
     /**
@@ -56,40 +57,29 @@ public class Sphere extends Geometry {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        double tM, d;
+        double tM, dSquared;
         try {
             Vector u = center.subtract(ray.getP0());
             tM = alignZero(ray.getDir().dotProduct(u));
-            d = alignZero(Math.sqrt(u.lengthSquared() - tM * tM));
+            dSquared = alignZero(u.lengthSquared() - tM * tM);
         } catch (IllegalArgumentException e) {
-            tM = 0;
-            d = 0;
+            return List.of(new GeoPoint(this, ray.getPoint(radius)));
         }
 
-        if (alignZero(d - radius) == 0) {
+        double thSquared = alignZero(radiusSquared - dSquared);
+        if (thSquared <= 0)
             return null;
-        }
 
-        double tH = alignZero(Math.sqrt(radius * radius - d * d));
+        double tH = Math.sqrt(thSquared);
         double t1 = alignZero(tM + tH);
-        double t2 = alignZero(tM - tH);
 
         if (t1 > 0) {
-            List<GeoPoint> tentativeIntersections = new LinkedList<>();
-            tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t1)));
-            if (t2 > 0) {
-                tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t2)));
-            }
-            return tentativeIntersections;
-
-        } else {
-            if (t2 > 0) {
-                List<GeoPoint> tentativeIntersections = new LinkedList<>();
-                tentativeIntersections.add(new GeoPoint(this, ray.getPoint(t2)));
-                return tentativeIntersections;
-            }
+            GeoPoint gp1 = new GeoPoint(this, ray.getPoint(t1));
+            double t2 = alignZero(tM - tH);
+            return t2 > 0 ? //
+                    List.of(new GeoPoint(this, ray.getPoint(t2)), gp1) : //
+                    List.of(gp1);
         }
         return null;
     }
-
 }

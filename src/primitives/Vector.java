@@ -7,7 +7,7 @@ package primitives;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 public class Vector {
-    private Point3D head;
+    Point3D head;
 
     /**
      * Constructor for Vector Class.
@@ -123,7 +123,7 @@ public class Vector {
      *         vector.
      */
     public double lengthSquared() {
-        return head.distanceSquared(Point3D.ZERO);
+        return head.x.coord * head.x.coord + head.y.coord * head.y.coord + head.z.coord * head.z.coord;
     }
 
     /**
@@ -133,7 +133,7 @@ public class Vector {
      *         vector.
      */
     public double length() {
-        return head.distance(Point3D.ZERO);
+        return Math.sqrt(lengthSquared());
     }
 
     /**

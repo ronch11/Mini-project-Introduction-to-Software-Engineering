@@ -99,28 +99,18 @@ public class Polygon extends Geometry {
 		Vector v = ray.getDir();
 		int size = vertices.size();
 		Vector[] vectorsToP0 = new Vector[size];
-		Vector[] crossVectors = new Vector[size];
+
 		for (int i = 0; i < size; i++) {
 			vectorsToP0[i] = (vertices.get(i).subtract(p0));
 		}
-		for (int i = 0; i < size; i++) {
-			crossVectors[i] = vectorsToP0[i].crossProduct(vectorsToP0[(i + 1) % size]).normalize();
-		}
-		int numOfPositiveNumbers = 0;
-		for (Vector vector : crossVectors) {
-			double vn = v.dotProduct(vector);
-			if (isZero(vn)) {
+		double s1 = v.dotProduct(vectorsToP0[0].crossProduct(vectorsToP0[1]));
+
+		for (int i = 1; i < size; i++) {
+			double s2 = v.dotProduct(vectorsToP0[i].crossProduct(vectorsToP0[(i + 1) % size]));
+			if (alignZero(s1 * s2) <= 0) {
 				return null;
 			}
-			if (vn > 0) {
-				numOfPositiveNumbers++;
-			}
-		}
-
-		// if numOfPositiveNumbers is not 0 or size(number of vertices) it's mean there
-		// is at least 1 number with odd sign.
-		if (numOfPositiveNumbers != 0 && numOfPositiveNumbers != size) {
-			return null;
+			s1 = s2;
 		}
 
 		tentativeIntersection.get(0).geometry = this;
