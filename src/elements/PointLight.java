@@ -32,7 +32,7 @@ public class PointLight extends Light implements LightSource {
      * @param kL double - The kl scalar for phong equation.
      * @return PointLight - self return for builder patter.
      */
-    public PointLight setkL(double kL) {
+    public PointLight setKL(double kL) {
         this.kL = kL;
         return this;
     }
@@ -43,7 +43,7 @@ public class PointLight extends Light implements LightSource {
      * @param kC double - The kC scalar for phong equation.
      * @return PointLight - self return for builder patter.
      */
-    public PointLight setkC(double kC) {
+    public PointLight setKC(double kC) {
         this.kC = kC;
         return this;
     }
@@ -54,7 +54,7 @@ public class PointLight extends Light implements LightSource {
      * @param kQ double - The kQ scalar for phong equation.
      * @return PointLight - self return for builder patter.
      */
-    public PointLight setkQ(double kQ) {
+    public PointLight setKQ(double kQ) {
         this.kQ = kQ;
         return this;
     }
