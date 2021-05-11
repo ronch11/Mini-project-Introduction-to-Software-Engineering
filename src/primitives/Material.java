@@ -10,7 +10,7 @@ public class Material {
      * @param kD double - The diffusion scalar of the material.
      * @return Material - self return for builder pattern.
      */
-    public Material setkD(double kD) {
+    public Material setKD(double kD) {
         this.kD = kD;
         return this;
     }
@@ -21,7 +21,7 @@ public class Material {
      * @param kS double - The specular scalar of the material.
      * @return Material - self return for builder pattern.
      */
-    public Material setkS(double kS) {
+    public Material setKS(double kS) {
         this.kS = kS;
         return this;
     }
@@ -32,7 +32,7 @@ public class Material {
      * @param nShininess int - The shininess factor of the Material.
      * @return Material - self return for builder pattern.
      */
-    public Material setnShininess(int nShininess) {
+    public Material setNShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
     }

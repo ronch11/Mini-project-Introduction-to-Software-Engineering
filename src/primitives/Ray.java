@@ -78,17 +78,6 @@ public class Ray {
         var closest = points.stream().parallel()
                 .reduce((p1, p2) -> alignZero(p2.distance(p0) - p1.distance(p0)) < 0 ? p2 : p1);
         return closest.isPresent() ? closest.get() : null;
-
-        // double minimal = Double.MAX_VALUE;
-        // Point3D closest = null;
-        // for (Point3D point3d : points) {
-        // double distance = point3d.distance(p0);
-        // if (alignZero(distance - minimal) < 0) {
-        // minimal = distance;
-        // closest = point3d;
-        // }
-        // }
-        // return closest;
     }
 
     public GeoPoint findClosestGeoPoint(List<GeoPoint> geoPoints) {
