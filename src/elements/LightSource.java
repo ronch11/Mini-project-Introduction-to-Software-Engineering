@@ -25,4 +25,6 @@ public interface LightSource {
      *         the given point.
      */
     public Vector getL(Point3D p);
+
+    public double getDistance(Point3D point);
 }
