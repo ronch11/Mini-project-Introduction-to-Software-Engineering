@@ -1,8 +1,7 @@
 package primitives;
 
 public class Material {
-    public double kD = 0, kS = 0;
-    public double kR, kT;
+    public double kD = 0, kS = 0, kR = 0, kT = 0;
     public int nShininess = 1;
 
     /**
@@ -38,11 +37,23 @@ public class Material {
         return this;
     }
 
+    /**
+     * A builder pattern setter
+     * 
+     * @param kR - The reflection factor of this material.
+     * @return - self return for builder pattern.
+     */
     public Material setKR(double kR) {
         this.kR = kR;
         return this;
     }
 
+    /**
+     * A builder patter setter
+     * 
+     * @param kT - The translucent factor of this material.
+     * @return - self return for builder pattern.
+     */
     public Material setKT(double kT) {
         this.kT = kT;
         return this;

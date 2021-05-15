@@ -15,6 +15,8 @@ import geometries.Intersectable.GeoPoint;
 
 public class Ray {
 
+    private static final double DELTA = 0.1;
+
     private final Point3D p0;
     private final Vector dir;
 
@@ -31,6 +33,21 @@ public class Ray {
     public Ray(Point3D p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalized();
+    }
+
+    /**
+     * A constructor to define a new Ray that is close to another ray but with some
+     * change to p0(Ray head).
+     * 
+     * @param head      - The head of new Ray should be (approximately)
+     * @param direction - The direction of the ray.
+     * @param normal    - A normal vector to the head(used to define how the minor
+     *                  change will be applied)
+     */
+    public Ray(Point3D head, Vector direction, Vector normal) {
+        double sign = alignZero(direction.dotProduct(normal));
+        this.p0 = head.add(normal.scale(sign > 0 ? DELTA : -DELTA));
+        this.dir = direction;
     }
 
     /**
