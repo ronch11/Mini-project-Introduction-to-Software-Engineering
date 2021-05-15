@@ -18,6 +18,8 @@ public class Ray {
     private final Point3D p0;
     private final Vector dir;
 
+    private static final double DELTA = 0.1;
+
     /**
      * Constructor for Vector Class.
      * 
