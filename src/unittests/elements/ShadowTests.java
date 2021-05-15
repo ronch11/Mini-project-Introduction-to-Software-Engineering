@@ -44,6 +44,110 @@ public class ShadowTests {
 	}
 
 	/**
+	 * Produce a picture of a sphere and triangle with point light and shade and the
+	 * triangle moved compared to the Initial test.
+	 */
+	@Test
+	public void sphereTriangleMoved1() {
+		scene.geometries.add( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
+				new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0), new Point3D(-48, -48, -8)) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+		);
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+						.setKL(1E-5).setKQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereTriangleMoved1", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
+	 * Produce a second picture of a sphere and triangle with point light and shade
+	 * and the triangle moved compared to the Initial test.
+	 */
+	@Test
+	public void sphereTriangleMoved2() {
+		scene.geometries.add( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
+				new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0), new Point3D(-53, -53, -6)) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+		);
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+						.setKL(1E-5).setKQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereTriangleMoved2", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
+	 * Produce a picture of a sphere and triangle with point light and shade and the
+	 * light sources moved compared to the Initial test.
+	 */
+	@Test
+	public void sphereTriangleLightShifted1() {
+		scene.geometries.add( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
+				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+		);
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-85, -85, 150), new Vector(1, 1, -3)) //
+						.setKL(1E-5).setKQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereTriangleLightShifted1", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
+	 * Produce a second picture of a sphere and triangle with point light and shade
+	 * and the light sources moved compared to the Initial test.
+	 */
+	@Test
+	public void sphereTriangleLightShifted2() {
+		scene.geometries.add( //
+				new Sphere(new Point3D(0, 0, -200), 60) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
+				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+		);
+		scene.lights.add( //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-75, -75, 75), new Vector(1, 1, -3)) //
+						.setKL(1E-5).setKQ(1.5E-7));
+
+		Render render = new Render(). //
+				setImageWriter(new ImageWriter("shadowSphereTriangleLightShifted2", 400, 400)) //
+				.setCamera(camera) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.writeToImage();
+	}
+
+	/**
 	 * Produce a picture of a two triangles lighted by a spot light with a Sphere
 	 * producing a shading
 	 */
