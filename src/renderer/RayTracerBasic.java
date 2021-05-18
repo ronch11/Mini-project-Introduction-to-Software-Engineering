@@ -40,7 +40,7 @@ public class RayTracerBasic extends RayTracerBase {
     @Override
     public Color traceRay(Ray ray) {
         GeoPoint closest = findClosestIntersection(ray);
-        return closest == null ? Color.BLACK : calcColor(closest, ray);
+        return closest == null ? scene.background : calcColor(closest, ray);
     }
 
     /**
@@ -51,8 +51,9 @@ public class RayTracerBasic extends RayTracerBase {
      *         if param is null.
      */
     private Color calcColor(GeoPoint closest, Ray ray) {
-        return calcColor(closest, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K) //
-                .add(scene.ambientLight.getIntensity());
+        return closest == null ? scene.background
+                : calcColor(closest, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K) //
+                        .add(scene.ambientLight.getIntensity());
     }
 
     /**
@@ -187,9 +188,6 @@ public class RayTracerBasic extends RayTracerBase {
      * @return Color - The Color the point should be in the scene.
      */
     private Color calcColor(GeoPoint closest, Ray ray, int level, double k) {
-        if (closest == null) {
-            return Color.BLACK;
-        }
         Color color = closest.geometry.getEmission()
                 // add calculated light contribution from all light sources)
                 .add(calcLocalEffects(closest, ray));
@@ -247,6 +245,6 @@ public class RayTracerBasic extends RayTracerBase {
     private Ray constructReflectedRay(Vector n, Point3D point, Ray ray) {
         Vector v = ray.getDir();
         double factor = -2 * alignZero(v.dotProduct(n));
-        return new Ray(point, v.subtract(n.scale(factor)));
+        return new Ray(point, v.subtract(n.scale(factor)), n);
     }
 }
