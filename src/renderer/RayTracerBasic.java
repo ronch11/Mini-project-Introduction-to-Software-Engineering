@@ -51,9 +51,8 @@ public class RayTracerBasic extends RayTracerBase {
      *         if param is null.
      */
     private Color calcColor(GeoPoint closest, Ray ray) {
-        return closest == null ? scene.background
-                : calcColor(closest, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K) //
-                        .add(scene.ambientLight.getIntensity());
+        return calcColor(closest, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K) //
+                .add(scene.ambientLight.getIntensity());
     }
 
     /**
@@ -65,7 +64,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @return Color - The Color of the point in the scene according to all lights
      *         effects in the scene.
      */
-    private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
+    private Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
         Vector v = ray.getDir();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
@@ -79,11 +78,13 @@ public class RayTracerBasic extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
-            if (nl * nv > 0 && unshaded(lightSource, l, n, intersection)) {
-                // sign(nl) == sign(nv) && not shaded by other shape
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                        calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+            if (nl * nv > 0) { // sign(nl) == sign(nv)
+                double ktr = transparency(lightSource, l, n, intersection);
+                if (ktr * k > MIN_CALC_COLOR_K) {
+                    Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
+                    color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                }
             }
         }
         return color;
@@ -139,35 +140,6 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
     /**
-     * A function to test if a given intersection point is the first point to be hit
-     * by the light source. return true if it's the first (aka the point should be
-     * lighted by the light source), false otherwise.
-     * 
-     * @param light    - The light source.
-     * @param l        - The light source direction vector to the point we want to
-     *                 inspect.
-     * @param n        - The normal to the Geometry shape at the given point we
-     *                 inspect.
-     * @param geoPoint - The GeoPoint representing the intersection we inspecting in
-     *                 scene.
-     * @return - True if the point is not shaded by other shape, False otherwise.
-     */
-    private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint geoPoint) {
-        Vector lightDirection = l.scale(-1);
-
-        Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
-
-        var intersections = scene.geometries.findGeoIntersections(lightRay);
-
-        var lightDistance = light.getDistance(geoPoint.point);
-
-        return intersections == null || intersections.stream() //
-                .parallel().noneMatch(intersection -> //
-                (alignZero(intersection.point.distance(geoPoint.point) - lightDistance) <= 0
-                        && intersection.geometry.getMaterial().kT == 0));
-    }
-
-    /**
      * A helper function to find all intersection to a ray in the scene.
      * 
      * @param ray
@@ -188,9 +160,12 @@ public class RayTracerBasic extends RayTracerBase {
      * @return Color - The Color the point should be in the scene.
      */
     private Color calcColor(GeoPoint closest, Ray ray, int level, double k) {
+        if (closest == null) {
+            return Color.BLACK;
+        }
         Color color = closest.geometry.getEmission()
                 // add calculated light contribution from all light sources)
-                .add(calcLocalEffects(closest, ray));
+                .add(calcLocalEffects(closest, ray, k));
         return 1 == level ? color : color.add(calcGlobalEffects(closest, ray, level, k));
     }
 
@@ -244,7 +219,40 @@ public class RayTracerBasic extends RayTracerBase {
      */
     private Ray constructReflectedRay(Vector n, Point3D point, Ray ray) {
         Vector v = ray.getDir();
-        double factor = -2 * alignZero(v.dotProduct(n));
+        double factor = 2 * alignZero(v.dotProduct(n));
         return new Ray(point, v.subtract(n.scale(factor)), n);
+    }
+
+    /**
+     * A function to get how much transparent a shape in scene is.
+     * 
+     * @param ls       - Light source that we using to define if it's light being
+     *                 casted on the shape at the point given.
+     * @param l        - light direction to the point on the shape.
+     * @param n        - Normal vector to the given point at the shape.
+     * @param geoPoint - The given shape and point at it.
+     * @return - The transparent factor between 0.0(translucent) and 1.0(opaque)
+     */
+    private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
+        Vector lightDirection = l.scale(-1);
+
+        Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
+
+        var intersections = scene.geometries.findGeoIntersections(lightRay);
+
+        double ktr = 1.0;
+        if (intersections == null)
+            return ktr;
+
+        var lightDistance = ls.getDistance(geoPoint.point);
+
+        for (GeoPoint gp : intersections) {
+            if (alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0) {
+                ktr *= gp.geometry.getMaterial().kT;
+                if (ktr < MIN_CALC_COLOR_K)
+                    return 0.0;
+            }
+        }
+        return ktr;
     }
 }
