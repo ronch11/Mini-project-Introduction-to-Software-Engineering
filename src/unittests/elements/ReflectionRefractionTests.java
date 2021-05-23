@@ -128,4 +128,43 @@ public class ReflectionRefractionTests {
                 render.renderImage();
                 render.writeToImage();
         }
+
+        @Test
+        public void multiShapeTest() {
+                Camera camera = new Camera(new Point3D(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                                .setViewPlaneSize(2500, 2500).setViewPlaneDistance(10000); //
+
+                scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));
+
+                scene.geometries.add( //
+                                new Sphere(new Point3D(-800, -950, -900), 175) //
+                                                .setEmission(new Color(100, 20, 20)) //
+                                                .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)),
+                                new Sphere(new Point3D(-800, -550, -900), 175) //
+                                                .setEmission(new Color(100, 20, 20)) //
+                                                .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)),
+                                new Sphere(new Point3D(-600, -750, -950), 300) //
+                                                .setEmission(new Color(0, 0, 255)) //
+                                                .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)
+                                                                .setKT(0.5)),
+                                new Triangle(new Point3D(2000, -2000, -1500), new Point3D(-2000, 2000, -1500),
+                                                new Point3D(1000, 1000, 3000)) //
+                                                                .setEmission(new Color(20, 20, 20)) //
+                                                                .setMaterial(new Material().setKR(1)),
+                                new Triangle(new Point3D(2000, -2000, -1500), new Point3D(-2000, 2000, -1500),
+                                                new Point3D(-2000, -2000, -1800)) //
+                                                                .setEmission(new Color(20, 20, 20)) //
+                                                                .setMaterial(new Material().setKR(1)));
+
+                scene.lights.add(new DirectionalLight(new Color(java.awt.Color.white).scale(2), new Vector(1, 0, -1)));
+
+                ImageWriter imageWriter = new ImageWriter("MultiShape", 500, 500);
+                Render render = new Render() //
+                                .setImageWriter(imageWriter) //
+                                .setCamera(camera) //
+                                .setRayTracer(new RayTracerBasic(scene));
+
+                render.renderImage();
+                render.writeToImage();
+        }
 }
