@@ -55,4 +55,49 @@ public class CameraTest {
 
 	}
 
+	/**
+	 * Test method for {@link elements.Camera#moveCamera(Point3D, Point3D)}.
+	 */
+	@Test
+	public void testMoveCamera() {
+		Camera camera = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0))
+				.setViewPlaneDistance(10);
+		camera.moveCamera(new Point3D(1, -10, -10), new Point3D(1, 0, -10));
+		Camera expected = new Camera(new Point3D(1, -10, -10), new Vector(0, 1, 0), new Vector(0, 0, -1))
+				.setViewPlaneDistance(10);
+		assertEquals("Camera should still be looking at the same point.", expected, camera);
+	}
+
+	/**
+	 * Test method for {@link elements.Camera#rotateCameraCounterClockWise()}.
+	 */
+	@Test
+	public void testRotateCameraCounterClockWise() {
+		Camera camera = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0))
+				.setViewPlaneDistance(10);
+
+		camera.rotateCameraCounterClockWise();
+
+		Camera expected = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(1, 0, 0))
+				.setViewPlaneDistance(10);
+
+		assertEquals("Camera should be rotated 90 degrees counter clockwise.", expected, camera);
+	}
+
+	/**
+	 * Test method for {@link elements.Camera#rotateCameraClockWise()}.
+	 */
+	@Test
+	public void testRotateCameraClockWise() {
+		Camera camera = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0))
+				.setViewPlaneDistance(10);
+
+		camera.rotateCameraClockWise();
+
+		Camera expected = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(-1, 0, 0))
+				.setViewPlaneDistance(10);
+
+		assertEquals("Camera should be rotated 90 degrees clockwise.", expected, camera);
+	}
+
 }

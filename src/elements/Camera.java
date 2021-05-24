@@ -120,4 +120,63 @@ public class Camera {
 
         return new Ray(position, pIJ.subtract(position));
     }
+
+    /**
+     * A function that moves the camera around using new point parameter while
+     * keeping the camera direction at the point given in the lookAtPoint parameter.
+     * 
+     * @param newPos      - A point to move to.
+     * @param lookAtPoint - A point to fix camera Point of view at it.
+     * @return self return for more mutations.
+     */
+    public Camera moveCamera(Point3D newPos, Point3D lookAtPoint) {
+        position = newPos;
+        vTo = lookAtPoint.subtract(position).normalize();
+        vUp = vTo.crossProduct(vRight).normalize();
+        vRight = vTo.crossProduct(vUp).normalize();
+
+        return this;
+    }
+
+    /**
+     * A function to move camera around the scene while keeping focus on point.
+     * 
+     * @return self return for more mutations.
+     */
+    public Camera rotateCameraCounterClockWise() {
+        vUp = vRight;
+        vRight = vTo.crossProduct(vUp).normalize();
+        return this;
+    }
+
+    /**
+     * Rotate camera 90 degrees clockwise.
+     * 
+     * @return self return for more mutations.
+     */
+    public Camera rotateCameraClockWise() {
+        vUp = vRight.scale(-1);
+        vRight = vTo.crossProduct(vUp).normalize();
+        return this;
+    }
+
+    /**
+     * An override to check if two cameras positioned in the same location with the
+     * same directions in vectors.
+     * 
+     * @param obj - An object to compare to this camera.
+     * @return True if: same camera or same fields. else, false.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof Camera)) {
+            return false;
+        }
+        Camera camera = (Camera) obj;
+        return position.equals(camera.position) && vTo.equals(camera.vTo) && vUp.equals(camera.vUp)
+                && vRight.equals(camera.vRight) && width == camera.width && height == camera.height
+                && distance == camera.distance;
+    }
 }
