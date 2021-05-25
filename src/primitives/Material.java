@@ -1,7 +1,25 @@
 package primitives;
 
 public class Material {
-    public double kD = 0, kS = 0, kR = 0, kT = 0;
+    /**
+     * A Diffusion factor of the material.
+     */
+    public double kD = 0;
+    /**
+     * A Specularity factor of the material.
+     */
+    public double kS = 0;
+    /**
+     * A Reflection factor of the material.
+     */
+    public double kR = 0;
+    /**
+     * A Translucency factor of the material.
+     */
+    public double kT = 0;
+    /**
+     * A Shininess factor of the material.
+     */
     public int nShininess = 1;
 
     /**
