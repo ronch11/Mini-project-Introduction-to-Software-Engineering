@@ -82,8 +82,8 @@ public class RayTracerBasic extends RayTracerBase {
                 double ktr = transparency(lightSource, l, n, intersection);
                 if (ktr * k > MIN_CALC_COLOR_K) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
-                    color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                            calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                    color = color.add(calcDiffusive(kd, lightIntensity, nl),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
                 }
             }
         }
@@ -101,11 +101,7 @@ public class RayTracerBasic extends RayTracerBase {
      *                       point.
      * @return Color - The diffusion effect color at the point.
      */
-    private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
-        double ln = alignZero(l.dotProduct(n));
-        if (isZero(ln)) {
-            return Color.BLACK;
-        }
+    private Color calcDiffusive(double kd, Color lightIntensity, double ln) {
         double diffusionFactor = alignZero(kd * Math.abs(ln));
         return isZero(diffusionFactor) ? Color.BLACK : lightIntensity.scale((diffusionFactor));
     }
@@ -125,11 +121,8 @@ public class RayTracerBasic extends RayTracerBase {
      *                       point.
      * @return Color - The specular effect color at the point.
      */
-    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-        double ln = alignZero(l.dotProduct(n));
-        if (isZero(ln)) {
-            return Color.BLACK;
-        }
+    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity,
+            double ln) {
         Vector r = l.subtract(n.scale(2 * ln)).normalize();
         double minusVR = -alignZero(v.dotProduct(r));
         if (minusVR <= 0)
@@ -160,9 +153,6 @@ public class RayTracerBasic extends RayTracerBase {
      * @return Color - The Color the point should be in the scene.
      */
     private Color calcColor(GeoPoint closest, Ray ray, int level, double k) {
-        if (closest == null) {
-            return Color.BLACK;
-        }
         Color color = closest.geometry.getEmission()
                 // add calculated light contribution from all light sources)
                 .add(calcLocalEffects(closest, ray, k));
@@ -185,13 +175,17 @@ public class RayTracerBasic extends RayTracerBase {
         if (kkr > MIN_CALC_COLOR_K) {
             Ray reflectedRay = constructReflectedRay(n, closest.point, ray);
             GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
-            color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+            if (reflectedPoint != null) {
+                color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kr));
+            }
         }
         double kt = material.kT, kkt = k * kt;
         if (kkt > MIN_CALC_COLOR_K) {
             Ray refractedRay = constructRefractedRay(n, closest.point, ray);
             GeoPoint refractedPoint = findClosestIntersection(refractedRay);
-            color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+            if (refractedPoint != null) {
+                color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kt));
+            }
         }
         return color;
     }
