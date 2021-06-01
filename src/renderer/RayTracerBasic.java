@@ -17,9 +17,9 @@ import static primitives.Util.isZero;
  */
 public class RayTracerBasic extends RayTracerBase {
 
-    private static final double INITIAL_K = 1.0;
-    private static final int MAX_CALC_COLOR_LEVEL = 10;
-    private static final double MIN_CALC_COLOR_K = 0.001;
+    protected static final double INITIAL_K = 1.0;
+    protected static final int MAX_CALC_COLOR_LEVEL = 10;
+    protected static final double MIN_CALC_COLOR_K = 0.001;
 
     /**
      * A Constructor for the basic Ray Tracing object.
@@ -64,7 +64,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @return Color - The Color of the point in the scene according to all lights
      *         effects in the scene.
      */
-    private Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
+    protected Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
         Vector v = ray.getDir();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
@@ -101,7 +101,7 @@ public class RayTracerBasic extends RayTracerBase {
      *                       point.
      * @return Color - The diffusion effect color at the point.
      */
-    private Color calcDiffusive(double kd, Color lightIntensity, double ln) {
+    protected Color calcDiffusive(double kd, Color lightIntensity, double ln) {
         double diffusionFactor = alignZero(kd * Math.abs(ln));
         return isZero(diffusionFactor) ? Color.BLACK : lightIntensity.scale((diffusionFactor));
     }
@@ -121,7 +121,7 @@ public class RayTracerBasic extends RayTracerBase {
      *                       point.
      * @return Color - The specular effect color at the point.
      */
-    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity,
+    protected Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity,
             double ln) {
         Vector r = l.subtract(n.scale(2 * ln)).normalize();
         double minusVR = -alignZero(v.dotProduct(r));
@@ -134,11 +134,11 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * A helper function to find all intersection to a ray in the scene.
-     * 
+     *
      * @param ray
      * @return the closest GP or null.
      */
-    private GeoPoint findClosestIntersection(Ray ray) {
+    public GeoPoint findClosestIntersection(Ray ray) {
         return ray.findClosestGeoPoint(scene.geometries.findGeoIntersections(ray));
     }
 
@@ -227,7 +227,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param geoPoint - The given shape and point at it.
      * @return - The transparent factor between 0.0(translucent) and 1.0(opaque)
      */
-    private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
+    protected double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1);
 
         Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
