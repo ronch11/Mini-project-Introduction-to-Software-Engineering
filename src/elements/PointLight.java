@@ -13,6 +13,8 @@ public class PointLight extends Light implements LightSource {
     private Point3D position;
     private double kC, kL, kQ;
 
+    private double radius;
+
     /**
      * A basic constructor for Point light source.
      * 
@@ -22,8 +24,13 @@ public class PointLight extends Light implements LightSource {
     public PointLight(Color intensity, Point3D position) {
         super(intensity);
         this.position = position;
-        kL = kQ = 0;
+        kL = kQ = radius = 0;
         kC = 1;
+    }
+
+    public PointLight setRadius(double radius) {
+        this.radius = radius;
+        return this;
     }
 
     /**
@@ -73,5 +80,10 @@ public class PointLight extends Light implements LightSource {
     @Override
     public double getDistance(Point3D point) {
         return alignZero(point.distance(position));
+    }
+
+    @Override
+    public double getRadius() {
+        return radius;
     }
 }

@@ -12,7 +12,7 @@ public interface LightSource {
      * Get the light intensity of the light source at Point3D given.
      * 
      * @param p Point#d - the Point we want to get the light intensity.
-     * @return Color - The light that ight source project on said point.
+     * @return Color - The light that light source project on said point.
      */
     public Color getIntensity(Point3D p);
 
@@ -27,4 +27,8 @@ public interface LightSource {
     public Vector getL(Point3D p);
 
     public double getDistance(Point3D point);
+
+    public double getRadius();
+
+    public LightSource setRadius(double radius);
 }
