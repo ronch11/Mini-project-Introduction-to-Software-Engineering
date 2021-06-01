@@ -3,6 +3,7 @@ package elements;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+
 import static primitives.Util.*;
 
 /**
@@ -26,11 +27,11 @@ public class Camera {
      */
     public Camera(Point3D camPos, Vector camVTo, Vector camVUp) {
         position = camPos;
-        vTo = camVTo.normalized();
-        vUp = camVUp.normalized();
-        if (vTo.dotProduct(vUp) != 0) {
+        if (!isZero(camVTo.dotProduct(camVUp))) {
             throw new IllegalArgumentException("The Vectors supplied should be orthogonal to each other");
         }
+        vTo = camVTo.normalized();
+        vUp = camVUp.normalized();
         vRight = vTo.crossProduct(vUp).normalize();
     }
 
