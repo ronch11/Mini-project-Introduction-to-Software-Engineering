@@ -27,6 +27,10 @@ public class RayTracerBeams extends RayTracerBasic {
 
     @Override
     protected Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
+        if (numOfRays == 1) { // if we do not have a number of rays aka no advance ray tracing so call
+                              // rayTracerBasic function.
+            return super.calcLocalEffects(intersection, ray, k);
+        }
         Vector v = ray.getDir();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
@@ -38,25 +42,45 @@ public class RayTracerBeams extends RayTracerBasic {
         double ks = material.kS;
         Color color = Color.BLACK;
         for (LightSource lightSource : scene.lights) {
-            int hits = 0;
-            var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getRadius());
-            for (var point : points) {
-                Vector l = lightSource.getL(point);
-                double nl = alignZero(n.dotProduct(l));
-                if (nl * nv > 0) { // sign(nl) == sign(nv)
-                    hits++;
-                    double ktr = transparency(lightSource, l, n, intersection);
-                    if (ktr * k > MIN_CALC_COLOR_K) {
-                        Color lightIntensity = lightSource.getIntensity(point).scale(ktr);
-                        color = color.add(calcDiffusive(kd, lightIntensity, nl),
-                                calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
-                    }
+            Vector l = lightSource.getL(intersection.point);
+            double nl = alignZero(n.dotProduct(l));
+            if (nl * nv > 0) {
+                double ktr = calcKtr(intersection, lightSource);
+                if (ktr * k > MIN_CALC_COLOR_K) {
+                    Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
+                    color = color.add(calcDiffusive(kd, lightIntensity, nl),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
                 }
             }
-            color = color.scale((double) hits / points.size());
         }
-        return super.calcLocalEffects(intersection, ray, k);
+
+        return color;
     }
+
+    private double calcKtr(GeoPoint intersection, LightSource lightSource) {
+        double sumOfKtr = 0;
+
+        var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getRadius());
+        for (var point : points) {
+            Vector l = lightSource.getL(point);
+            Vector normal = intersection.geometry.getNormal(point);
+            sumOfKtr += transparency(lightSource, l, normal, intersection);
+        }
+        return sumOfKtr / points.size();
+    }
+
+    // private Color calcKtr(GeoPoint intersection, double k, Vector v, Vector n,
+    // int nShininess, double kd, double ks,
+    // Color color, LightSource lightSource, Vector l, double nl) {
+    // double ktr = transparency(lightSource, l, n, intersection);
+    // if (ktr * k > MIN_CALC_COLOR_K) {
+    // Color lightIntensity =
+    // lightSource.getIntensity(intersection.point).scale(ktr);
+    // color = color.add(calcDiffusive(kd, lightIntensity, nl),
+    // calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
+    // }
+    // return color;
+    // }
 
     public RayTracerBeams setNumOfRays(int numOfRays) {
         this.numOfRays = numOfRays;

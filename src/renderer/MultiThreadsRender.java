@@ -87,7 +87,7 @@ public class MultiThreadsRender {
             this.pixels = (long) maxRows * maxCols;
             this.nextCounter = this.pixels / 100;
             if (MultiThreadsRender.this.print)
-                System.out.printf("\r %02d%%", this.percents);
+                System.out.printf("\r%02d%% ", this.percents);
         }
 
         /**

@@ -9,7 +9,6 @@ import renderer.ImageWriter;
 import renderer.MultiThreadsRender;
 import renderer.RayTracerBasic;
 import renderer.RayTracerBeams;
-import renderer.Render;
 import scene.Scene;
 
 public class SoftShadowsTests {
@@ -31,26 +30,23 @@ public class SoftShadowsTests {
          */
         @Test
         public void testsSS() {
-
                 scene2.geometries.add(triangle1.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)),
                                 triangle2.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)));
                 scene2.geometries.add(
                                 new Sphere(new Point3D(-60, -80, -150), 20).setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
                 scene2.lights.add(new SpotLight(new Color(800, 400, 400), new Point3D(10, -10, -130),
-                                new Vector(-2, -2, -1)).setNarrowBeam(5).setKC(1).setKL(0.000005).setKQ(0.00000025)
+                                new Vector(-2, -2, -1)).setNarrowBeam(3).setKC(1).setKL(0.000005).setKQ(0.00000025)
                                                 .setRadius(50));
 
-                ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpTry3", 500, 500);
-                MultiThreadsRender render = new MultiThreadsRender().setDebugPrint().setMultithreading(3) //
+                ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpSoftShadow", 500, 500);
+                MultiThreadsRender render = new MultiThreadsRender() //
+                                .setDebugPrint().setMultithreading(3) //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera2) //
-                                // .setRayTracer(new RayTracerBasic(scene2));
-                                .setRayTracer(new RayTracerBeams(scene2).setNumOfRays(100));
+                                .setRayTracer(new RayTracerBeams(scene2).setNumOfRays(50));
                 render.renderImage();
-                // render.printGrid(50,new Color(300,300,300));
                 render.writeToImage();
-
         }
 
         /**
