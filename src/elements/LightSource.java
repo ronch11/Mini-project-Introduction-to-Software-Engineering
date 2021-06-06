@@ -28,7 +28,7 @@ public interface LightSource {
 
     public double getDistance(Point3D point);
 
-    public double getRadius();
+    public double getSquareEdge();
 
-    public LightSource setRadius(double radius);
+    public LightSource setSquareEdge(double squareEdge);
 }

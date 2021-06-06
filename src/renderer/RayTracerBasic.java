@@ -79,7 +79,7 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sign(nv)
-                double ktr = transparency(lightSource, l, n, intersection);
+                double ktr = transparency(lightSource, l, n, intersection.point);
                 if (ktr * k > MIN_CALC_COLOR_K) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                     color = color.add(calcDiffusive(kd, lightIntensity, nl),
@@ -220,17 +220,17 @@ public class RayTracerBasic extends RayTracerBase {
     /**
      * A function to get how much transparent a shape in scene is.
      * 
-     * @param ls       - Light source that we using to define if it's light being
-     *                 casted on the shape at the point given.
-     * @param l        - light direction to the point on the shape.
-     * @param n        - Normal vector to the given point at the shape.
-     * @param geoPoint - The given shape and point at it.
+     * @param ls    - Light source that we using to define if it's light being
+     *              casted on the shape at the point given.
+     * @param l     - light direction to the point on the shape.
+     * @param n     - Normal vector to the given point at the shape.
+     * @param point - The given point at it.
      * @return - The transparent factor between 0.0(translucent) and 1.0(opaque)
      */
-    protected double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
+    protected double transparency(LightSource ls, Vector l, Vector n, Point3D point) {
         Vector lightDirection = l.scale(-1);
 
-        Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
+        Ray lightRay = new Ray(point, lightDirection, n);
 
         var intersections = scene.geometries.findGeoIntersections(lightRay);
 
@@ -238,10 +238,10 @@ public class RayTracerBasic extends RayTracerBase {
         if (intersections == null)
             return ktr;
 
-        var lightDistance = ls.getDistance(geoPoint.point);
+        var lightDistance = ls.getDistance(point);
 
         for (GeoPoint gp : intersections) {
-            if (alignZero(gp.point.distance(geoPoint.point) - lightDistance) <= 0) {
+            if (alignZero(gp.point.distance(point) - lightDistance) <= 0) {
                 ktr *= gp.geometry.getMaterial().kT;
                 if (ktr < MIN_CALC_COLOR_K)
                     return 0.0;

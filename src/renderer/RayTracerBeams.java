@@ -34,7 +34,7 @@ public class RayTracerBeams extends RayTracerBasic {
         Vector v = ray.getDir();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
-        if (isZero(nv))
+        if (nv == 0)
             return Color.BLACK;
         Material material = intersection.geometry.getMaterial();
         int nShininess = material.nShininess;
@@ -45,7 +45,7 @@ public class RayTracerBeams extends RayTracerBasic {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) {
-                double ktr = calcKtr(intersection, lightSource);
+                double ktr = calcKtr(intersection, lightSource, k);
                 if (ktr * k > MIN_CALC_COLOR_K) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                     color = color.add(calcDiffusive(kd, lightIntensity, nl),
@@ -53,58 +53,60 @@ public class RayTracerBeams extends RayTracerBasic {
                 }
             }
         }
-
         return color;
     }
 
-    private double calcKtr(GeoPoint intersection, LightSource lightSource) {
+    private double calcKtr(GeoPoint intersection, LightSource lightSource, double k) {
         double sumOfKtr = 0;
 
-        var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getRadius());
+        var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getSquareEdge());
         for (var point : points) {
             Vector l = lightSource.getL(point);
-            Vector normal = intersection.geometry.getNormal(point);
-            sumOfKtr += transparency(lightSource, l, normal, intersection);
+            Vector n = intersection.geometry.getNormal(point);
+            double ktr = transparency(lightSource, l, n, point);
+            // if (ktr * k > MIN_CALC_COLOR_K) {
+            sumOfKtr += ktr;
+            // }
         }
-        return sumOfKtr / points.size();
-    }
 
-    // private Color calcKtr(GeoPoint intersection, double k, Vector v, Vector n,
-    // int nShininess, double kd, double ks,
-    // Color color, LightSource lightSource, Vector l, double nl) {
-    // double ktr = transparency(lightSource, l, n, intersection);
-    // if (ktr * k > MIN_CALC_COLOR_K) {
-    // Color lightIntensity =
-    // lightSource.getIntensity(intersection.point).scale(ktr);
-    // color = color.add(calcDiffusive(kd, lightIntensity, nl),
-    // calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
-    // }
-    // return color;
-    // }
+        return alignZero(sumOfKtr / points.size());
+    }
 
     public RayTracerBeams setNumOfRays(int numOfRays) {
         this.numOfRays = numOfRays;
         return this;
     }
 
-    private List<Point3D> getPoints(Point3D p, Vector n, double radius) {
+    private List<Point3D> getPoints(Point3D center, Vector n, double edge) {
         List<Point3D> points = new LinkedList<>();
-        points.add(p);
-        if (radius == 0) {
+        points.add(center);
+        if (edge == 0 || numOfRays == 1) {
             return points;
         }
-        Point3D center = n.getHead();
-        // u and v are unit vectors that span the plane of the circle that orthogonal to
-        // the normal n.
-        Vector v = new Vector(-center.getY(), center.getX(), 0).normalize();
-        Vector u = n.crossProduct(v).normalize();
+
+        Point3D head = n.getHead();
+        double nx = head.getX();
+        double ny = head.getY();
+        double nz = head.getZ();
+
+        double cx = center.getX();
+        double cy = center.getY();
+        double cz = center.getZ();
+
+        double d = nx * cx + ny * cy + nz * cz;
+
+        // the "top left" of the square
+        double baseX = cx - (edge / 2);
+        double baseY = cy - (edge / 2);
 
         for (int i = 1; i < numOfRays; i++) {
-            // x and y inside the circle with the given radius.
-            double x = rand.nextDouble() * radius;
-            double y = Math.sqrt(radius * radius - x * x);
-            points.add(v.scale(x).add(u.scale(y)).getHead()); // added the new point to the list.
+            // create coordinates for the new point.
+            double x = baseX + rand.nextDouble() * edge;
+            double y = baseY + rand.nextDouble() * edge;
+            double z = (d - (x * nx + y * ny)) / nz;
+            points.add(new Point3D(x, y, z)); // added the new point to the list.
         }
         return points;
     }
+
 }

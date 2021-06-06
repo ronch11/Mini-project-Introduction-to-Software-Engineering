@@ -39,12 +39,12 @@ public class DirectionalLight extends Light implements LightSource {
     }
 
     @Override
-    public double getRadius() {
+    public double getSquareEdge() {
         return 0;
     }
 
     @Override
-    public LightSource setRadius(double radius) {
+    public LightSource setSquareEdge(double radius) {
         throw new UnsupportedOperationException("Directional lights had no radius limitations");
     }
 }
