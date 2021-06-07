@@ -5,8 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import elements.LightSource;
-
 import static primitives.Util.*;
 
 import geometries.Intersectable.GeoPoint;
@@ -16,15 +14,33 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
+import elements.LightSource;
 
+/**
+ * A Ray tracing class with enhancement capabilities of soft shadows.
+ */
 public class RayTracerBeams extends RayTracerBasic {
     private int numOfRays = 1;
     private Random rand = new SecureRandom();
 
+    /**
+     * Constructor for our advanced RayTracer with beams.
+     * 
+     * @param scene - Scene we need to trace rays in.
+     */
     public RayTracerBeams(Scene scene) {
         super(scene);
     }
 
+    /**
+     * calculate the local effect on point's color, if needed then soft shadows
+     * improvement is used.
+     * 
+     * @param intersection - the geopoint we want to check color effects.
+     * @param ray          - the camera ray toward the scene.
+     * @param k            - the current k (color scalar) we check
+     * @return - A Color after all local effects are included.
+     */
     @Override
     protected Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
         if (numOfRays == 1) { // if we do not have a number of rays aka no advance ray tracing so call
@@ -45,7 +61,7 @@ public class RayTracerBeams extends RayTracerBasic {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) {
-                double ktr = calcKtr(intersection, lightSource, k);
+                double ktr = calcKtr(intersection, lightSource);
                 if (ktr * k > MIN_CALC_COLOR_K) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                     color = color.add(calcDiffusive(kd, lightIntensity, nl),
@@ -56,7 +72,14 @@ public class RayTracerBeams extends RayTracerBasic {
         return color;
     }
 
-    private double calcKtr(GeoPoint intersection, LightSource lightSource, double k) {
+    /**
+     * A function to calc the average ktr for point on shape.
+     * 
+     * @param intersection - the geopoint we want to check.
+     * @param lightSource  - the light source that effecting the geopoint
+     * @return - average ktr
+     */
+    private double calcKtr(GeoPoint intersection, LightSource lightSource) {
         double sumOfKtr = 0;
 
         var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getSquareEdge());
@@ -64,19 +87,35 @@ public class RayTracerBeams extends RayTracerBasic {
             Vector l = lightSource.getL(point);
             Vector n = intersection.geometry.getNormal(point);
             double ktr = transparency(lightSource, l, n, point);
-            // if (ktr * k > MIN_CALC_COLOR_K) {
             sumOfKtr += ktr;
-            // }
         }
-
         return alignZero(sumOfKtr / points.size());
     }
 
+    /**
+     * A setter for numOfRays field.
+     * 
+     * @param numOfRays - the number of rays we should use in order to calc soft
+     *                  shadows effect.
+     * @return - self return for builder pattern.
+     */
     public RayTracerBeams setNumOfRays(int numOfRays) {
         this.numOfRays = numOfRays;
         return this;
     }
 
+    /**
+     * Get points around teh center point given. limited to a square with edge
+     * length in param edge.
+     * 
+     * @param center - the center point of the square.
+     * @param n      - normal to the shape at the given point center.
+     * @param edge   - length of the square edge.
+     * @return - List of point3D randomly around inside the square with length of
+     *         edge and center as it's center point(first point will always be the
+     *         center point) in case edge is 0 or numOfRays is 1 we get only the
+     *         center point back.
+     */
     private List<Point3D> getPoints(Point3D center, Vector n, double edge) {
         List<Point3D> points = new LinkedList<>();
         points.add(center);
@@ -108,5 +147,4 @@ public class RayTracerBeams extends RayTracerBasic {
         }
         return points;
     }
-
 }

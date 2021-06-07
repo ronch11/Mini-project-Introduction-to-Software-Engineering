@@ -26,9 +26,28 @@ public interface LightSource {
      */
     public Vector getL(Point3D p);
 
+    /**
+     * gets the distance of the light source to a point.
+     * 
+     * @param point - point we want to get the distance to light source is.
+     * @return - the distance between the point and the light source.
+     */
     public double getDistance(Point3D point);
 
+    /**
+     * gets the edge length for determine the area of effect of the light source.
+     * 
+     * @return square edge length or 0 if: square edge was not set or it's not a
+     *         point based light source.
+     */
     public double getSquareEdge();
 
+    /**
+     * setter for the square edge length. will throw exception for non point based
+     * light sources.
+     * 
+     * @param squareEdge - the length of the squareEdge.
+     * @return - self return for builder pattern.
+     */
     public LightSource setSquareEdge(double squareEdge);
 }

@@ -11,6 +11,9 @@ import renderer.RayTracerBasic;
 import renderer.RayTracerBeams;
 import scene.Scene;
 
+/**
+ * class for creating images with soft shadows.
+ */
 public class SoftShadowsTests {
         private Scene scene = new Scene("Test scene");
 
@@ -124,5 +127,4 @@ public class SoftShadowsTests {
                 render.renderImage();
                 render.writeToImage();
         }
-
 }
