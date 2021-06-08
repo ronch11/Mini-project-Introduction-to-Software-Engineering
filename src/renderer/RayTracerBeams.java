@@ -60,13 +60,11 @@ public class RayTracerBeams extends RayTracerBasic {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
-            if (nl * nv > 0) {
-                double ktr = calcKtr(intersection, lightSource);
-                if (ktr * k > MIN_CALC_COLOR_K) {
-                    Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
-                    color = color.add(calcDiffusive(kd, lightIntensity, nl),
-                            calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
-                }
+            double ktr = calcKtr(intersection, lightSource, nv, n);
+            if (ktr * k > MIN_CALC_COLOR_K) {
+                Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
+                color = color.add(calcDiffusive(kd, lightIntensity, nl),
+                        calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
             }
         }
         return color;
@@ -79,15 +77,17 @@ public class RayTracerBeams extends RayTracerBasic {
      * @param lightSource  - the light source that effecting the geopoint
      * @return - average ktr
      */
-    private double calcKtr(GeoPoint intersection, LightSource lightSource) {
+    private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector n) {
         double sumOfKtr = 0;
 
-        var points = getPoints(intersection.point, lightSource.getL(intersection.point), lightSource.getSquareEdge());
+        var points = getPoints(lightSource.getSourcePoint(), lightSource.getDirection(intersection.point),
+                lightSource.getSquareEdge());
         for (var point : points) {
-            Vector l = lightSource.getL(point);
-            Vector n = intersection.geometry.getNormal(point);
-            double ktr = transparency(lightSource, l, n, point);
-            sumOfKtr += ktr;
+            Vector l = point.subtract(intersection.point).normalize();
+            if (alignZero(l.dotProduct(n)) * nv > 0) {
+                double ktr = transparency(lightSource, l, n, point);
+                sumOfKtr += ktr;
+            }
         }
         return alignZero(sumOfKtr / points.size());
     }
@@ -123,28 +123,22 @@ public class RayTracerBeams extends RayTracerBasic {
             return points;
         }
 
-        Point3D head = n.getHead();
-        double nx = head.getX();
-        double ny = head.getY();
-        double nz = head.getZ();
-
-        double cx = center.getX();
-        double cy = center.getY();
-        double cz = center.getZ();
-
-        double d = nx * cx + ny * cy + nz * cz;
-
-        // the "top left" of the square
-        double baseX = cx - (edge / 2);
-        double baseY = cy - (edge / 2);
+        Vector vx = n.orthogonalVector();
+        Vector vy = n.crossProduct(vx).normalize();
 
         for (int i = 1; i < numOfRays; i++) {
-            // create coordinates for the new point.
-            double x = baseX + rand.nextDouble() * edge;
-            double y = baseY + rand.nextDouble() * edge;
-            double z = (d - (x * nx + y * ny)) / nz;
-            points.add(new Point3D(x, y, z)); // added the new point to the list.
+            Point3D pc = center;
+            double x = rand.nextDouble() * edge;
+            double y = rand.nextDouble() * edge;
+            if (!isZero(x)) {
+                pc = pc.add(vx.scale(x));
+            }
+            if (!isZero(y)) {
+                pc = pc.add(vy.scale(y));
+            }
+            points.add(pc);
         }
+
         return points;
     }
 }

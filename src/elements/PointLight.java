@@ -28,11 +28,6 @@ public class PointLight extends Light implements LightSource {
         kC = 1;
     }
 
-    public PointLight setSquareEdge(double edge) {
-        this.edge = edge;
-        return this;
-    }
-
     /**
      * A setter for kl field.
      * 
@@ -83,7 +78,23 @@ public class PointLight extends Light implements LightSource {
     }
 
     @Override
+    public Point3D getSourcePoint() {
+        return position;
+    }
+
+    @Override
+    public Vector getDirection(Point3D point) {
+        return getL(point);
+    }
+
+    @Override
     public double getSquareEdge() {
         return edge;
+    }
+
+    @Override
+    public LightSource setSquareEdge(double squareEdge) {
+        edge = squareEdge;
+        return this;
     }
 }

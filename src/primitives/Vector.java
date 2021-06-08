@@ -158,6 +158,36 @@ public class Vector {
     }
 
     /**
+     * returns an orthogonal Vector to this vector.
+     * 
+     * @return orthogonal vector normalized
+     */
+    public Vector orthogonalVector() {
+        var x = head.getX();
+        var y = head.getY();
+        var z = head.getZ();
+        Vector orthVector;
+
+        if (x < y) {
+            if (x < z) {
+                orthVector = new Vector(0, -z, y);
+            } else {
+                // z is smallest
+                orthVector = new Vector(-y, x, 0);
+            }
+        } else {
+            if (y < z) {
+                // y is smallest
+                orthVector = new Vector(-z, 0, x);
+            } else {
+                // z is smallest
+                orthVector = new Vector(-y, x, 0);
+            }
+        }
+        return orthVector.normalize();
+    }
+
+    /**
      * Test if two Vectors are equals.
      * 
      * @param obj - An Object to test if it's equal to This Vector in algebraic

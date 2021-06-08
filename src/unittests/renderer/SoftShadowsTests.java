@@ -106,13 +106,6 @@ public class SoftShadowsTests {
                 scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(150, 0, 100)) //
                                 .setKL(0.0005).setKQ(0.0005));
 
-                scene.lights.add(new SpotLight(new Color(700, 700, 700), new Point3D(200, -200, 200),
-                                new Vector(-1, 1, -1)) //
-                                                .setKL(4E-4).setKQ(2E-5).setSquareEdge(30));
-                scene.lights.add(new DirectionalLight(new Color(100, 100, 100), new Vector(-1, 1, -1)));
-                scene.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(150, 0, 100)) //
-                                .setKL(0.0005).setKQ(0.0005));
-
                 MultiThreadsRender render = new MultiThreadsRender() //
                                 .setImageWriter(new ImageWriter("softShadowsBeforeImprovement", 600, 600)) //
                                 .setCamera(camera) //

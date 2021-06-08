@@ -35,6 +35,11 @@ public class SpotLight extends PointLight {
         return numerator <= 0 ? Color.BLACK : super.getIntensity(p).scale(numerator);
     }
 
+    @Override
+    public Vector getDirection(Point3D point) {
+        return direction;
+    }
+
     public PointLight setNarrowBeam(int narrowBeam) {
         this.narrowBeam = narrowBeam;
         return this;

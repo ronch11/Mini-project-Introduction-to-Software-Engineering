@@ -35,10 +35,10 @@ public interface LightSource {
     public double getDistance(Point3D point);
 
     /**
-     * gets the edge length for determine the area of effect of the light source.
+     * gets the edge length for determine the area of effect of the light.
      * 
      * @return square edge length or 0 if: square edge was not set or it's not a
-     *         point based light source.
+     *         point based light.
      */
     public double getSquareEdge();
 
@@ -50,4 +50,19 @@ public interface LightSource {
      * @return - self return for builder pattern.
      */
     public LightSource setSquareEdge(double squareEdge);
+
+    /**
+     * getter for get the central point of this light.
+     * 
+     * @return central point.
+     */
+    public Point3D getSourcePoint();
+
+    /**
+     * the direction which the light shine on the given point.
+     * 
+     * @param point - A point we want to get lights direction.
+     * @return - the light direction to the given point.
+     */
+    public Vector getDirection(Point3D point);
 }
