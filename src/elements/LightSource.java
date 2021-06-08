@@ -1,5 +1,7 @@
 package elements;
 
+import java.util.List;
+
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
@@ -65,4 +67,6 @@ public interface LightSource {
      * @return - the light direction to the given point.
      */
     public Vector getDirection(Point3D point);
+
+    public List<Point3D> calculatePoints(Point3D intersectionPoint, int numOfPoints);
 }

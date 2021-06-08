@@ -80,10 +80,9 @@ public class RayTracerBeams extends RayTracerBasic {
     private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector n, double k) {
         double sumOfKtr = 0;
 
-        var points = getPoints(lightSource.getSourcePoint(), lightSource.getDirection(intersection.point),
-                lightSource.getSquareEdge());
+        var points = lightSource.calculatePoints(intersection.point, numOfRays);
         for (var point : points) {
-            Vector l = point.subtract(intersection.point).scale(-1);
+            Vector l = lightSource.getDirection(point);
             if (alignZero(n.dotProduct(l)) * nv > 0) {
                 double ktr = transparency(lightSource, l, n, point);
                 if (ktr * k > MIN_CALC_COLOR_K) {
@@ -106,41 +105,41 @@ public class RayTracerBeams extends RayTracerBasic {
         return this;
     }
 
-    /**
-     * Get points around teh center point given. limited to a square with edge
-     * length in param edge.
-     * 
-     * @param center - the center point of the square.
-     * @param n      - normal to the shape at the given point center.
-     * @param edge   - length of the square edge.
-     * @return - List of point3D randomly around inside the square with length of
-     *         edge and center as it's center point(first point will always be the
-     *         center point) in case edge is 0 or numOfRays is 1 we get only the
-     *         center point back.
-     */
-    private List<Point3D> getPoints(Point3D center, Vector n, double edge) {
-        List<Point3D> points = new LinkedList<>();
-        points.add(center);
-        if (edge == 0 || numOfRays == 1) {
-            return points;
-        }
+    // /**
+    // * Get points around teh center point given. limited to a square with edge
+    // * length in param edge.
+    // *
+    // * @param center - the center point of the square.
+    // * @param n - normal to the shape at the given point center.
+    // * @param edge - length of the square edge.
+    // * @return - List of point3D randomly around inside the square with length of
+    // * edge and center as it's center point(first point will always be the
+    // * center point) in case edge is 0 or numOfRays is 1 we get only the
+    // * center point back.
+    // */
+    // private List<Point3D> getPoints(Point3D center, Vector n, double edge) {
+    // List<Point3D> points = new LinkedList<>();
+    // points.add(center);
+    // if (edge == 0 || numOfRays == 1) {
+    // return points;
+    // }
 
-        Vector vx = n.orthogonalVector();
-        Vector vy = n.crossProduct(vx).normalize();
+    // Vector vx = n.orthogonalVector();
+    // Vector vy = n.crossProduct(vx).normalize();
 
-        for (int i = 1; i < numOfRays; i++) {
-            Point3D pc = center;
-            double x = rand.nextDouble() * edge;
-            double y = rand.nextDouble() * edge;
-            if (!isZero(x)) {
-                pc = pc.add(vx.scale(x));
-            }
-            if (!isZero(y)) {
-                pc = pc.add(vy.scale(y));
-            }
-            points.add(pc);
-        }
+    // for (int i = 1; i < numOfRays; i++) {
+    // Point3D pc = center;
+    // double x = rand.nextDouble() * edge;
+    // double y = rand.nextDouble() * edge;
+    // if (!isZero(x)) {
+    // pc = pc.add(vx.scale(x));
+    // }
+    // if (!isZero(y)) {
+    // pc = pc.add(vy.scale(y));
+    // }
+    // points.add(pc);
+    // }
 
-        return points;
-    }
+    // return points;
+    // }
 }
