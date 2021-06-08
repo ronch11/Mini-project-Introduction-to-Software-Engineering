@@ -1,27 +1,20 @@
 package renderer;
 
-import java.security.SecureRandom;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import static primitives.Util.alignZero;
 
-import static primitives.Util.*;
-
+import elements.LightSource;
 import geometries.Intersectable.GeoPoint;
 import primitives.Color;
 import primitives.Material;
-import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
-import elements.LightSource;
 
 /**
  * A Ray tracing class with enhancement capabilities of soft shadows.
  */
 public class RayTracerBeams extends RayTracerBasic {
     private int numOfRays = 1;
-    private Random rand = new SecureRandom();
 
     /**
      * Constructor for our advanced RayTracer with beams.

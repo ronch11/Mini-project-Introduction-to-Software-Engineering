@@ -40,7 +40,7 @@ public class SoftShadowsTests {
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
                 scene2.lights.add(new SpotLight(new Color(800, 400, 400), new Point3D(10, -10, -130),
                                 new Vector(-2, -2, -1)).setNarrowBeam(3).setKC(1).setKL(0.000005).setKQ(0.00000025)
-                                                .setSquareEdge(5));
+                                                .setSquareEdge(50));
 
                 ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpSoftShadow", 500, 500);
                 MultiThreadsRender render = new MultiThreadsRender() //
