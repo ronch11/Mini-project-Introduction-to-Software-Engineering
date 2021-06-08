@@ -74,9 +74,13 @@ public class PointLight extends Light implements LightSource {
         return intensity.reduce(alignZero(kC + Math.sqrt(dSquared) * kL + dSquared * kQ));
     }
 
+    private Vector getL(Point3D source, Point3D point) {
+        return point.subtract(source).normalize();
+    }
+
     @Override
     public Vector getL(Point3D p) {
-        return p.subtract(position).normalize();
+        return getL(position, p);
     }
 
     @Override
@@ -90,8 +94,8 @@ public class PointLight extends Light implements LightSource {
     }
 
     @Override
-    public Vector getDirection(Point3D point) {
-        return getL(point);
+    public Vector getDirection(Point3D source, Point3D point) {
+        return getL(source, point);
     }
 
     @Override
@@ -114,7 +118,7 @@ public class PointLight extends Light implements LightSource {
             return points;
         }
 
-        Vector n = getDirection(intersectionPoint);
+        Vector n = getDirection(position, intersectionPoint);
         Vector vx = n.orthogonalVector();
         Vector vy = n.crossProduct(vx).normalize();
 

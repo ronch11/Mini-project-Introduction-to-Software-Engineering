@@ -82,7 +82,7 @@ public class RayTracerBeams extends RayTracerBasic {
 
         var points = lightSource.calculatePoints(intersection.point, numOfRays);
         for (var point : points) {
-            Vector l = lightSource.getDirection(point);
+            Vector l = lightSource.getDirection(point, intersection.point);
             if (alignZero(n.dotProduct(l)) * nv > 0) {
                 double ktr = transparency(lightSource, l, n, point);
                 if (ktr * k > MIN_CALC_COLOR_K) {
@@ -129,7 +129,7 @@ public class RayTracerBeams extends RayTracerBasic {
 
     // for (int i = 1; i < numOfRays; i++) {
     // Point3D pc = center;
-    // double x = rand.nextDouble() * edge;
+    // double x = rand.nextDoubl e() * edge;
     // double y = rand.nextDouble() * edge;
     // if (!isZero(x)) {
     // pc = pc.add(vx.scale(x));

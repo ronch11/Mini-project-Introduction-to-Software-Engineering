@@ -63,10 +63,11 @@ public interface LightSource {
     /**
      * the direction which the light shine on the given point.
      * 
-     * @param point - A point we want to get lights direction.
+     * @param source - A point in Light source area.
+     * @param point  - A point we want to get lights direction.
      * @return - the light direction to the given point.
      */
-    public Vector getDirection(Point3D point);
+    public Vector getDirection(Point3D source, Point3D point);
 
     public List<Point3D> calculatePoints(Point3D intersectionPoint, int numOfPoints);
 }

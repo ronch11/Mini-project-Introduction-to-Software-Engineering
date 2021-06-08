@@ -36,7 +36,7 @@ public class SpotLight extends PointLight {
     }
 
     @Override
-    public Vector getDirection(Point3D point) {
+    public Vector getDirection(Point3D source, Point3D point) {
         return direction;
     }
 
