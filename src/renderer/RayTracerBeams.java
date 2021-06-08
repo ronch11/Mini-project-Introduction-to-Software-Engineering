@@ -60,7 +60,7 @@ public class RayTracerBeams extends RayTracerBasic {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
-            double ktr = calcKtr(intersection, lightSource, nv, n);
+            double ktr = calcKtr(intersection, lightSource, nv, n, k);
             if (ktr * k > MIN_CALC_COLOR_K) {
                 Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
                 color = color.add(calcDiffusive(kd, lightIntensity, nl),
@@ -77,16 +77,18 @@ public class RayTracerBeams extends RayTracerBasic {
      * @param lightSource  - the light source that effecting the geopoint
      * @return - average ktr
      */
-    private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector n) {
+    private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector n, double k) {
         double sumOfKtr = 0;
 
         var points = getPoints(lightSource.getSourcePoint(), lightSource.getDirection(intersection.point),
                 lightSource.getSquareEdge());
         for (var point : points) {
-            Vector l = point.subtract(intersection.point).normalize();
-            if (alignZero(l.dotProduct(n)) * nv > 0) {
+            Vector l = point.subtract(intersection.point).scale(-1);
+            if (alignZero(n.dotProduct(l)) * nv > 0) {
                 double ktr = transparency(lightSource, l, n, point);
-                sumOfKtr += ktr;
+                if (ktr * k > MIN_CALC_COLOR_K) {
+                    sumOfKtr += ktr;
+                }
             }
         }
         return alignZero(sumOfKtr / points.size());
