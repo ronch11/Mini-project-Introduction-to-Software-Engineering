@@ -74,13 +74,13 @@ public class PointLight extends Light implements LightSource {
         return intensity.reduce(alignZero(kC + Math.sqrt(dSquared) * kL + dSquared * kQ));
     }
 
-    private Vector getL(Point3D source, Point3D point) {
-        return point.subtract(source).normalize();
+    private Vector getL(Point3D sourcePoint, Point3D destinationPoint) {
+        return destinationPoint.subtract(sourcePoint).normalize();
     }
 
     @Override
-    public Vector getL(Point3D p) {
-        return getL(position, p);
+    public Vector getL(Point3D destinationPoint) {
+        return getL(position, destinationPoint);
     }
 
     @Override
@@ -89,13 +89,8 @@ public class PointLight extends Light implements LightSource {
     }
 
     @Override
-    public Point3D getSourcePoint() {
-        return position;
-    }
-
-    @Override
-    public Vector getDirection(Point3D source, Point3D point) {
-        return getL(source, point);
+    public Vector getDirection(Point3D sourcePoint, Point3D destinationPoint) {
+        return getL(sourcePoint, destinationPoint);
     }
 
     @Override
@@ -110,22 +105,20 @@ public class PointLight extends Light implements LightSource {
     }
 
     @Override
-    public List<Point3D> calculatePoints(Point3D intersectionPoint, int numOfPoints) {
+    public List<Point3D> calculatePoints(Vector n, int numOfPoints) {
         List<Point3D> points = new LinkedList<>();
         points.add(position);
 
         if (edge == 0 || numOfPoints == 1) {
             return points;
         }
-
-        Vector n = getDirection(position, intersectionPoint);
         Vector vx = n.orthogonalVector();
         Vector vy = n.crossProduct(vx).normalize();
-
+        double halfEdge = edge / 2;
         for (int i = 1; i < numOfPoints; i++) {
             Point3D pc = position;
-            double x = rand.nextDouble() * edge;
-            double y = rand.nextDouble() * edge;
+            double x = rand.nextDouble() * edge - halfEdge;
+            double y = rand.nextDouble() * edge - halfEdge;
             if (!isZero(x)) {
                 pc = pc.add(vx.scale(x));
             }
@@ -134,7 +127,6 @@ public class PointLight extends Light implements LightSource {
             }
             points.add(pc);
         }
-
         return points;
     }
 }

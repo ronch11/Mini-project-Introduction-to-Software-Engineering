@@ -54,20 +54,13 @@ public interface LightSource {
     public LightSource setSquareEdge(double squareEdge);
 
     /**
-     * getter for get the central point of this light.
-     * 
-     * @return central point.
-     */
-    public Point3D getSourcePoint();
-
-    /**
      * the direction which the light shine on the given point.
      * 
-     * @param source - A point in Light source area.
-     * @param point  - A point we want to get lights direction.
+     * @param sourcePoint      - A point in Light source area.
+     * @param destinationPoint - A point we want to get lights direction.
      * @return - the light direction to the given point.
      */
-    public Vector getDirection(Point3D source, Point3D point);
+    public Vector getDirection(Point3D sourcePoint, Point3D destinationPoint);
 
-    public List<Point3D> calculatePoints(Point3D intersectionPoint, int numOfPoints);
+    public List<Point3D> calculatePoints(Vector n, int numOfPoints);
 }

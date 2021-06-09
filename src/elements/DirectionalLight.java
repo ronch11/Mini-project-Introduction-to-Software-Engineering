@@ -51,17 +51,12 @@ public class DirectionalLight extends Light implements LightSource {
     }
 
     @Override
-    public Point3D getSourcePoint() {
-        throw new UnsupportedOperationException("Directional lights have no source point");
-    }
-
-    @Override
-    public Vector getDirection(Point3D source, Point3D point) {
+    public Vector getDirection(Point3D sourcePoint, Point3D destinationPoint) {
         return direction;
     }
 
     @Override
-    public List<Point3D> calculatePoints(Point3D intersectionPoint, int numOfPoints) {
-        return List.of(intersectionPoint);
+    public List<Point3D> calculatePoints(Vector n, int numOfPoints) {
+        return List.of(Point3D.ZERO);
     }
 }
