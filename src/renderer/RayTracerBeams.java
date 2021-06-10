@@ -72,9 +72,9 @@ public class RayTracerBeams extends RayTracerBasic {
      */
     private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector baseL, Vector n) {
         // if no soft shadows.
-        if (numOfShadowRays == 1) {
-            return transparency(lightSource, baseL, n, intersection.point);
-        }
+        // if (numOfShadowRays == 1) {
+        //     return transparency(lightSource, baseL, n, intersection.point);
+        // } - un needd anymore it's being handle in calcLocalEffect
         // else soft shadows.
         double sumOfKtr = 0;
 
