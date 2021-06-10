@@ -14,7 +14,7 @@ import scene.Scene;
  * A Ray tracing class with enhancement capabilities of soft shadows.
  */
 public class RayTracerBeams extends RayTracerBasic {
-    private int numOfRays = 1;
+    private int numOfShadowRays = 1;
 
     /**
      * Constructor for our advanced RayTracer with beams.
@@ -36,8 +36,8 @@ public class RayTracerBeams extends RayTracerBasic {
      */
     @Override
     protected Color calcLocalEffects(GeoPoint intersection, Ray ray, double k) {
-        if (numOfRays == 1) { // if we do not have a number of rays aka no advance ray tracing so call
-                              // rayTracerBasic function.
+        if (numOfShadowRays == 1) { // if we do not have a number of rays aka no advance ray tracing so call
+            // rayTracerBasic function.
             return super.calcLocalEffects(intersection, ray, k);
         }
         Vector v = ray.getDir();
@@ -72,13 +72,13 @@ public class RayTracerBeams extends RayTracerBasic {
      */
     private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector baseL, Vector n) {
         // if no soft shadows.
-        if (numOfRays == 1) {
+        if (numOfShadowRays == 1) {
             return transparency(lightSource, baseL, n, intersection.point);
         }
         // else soft shadows.
         double sumOfKtr = 0;
 
-        var points = lightSource.calculatePoints(baseL, numOfRays);
+        var points = lightSource.calculatePoints(baseL, numOfShadowRays);
         for (var point : points) {
             Vector l = lightSource.getDirection(point, intersection.point);
             if (alignZero(n.dotProduct(l)) * nv > 0) {
@@ -96,7 +96,7 @@ public class RayTracerBeams extends RayTracerBasic {
      * @return - self return for builder pattern.
      */
     public RayTracerBeams setNumOfRays(int numOfRays) {
-        this.numOfRays = numOfRays;
+        this.numOfShadowRays = numOfRays;
         return this;
     }
 }
