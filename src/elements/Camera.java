@@ -6,6 +6,9 @@ import primitives.Vector;
 
 import static primitives.Util.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Class point3D is the basic class representing a point in space of Euclidean
  * geometry in Cartesian 3-Dimensional coordinate system.
@@ -49,7 +52,7 @@ public class Camera {
      * 
      * @return {@link Vector}
      */
-    public Vector getvTo() {
+    public Vector getVTo() {
         return vTo;
     }
 
@@ -58,7 +61,7 @@ public class Camera {
      * 
      * @return {@link Vector}
      */
-    public Vector getvUp() {
+    public Vector getVUp() {
         return vUp;
     }
 
@@ -67,7 +70,7 @@ public class Camera {
      * 
      * @return {@link Vector}
      */
-    public Vector getvRight() {
+    public Vector getVRight() {
         return vRight;
     }
 
@@ -180,4 +183,31 @@ public class Camera {
                 && vRight.equals(camera.vRight) && width == camera.width && height == camera.height
                 && distance == camera.distance;
     }
+
+    public List<Ray> createGridCameraRays(int nx, int ny, int j, int i, int gridSize) {
+        double rX = alignZero(width / nx);
+        double rY = alignZero(height / ny);
+
+        int halfGrid = Math.floorDiv(gridSize, 2);
+
+        double xInterval = rX / gridSize;
+        double yInterval = rY / gridSize;
+
+        Ray centerRay = constructRayThroughPixel(nx, ny, j, i);
+        Point3D center = centerRay.getP0();
+
+        List<Ray> rays = new LinkedList<>();
+        for (int row = -halfGrid; row < gridSize; row++) {
+            for (int col = -halfGrid; col < gridSize; col++) {
+                Point3D gridPij = isZero(row) ? center : center.add(vRight.scale(col * xInterval));
+                gridPij = isZero(col) ? gridPij : gridPij.add(vUp.scale(row * yInterval));
+                rays.add(new Ray(position, gridPij.subtract(position)));
+            }
+        }
+        if (rays.stream().parallel().noneMatch(ray -> ray.equals(centerRay))) {
+            rays.add(0, centerRay);
+        }
+        return rays;
+    }
+
 }

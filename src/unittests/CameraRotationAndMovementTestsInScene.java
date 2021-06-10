@@ -52,7 +52,7 @@ public class CameraRotationAndMovementTestsInScene {
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
                 ImageWriter imageWriter = new ImageWriter("clockwise rotated color render test", 1000, 1000);
-                Render render = new Render() //
+                Render render = (Render) new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera1) //
                                 .setRayTracer(new RayTracerBasic(scene1));
@@ -87,7 +87,7 @@ public class CameraRotationAndMovementTestsInScene {
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
                 ImageWriter imageWriter = new ImageWriter("counter clockwise rotated color render test", 1000, 1000);
-                Render render = new Render() //
+                Render render = (Render) new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera1) //
                                 .setRayTracer(new RayTracerBasic(scene1));
@@ -121,7 +121,7 @@ public class CameraRotationAndMovementTestsInScene {
                                                 new Vector(1, 1, -3)) //
                                                                 .setKL(1E-5).setKQ(1.5E-7));
 
-                Render render = new Render(). //
+                Render render = (Render) new Render(). //
                                 setImageWriter(new ImageWriter("camera movement in scene", 400, 400)) //
                                 .setCamera(camera2) //
                                 .setRayTracer(new RayTracerBasic(scene2));

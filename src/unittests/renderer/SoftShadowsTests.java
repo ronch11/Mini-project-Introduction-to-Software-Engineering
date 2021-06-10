@@ -48,11 +48,11 @@ public class SoftShadowsTests {
                                                 .setSquareEdge(30));
 
                 ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpSoftShadow", 500, 500);
-                MultiThreadsRender render = new MultiThreadsRender() //
+                MultiThreadsRender render = (MultiThreadsRender) new MultiThreadsRender() //
                                 .setDebugPrint().setMultithreading(3) //
                                 .setImageWriter(imageWriter) //
-                                .setCamera(camera1) //
-                                .setRayTracer(new RayTracerBeams(scene1).setNumOfRays(10));
+                                .setCamera(camera1).setRayTracer(new RayTracerBeams(scene1).setNumOfRays(10))
+                                .setAntiAliasingLevel(3);
                 render.renderImage();
                 render.writeToImage();
         }
@@ -106,17 +106,18 @@ public class SoftShadowsTests {
                 scene2.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(150, 0, 100)) //
                                 .setKL(0.0005).setKQ(0.0005));
 
-                MultiThreadsRender render = new MultiThreadsRender() //
+                MultiThreadsRender render = (MultiThreadsRender) new MultiThreadsRender() //
+                                .setDebugPrint().setMultithreading(3)
                                 .setImageWriter(new ImageWriter("softShadowsBeforeImprovement", 600, 600)) //
                                 .setCamera(camera2) //
-                                .setRayTracer(new RayTracerBasic(scene2)).setDebugPrint().setMultithreading(3);
+                                .setRayTracer(new RayTracerBasic(scene2));
                 render.renderImage();
                 render.writeToImage();
-                render = new MultiThreadsRender() //
+                render = (MultiThreadsRender) new MultiThreadsRender() //
+                                .setDebugPrint().setMultithreading(3)
                                 .setImageWriter(new ImageWriter("softShadowsWithImprovement", 600, 600)) //
                                 .setCamera(camera2) //
-                                .setRayTracer(new RayTracerBeams(scene2).setNumOfRays(500)).setDebugPrint()
-                                .setMultithreading(3);
+                                .setRayTracer(new RayTracerBeams(scene2).setNumOfRays(500));
                 render.renderImage();
                 render.writeToImage();
         }

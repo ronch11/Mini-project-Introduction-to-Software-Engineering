@@ -1,9 +1,6 @@
 package renderer;
 
 import primitives.*;
-import elements.*;
-
-import java.util.MissingResourceException;
 
 /**
  * Renderer class is responsible for generating pixel color map from a graphic
@@ -12,19 +9,14 @@ import java.util.MissingResourceException;
  * @author Dan
  *
  */
-public class MultiThreadsRender {
-    private Camera camera;
-    private ImageWriter imageWriter;
-    private RayTracerBase tracer;
-    private static final String RESOURCE_ERROR = "Renderer resource not set";
-    private static final String RENDER_CLASS = "Render";
-    private static final String IMAGE_WRITER_COMPONENT = "Image writer";
-    private static final String CAMERA_COMPONENT = "Camera";
-    private static final String RAY_TRACER_COMPONENT = "Ray tracer";
-
+public class MultiThreadsRender extends RenderBase {
     private int threadsCount = 0;
     private static final int SPARE_THREADS = 2; // Spare threads if trying to use all the cores
     private boolean print = false; // printing progress percentage
+
+    public MultiThreadsRender() {
+        super("MultiThreadsRender");
+    }
 
     /**
      * Set multi-threading <br>
@@ -57,7 +49,7 @@ public class MultiThreadsRender {
 
     /**
      * Pixel is an internal helper class whose objects are associated with a Render
-     * object that they are generated in scope of. It is used for multithreading in
+     * object that they are generated in scope of. It is used for multi-threading in
      * the Renderer and for follow up its progress.<br/>
      * There is a main follow up object and several secondary objects - one in each
      * thread.
@@ -177,49 +169,6 @@ public class MultiThreadsRender {
     }
 
     /**
-     * Camera setter
-     * 
-     * @param camera to set
-     * @return renderer itself - for chaining
-     */
-    public MultiThreadsRender setCamera(Camera camera) {
-        this.camera = camera;
-        return this;
-    }
-
-    /**
-     * Image writer setter
-     * 
-     * @param imgWriter the image writer to set
-     * @return renderer itself - for chaining
-     */
-    public MultiThreadsRender setImageWriter(ImageWriter imgWriter) {
-        this.imageWriter = imgWriter;
-        return this;
-    }
-
-    /**
-     * Ray tracer setter
-     * 
-     * @param tracer to use
-     * @return renderer itself - for chaining
-     */
-    public MultiThreadsRender setRayTracer(RayTracerBase tracer) {
-        this.tracer = tracer;
-        return this;
-    }
-
-    /**
-     * Produce a rendered image file
-     */
-    public void writeToImage() {
-        if (imageWriter == null)
-            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
-
-        imageWriter.writeToImage();
-    }
-
-    /**
      * Cast ray from camera in order to color a pixel
      * 
      * @param nX  resolution on X axis (number of pixels in row)
@@ -229,7 +178,7 @@ public class MultiThreadsRender {
      */
     private void castRay(int nX, int nY, int col, int row) {
         Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
-        Color color = tracer.traceRay(ray);
+        Color color = rayTracer.traceRay(ray);
         imageWriter.writePixel(col, row, color);
     }
 
@@ -272,14 +221,8 @@ public class MultiThreadsRender {
      * This function renders image's pixel color map from the scene included with
      * the Renderer object
      */
-    public void renderImage() {
-        if (imageWriter == null)
-            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
-        if (camera == null)
-            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, CAMERA_COMPONENT);
-        if (tracer == null)
-            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, RAY_TRACER_COMPONENT);
-
+    @Override
+    protected void renderAlg() {
         final int nX = imageWriter.getNx();
         final int nY = imageWriter.getNy();
         if (threadsCount == 0)
@@ -288,25 +231,5 @@ public class MultiThreadsRender {
                     castRay(nX, nY, j, i);
         else
             renderImageThreaded();
-    }
-
-    /**
-     * Create a grid [over the picture] in the pixel color map. given the grid's
-     * step and color.
-     * 
-     * @param step  grid's step
-     * @param color grid's color
-     */
-    public void printGrid(int step, Color color) {
-        if (imageWriter == null)
-            throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
-
-        int nX = imageWriter.getNx();
-        int nY = imageWriter.getNy();
-
-        for (int i = 0; i < nY; ++i)
-            for (int j = 0; j < nX; ++j)
-                if (j % step == 0 || i % step == 0)
-                    imageWriter.writePixel(j, i, color);
     }
 }

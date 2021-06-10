@@ -41,7 +41,7 @@ public class LightsTests {
 		scene1.lights.add(new DirectionalLight(new Color(500, 300, 0), new Vector(1, 1, -1)));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereDirectional", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracer(new RayTracerBasic(scene1));//
@@ -59,7 +59,7 @@ public class LightsTests {
 				.setKL(0.00001).setKQ(0.000001));
 
 		ImageWriter imageWriter = new ImageWriter("lightSpherePoint", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracer(new RayTracerBasic(scene1));//
@@ -77,7 +77,7 @@ public class LightsTests {
 				.setKL(0.00001).setKQ(0.00000001));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereSpot", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracer(new RayTracerBasic(scene1));//
@@ -95,7 +95,7 @@ public class LightsTests {
 		scene2.lights.add(new DirectionalLight(new Color(300, 150, 150), new Vector(0, 0, -1)));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesDirectional", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracer(new RayTracerBasic(scene2));//
@@ -114,7 +114,7 @@ public class LightsTests {
 				.setKL(0.0005).setKQ(0.0005));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesPoint", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracer(new RayTracerBasic(scene2));//
@@ -133,7 +133,7 @@ public class LightsTests {
 				.setKL(0.0001).setKQ(0.000005));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpot", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracer(new RayTracerBasic(scene2));//
@@ -151,7 +151,7 @@ public class LightsTests {
 				.setNarrowBeam(5).setKL(0.000005).setKQ(0.00000025));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereSpotSharp", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracer(new RayTracerBasic(scene1));//
@@ -170,7 +170,7 @@ public class LightsTests {
 				.setNarrowBeam(5).setKL(0.00005).setKQ(0.0000025));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpotSharp", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracer(new RayTracerBasic(scene2));//
@@ -192,7 +192,7 @@ public class LightsTests {
 						.setNarrowBeam(10).setKL(0.000005).setKQ(0.00000025));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereOmniLights", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracer(new RayTracerBasic(scene1));//
@@ -215,7 +215,7 @@ public class LightsTests {
 						.setNarrowBeam(5).setKL(0.000005).setKQ(0.00000025));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesOmniLight", 500, 500);
-		Render render = new Render()//
+		Render render = (Render) new Render()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracer(new RayTracerBasic(scene2));//
