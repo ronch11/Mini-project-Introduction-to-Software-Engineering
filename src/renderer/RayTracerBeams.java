@@ -56,10 +56,8 @@ public class RayTracerBeams extends RayTracerBasic {
             if (ktr * k > MIN_CALC_COLOR_K) {
                 double nl = alignZero(n.dotProduct(l));
                 Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
-                if (!lightIntensity.equals(Color.BLACK)) {
-                    color = color.add(calcDiffusive(kd, lightIntensity, nl),
-                            calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
-                }
+                color = color.add(calcDiffusive(kd, lightIntensity, nl),
+                        calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
             }
         }
         return color;

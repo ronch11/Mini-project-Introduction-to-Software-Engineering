@@ -9,7 +9,6 @@ import renderer.ImageWriter;
 import renderer.MultiThreadsRender;
 import renderer.RayTracerBasic;
 import renderer.RayTracerBeams;
-import renderer.Render;
 import scene.Scene;
 
 /**
@@ -46,10 +45,9 @@ public class SoftShadowsTests {
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
                 scene1.lights.add(new SpotLight(new Color(800, 400, 400), new Point3D(10, -10, -130),
                                 new Vector(-2, -2, -1)).setNarrowBeam(3).setKC(1).setKL(0.000005).setKQ(0.00000025)
-                                                .setSquareEdge(50));
+                                                .setSquareEdge(30));
 
                 ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpSoftShadow", 500, 500);
-                // Render render = new Render() //
                 MultiThreadsRender render = new MultiThreadsRender() //
                                 .setDebugPrint().setMultithreading(3) //
                                 .setImageWriter(imageWriter) //
