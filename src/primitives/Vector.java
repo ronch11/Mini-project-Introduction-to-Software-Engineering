@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.*;
+
 /**
  * Class Vector is the basic class representing a vector starting in origin of
  * Euclidean geometry in Cartesian 3-Dimensional coordinate system.
@@ -215,5 +217,26 @@ public class Vector {
     @Override
     public String toString() {
         return head.toString();
+    }
+
+    public Vector rotate(Vector k, double theta) {
+        // Using this formula from wikipedia in order to rotate vector *V* around other
+        // vector *K* by *t*
+        // Vrot = Vcos(t) + (KxV)sin(t) + K(KV)(1 - cos(t))
+        double cost = alignZero(Math.cos(theta)); // both sin() and cos() are resets in pi*(0/(pi/2)/pi...)
+        double sint = alignZero(Math.sin(theta));
+        Vector vcost = isZero(cost) ? null : scale(cost);
+        Vector kvsint = isZero(sint) ? null : k.crossProduct(this).scale(sint);
+        Vector kkv;
+        try {
+            kkv = k.scale(alignZero(k.dotProduct(this) * (1 - cost)));
+        } catch (IllegalArgumentException e) {
+            kkv = null;
+        }
+        Point3D endrot = Point3D.ZERO;
+        endrot = vcost == null ? endrot : endrot.add(vcost);
+        endrot = kvsint == null ? endrot : endrot.add(kvsint);
+        endrot = kkv == null ? endrot : endrot.add(kkv);
+        return new Vector(endrot);
     }
 }

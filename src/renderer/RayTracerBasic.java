@@ -230,9 +230,9 @@ public class RayTracerBasic extends RayTracerBase {
     protected double transparency(LightSource ls, Vector l, Vector n, Point3D point) {
         Vector lightDirection = l.scale(-1);
 
-        Ray lightRay = new Ray(point, lightDirection, n);
+        Ray shadowRay = new Ray(point, lightDirection, n);
 
-        var intersections = scene.geometries.findGeoIntersections(lightRay);
+        var intersections = scene.geometries.findGeoIntersections(shadowRay);
 
         double ktr = 1.0;
         if (intersections == null)

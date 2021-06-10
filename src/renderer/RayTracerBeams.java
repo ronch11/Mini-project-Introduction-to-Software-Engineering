@@ -52,12 +52,14 @@ public class RayTracerBeams extends RayTracerBasic {
         Color color = Color.BLACK;
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
-            double ktr = calcKtr(intersection, lightSource, nv, l, n, k);
+            double ktr = calcKtr(intersection, lightSource, nv, l, n);
             if (ktr * k > MIN_CALC_COLOR_K) {
                 double nl = alignZero(n.dotProduct(l));
                 Color lightIntensity = lightSource.getIntensity(intersection.point).scale(ktr);
-                color = color.add(calcDiffusive(kd, lightIntensity, nl),
-                        calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
+                if (!lightIntensity.equals(Color.BLACK)) {
+                    color = color.add(calcDiffusive(kd, lightIntensity, nl),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity, nl));
+                }
             }
         }
         return color;
@@ -70,18 +72,19 @@ public class RayTracerBeams extends RayTracerBasic {
      * @param lightSource  - the light source that effecting the geopoint
      * @return - average ktr
      */
-    private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector baseL, Vector n,
-            double k) {
+    private double calcKtr(GeoPoint intersection, LightSource lightSource, double nv, Vector baseL, Vector n) {
+        // if no soft shadows.
+        if (numOfRays == 1) {
+            return transparency(lightSource, baseL, n, intersection.point);
+        }
+        // else soft shadows.
         double sumOfKtr = 0;
 
-        var points = lightSource.calculatePoints(baseL.scale(-1), numOfRays);
+        var points = lightSource.calculatePoints(baseL, numOfRays);
         for (var point : points) {
             Vector l = lightSource.getDirection(point, intersection.point);
             if (alignZero(n.dotProduct(l)) * nv > 0) {
-                double ktr = transparency(lightSource, l, n, point);
-                if (ktr * k > MIN_CALC_COLOR_K) {
-                    sumOfKtr += ktr;
-                }
+                sumOfKtr += transparency(lightSource, l, n, intersection.point);
             }
         }
         return alignZero(sumOfKtr / points.size());
