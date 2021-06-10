@@ -74,6 +74,14 @@ public class PointLight extends Light implements LightSource {
         return intensity.reduce(alignZero(kC + Math.sqrt(dSquared) * kL + dSquared * kQ));
     }
 
+    /**
+     * helper function to reduce repetition on calculating unit vector of 2 points.
+     * 
+     * @param sourcePoint      - point in range of the square with length of edge
+     *                         and center point position.
+     * @param destinationPoint - the point we want the light direction on.
+     * @return - Light direction unit vector.
+     */
     private Vector getL(Point3D sourcePoint, Point3D destinationPoint) {
         return destinationPoint.subtract(sourcePoint).normalize();
     }
@@ -100,6 +108,9 @@ public class PointLight extends Light implements LightSource {
 
     @Override
     public LightSource setSquareEdge(double squareEdge) {
+        if (squareEdge < 0) {
+            throw new IllegalArgumentException("Negative edge length is illegal");
+        }
         edge = squareEdge;
         return this;
     }
