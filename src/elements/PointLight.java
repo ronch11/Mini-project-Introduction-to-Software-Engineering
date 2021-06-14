@@ -127,7 +127,7 @@ public class PointLight extends Light implements LightSource {
         Vector vy = n.crossProduct(vx).normalize();
         double halfEdge = edge / 2;
         for (int i = 1; i < numOfPoints; i++) {
-            Point3D pc = new Point3D(position.getX(), position.getY(), position.getZ());
+            Point3D pc = position;
             double x = rand.nextDouble() * edge - halfEdge;
             double y = rand.nextDouble() * edge - halfEdge;
             if (!isZero(x)) {
