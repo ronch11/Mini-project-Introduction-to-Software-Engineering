@@ -185,22 +185,23 @@ public class Camera {
     }
 
     public List<Ray> createGridCameraRays(int nx, int ny, int j, int i, int gridSize) {
+        // pixel size
         double rX = alignZero(width / nx);
         double rY = alignZero(height / ny);
 
         int halfGrid = Math.floorDiv(gridSize, 2);
-
+        // interval between 2 points in the sub grid
         double xInterval = rX / gridSize;
         double yInterval = rY / gridSize;
 
         Ray centerRay = constructRayThroughPixel(nx, ny, j, i);
-        Point3D center = centerRay.getP0();
-
+        Point3D center = position.add(centerRay.getDir().scale(distance));
         List<Ray> rays = new LinkedList<>();
         for (int row = -halfGrid; row < gridSize; row++) {
             for (int col = -halfGrid; col < gridSize; col++) {
-                Point3D gridPij = isZero(row) ? center : center.add(vRight.scale(col * xInterval));
-                gridPij = isZero(col) ? gridPij : gridPij.add(vUp.scale(row * yInterval));
+                Point3D gridPij = isZero(col * xInterval) ? new Point3D(center.getX(), center.getY(), center.getZ())
+                        : center.add(vRight.scale(col * xInterval));
+                gridPij = isZero(row * yInterval) ? gridPij : gridPij.add(vUp.scale(row * yInterval));
                 rays.add(new Ray(position, gridPij.subtract(position)));
             }
         }

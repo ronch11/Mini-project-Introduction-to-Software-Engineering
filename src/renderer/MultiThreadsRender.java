@@ -1,5 +1,7 @@
 package renderer;
 
+import java.util.List;
+
 import primitives.*;
 
 /**
@@ -177,9 +179,19 @@ public class MultiThreadsRender extends RenderBase {
      * @param row pixel's row number (pixel index in column)
      */
     private void castRay(int nX, int nY, int col, int row) {
-        Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
-        Color color = rayTracer.traceRay(ray);
-        imageWriter.writePixel(col, row, color);
+        if (antiAliasingLevel == 1) {
+            Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
+            Color color = rayTracer.traceRay(ray);
+            imageWriter.writePixel(col, row, color);
+        } else {
+            Color averageColor = Color.BLACK;
+            List<Ray> rays = camera.createGridCameraRays(nX, nY, col, row, antiAliasingLevel);
+            for (Ray cameraRay : rays) {
+                averageColor = averageColor.add(rayTracer.traceRay(cameraRay));
+            }
+            averageColor = averageColor.reduce(rays.size());
+            imageWriter.writePixel(col, row, averageColor);
+        }
     }
 
     /**

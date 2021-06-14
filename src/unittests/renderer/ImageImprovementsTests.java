@@ -9,12 +9,13 @@ import renderer.ImageWriter;
 import renderer.MultiThreadsRender;
 import renderer.RayTracerBasic;
 import renderer.RayTracerBeams;
+import renderer.RenderBase;
 import scene.Scene;
 
 /**
  * class for creating images with soft shadows.
  */
-public class SoftShadowsTests {
+public class ImageImprovementsTests {
 
         private Scene scene1 = new Scene("Test scene") //
                         .setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
@@ -43,25 +44,21 @@ public class SoftShadowsTests {
                 scene1.geometries.add(
                                 new Sphere(new Point3D(-60, -80, -150), 20).setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
+
                 scene1.lights.add(new SpotLight(new Color(800, 400, 400), new Point3D(10, -10, -130),
                                 new Vector(-2, -2, -1)).setNarrowBeam(3).setKC(1).setKL(0.000005).setKQ(0.00000025)
                                                 .setSquareEdge(30));
 
                 ImageWriter imageWriter = new ImageWriter("trianglesSpotSharpSoftShadow", 500, 500);
-                MultiThreadsRender render = (MultiThreadsRender) new MultiThreadsRender() //
+                RenderBase render = new MultiThreadsRender() //
                                 .setDebugPrint().setMultithreading(3) //
                                 .setImageWriter(imageWriter) //
-                                .setCamera(camera1).setRayTracer(new RayTracerBeams(scene1).setNumOfRays(10))
-                                .setAntiAliasingLevel(3);
+                                .setCamera(camera1).setRayTracer(new RayTracerBeams(scene1).setNumOfRays(10));
                 render.renderImage();
                 render.writeToImage();
         }
 
-        /**
-         * soft shadows improvement picture
-         */
-        @Test
-        public void softTest() {
+        private void setScene2() {
                 scene2.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
                 scene2.geometries.add( //
                                 new Polygon(new Point3D(200, 200, 0), new Point3D(200, -200, 0),
@@ -99,6 +96,15 @@ public class SoftShadowsTests {
                                 new Sphere(new Point3D(-30, 50, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.DARK_GRAY)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)));
+        }
+
+        /**
+         * soft shadows improvement picture
+         */
+        @Test
+        public void softTest() {
+                setScene2();
+
                 scene2.lights.add(new SpotLight(new Color(700, 700, 700), new Point3D(200, -200, 200),
                                 new Vector(-1, 1, -1)) //
                                                 .setKL(4E-4).setKQ(2E-5).setSquareEdge(30));
@@ -106,14 +112,14 @@ public class SoftShadowsTests {
                 scene2.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(150, 0, 100)) //
                                 .setKL(0.0005).setKQ(0.0005));
 
-                MultiThreadsRender render = (MultiThreadsRender) new MultiThreadsRender() //
+                RenderBase render = new MultiThreadsRender() //
                                 .setDebugPrint().setMultithreading(3)
                                 .setImageWriter(new ImageWriter("softShadowsBeforeImprovement", 600, 600)) //
                                 .setCamera(camera2) //
                                 .setRayTracer(new RayTracerBasic(scene2));
                 render.renderImage();
                 render.writeToImage();
-                render = (MultiThreadsRender) new MultiThreadsRender() //
+                render = new MultiThreadsRender() //
                                 .setDebugPrint().setMultithreading(3)
                                 .setImageWriter(new ImageWriter("softShadowsWithImprovement", 600, 600)) //
                                 .setCamera(camera2) //
@@ -121,4 +127,24 @@ public class SoftShadowsTests {
                 render.renderImage();
                 render.writeToImage();
         }
+
+        @Test
+        public void AntiAliasingTest() {
+                setScene2();
+                RenderBase render = new MultiThreadsRender().setDebugPrint().setMultithreading(3).setCamera(camera2)
+                                .setImageWriter(new ImageWriter("antialiasingBeforeImprovement", 600, 600))
+                                .setRayTracer(new RayTracerBasic(scene2));
+
+                render.renderImage();
+                render.writeToImage();
+
+                render = new MultiThreadsRender() //
+                                .setDebugPrint().setMultithreading(3).setAntiAliasingLevel(3)
+                                .setImageWriter(new ImageWriter("antialiasingWithImprovement", 600, 600)) //
+                                .setCamera(camera2) //
+                                .setRayTracer(new RayTracerBeams(scene2));
+                render.renderImage();
+                render.writeToImage();
+        }
+
 }
