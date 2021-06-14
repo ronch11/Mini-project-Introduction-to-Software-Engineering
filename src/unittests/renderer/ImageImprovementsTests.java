@@ -58,6 +58,9 @@ public class ImageImprovementsTests {
                 render.writeToImage();
         }
 
+        /**
+         * setting scene 2 for AA test and SS test.
+         */
         private void setScene2() {
                 scene2.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
                 scene2.geometries.add( //
@@ -128,8 +131,12 @@ public class ImageImprovementsTests {
                 render.writeToImage();
         }
 
+        /**
+         * A function to generate picture to check the difference in anti aliasing
+         * implementation.
+         */
         @Test
-        public void AntiAliasingTest() {
+        public void antiAliasingTest() {
                 setScene2();
                 RenderBase render = new MultiThreadsRender().setDebugPrint().setMultithreading(3).setCamera(camera2)
                                 .setImageWriter(new ImageWriter("antialiasingBeforeImprovement", 600, 600))
