@@ -168,6 +168,9 @@ public class Vector {
         var x = head.getX();
         var y = head.getY();
         var z = head.getZ();
+        x = x < 0 ? -x : x;
+        y = y < 0 ? -y : y;
+        z = z < 0 ? -z : z;
         Vector orthVector;
 
         if (x < y) {

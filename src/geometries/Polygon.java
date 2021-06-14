@@ -1,8 +1,13 @@
 package geometries;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 import java.util.List;
-import primitives.*;
-import static primitives.Util.*;
+
+import primitives.Point3D;
+import primitives.Ray;
+import primitives.Vector;
 
 /**
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
@@ -79,6 +84,44 @@ public class Polygon extends Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
+
+		// calculate minimum and maximum of x y and z coordinates in the polygon
+		// vertices.
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
+		double minZ = Double.MIN_VALUE;
+		double maxX = Double.MIN_VALUE;
+		double maxY = Double.MIN_VALUE;
+		double maxZ = Double.MIN_VALUE;
+
+		for (Point3D vertex : vertices) {
+			double vx = vertex.getX();
+			double vy = vertex.getY();
+			double vz = vertex.getZ();
+			if (vx < minX) {
+				minX = vx;
+			}
+			if (vx > maxX) {
+				maxX = vx;
+			}
+
+			if (vy < minY) {
+				minY = vy;
+			}
+			if (vy > maxY) {
+				maxY = vy;
+			}
+
+			if (vz < minZ) {
+				minZ = vz;
+			}
+			if (vz > maxZ) {
+				maxZ = vz;
+			}
+		}
+
+		setMin(new Point3D(minX, minY, minZ));
+		setMax(new Point3D(minX, minY, minZ));
 	}
 
 	@Override
@@ -87,7 +130,7 @@ public class Polygon extends Geometry {
 	}
 
 	@Override
-	public List<GeoPoint> findGeoIntersections(Ray ray) {
+	public List<GeoPoint> calculateGeoIntersection(Ray ray) {
 		List<GeoPoint> tentativeIntersection = plane.findGeoIntersections(ray);
 		// if we do not intersect with plane we can not possibly intersect the triangle.
 		if (tentativeIntersection == null) {

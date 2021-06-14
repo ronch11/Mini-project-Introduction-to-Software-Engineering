@@ -30,6 +30,10 @@ public class Sphere extends Geometry {
         this.center = point;
         this.radius = radius;
         this.radiusSquared = radius * radius;
+        Point3D min = point.add(new Vector(-radius, -radius, -radius));
+        Point3D max = point.add(new Vector(radius, radius, radius));
+        setMin(min);
+        setMax(max);
     }
 
     /**
@@ -56,7 +60,7 @@ public class Sphere extends Geometry {
     }
 
     @Override
-    public List<GeoPoint> findGeoIntersections(Ray ray) {
+    public List<GeoPoint> calculateGeoIntersection(Ray ray) {
         double tM, dSquared;
         try {
             Vector u = center.subtract(ray.getP0());
