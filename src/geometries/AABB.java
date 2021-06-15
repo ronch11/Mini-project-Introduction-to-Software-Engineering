@@ -3,6 +3,8 @@ package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 
+import static primitives.Util.*;
+
 /**
  * A Class that re a Axis aligned bounding box in a 3D-dimensional space.
  */
@@ -32,7 +34,18 @@ public class AABB {
      * @return the MaxLocation
      */
     public Point3D getMaxLocation() {
-        return minLocation.add(xAxis.scale(xLength).add(yAxis.scale(yLength)) //
-                .add(zAxis.scale(zLength)));
+        Point3D maxLocation = minLocation;
+        if (!isZero(xLength)) {
+            maxLocation = maxLocation.add(xAxis.scale(xLength));
+        }
+
+        if (!isZero(yLength)) {
+            maxLocation = maxLocation.add(yAxis.scale(yLength));
+        }
+
+        if (!isZero(zLength)) {
+            maxLocation = maxLocation.add(zAxis.scale(zLength));
+        }
+        return maxLocation;
     }
 }
