@@ -142,24 +142,49 @@ public class Camera {
         return this;
     }
 
+    private Vector rotateVRightByVTo(double angleInDeg) {
+        double cosT = Math.cos(Math.toRadians(angleInDeg));
+        double sinT = Math.sin(Math.toRadians(angleInDeg));
+        double kvOneMinusCosT = vTo.dotProduct(vRight) * (1 - cosT);
+        Point3D rotatedVectorHead = Point3D.ZERO;
+        if (!isZero(cosT)) {
+            rotatedVectorHead = rotatedVectorHead.add(vRight.scale(cosT));
+        }
+        if (!isZero(sinT)) {
+            rotatedVectorHead = rotatedVectorHead.add(vTo.crossProduct(vRight).scale(sinT));
+        }
+        if (!isZero(kvOneMinusCosT)) {
+            rotatedVectorHead = rotatedVectorHead.add(vTo.scale(kvOneMinusCosT));
+        }
+        return new Vector(rotatedVectorHead).normalize();
+    }
+
     /**
-     * A function to move camera around the scene while keeping focus on point.
+     * Rotate camera in angle given by user (using degrees) counter clockwise.
      * 
+     * @param angleInDeg - the angle to rotate (in degrees).
      * @return self return for more mutations.
      */
-    public Camera rotateCameraCounterClockWise() {
-        vUp = vRight;
+    public Camera rotateCameraCounterClockWise(double angleInDeg) {
+        // Using this formula from wikipedia in order to rotate vector *V* around other
+        // vector *K* by *t*
+        // Vrot = Vcost + (KxV)sint + K(KV)(1 - cost)
+
+        vRight = rotateVRightByVTo(-angleInDeg);
+        vUp = vTo.crossProduct(vRight).normalize();
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
 
     /**
-     * Rotate camera 90 degrees clockwise.
+     * Rotate camera in angle given by user (using degrees) clockwise.
      * 
+     * @param angleInDeg - the angle to rotate (in degrees).
      * @return self return for more mutations.
      */
-    public Camera rotateCameraClockWise() {
-        vUp = vRight.scale(-1);
+    public Camera rotateCameraClockWise(double angleInDeg) {
+        vRight = rotateVRightByVTo(angleInDeg);
+        vUp = vTo.crossProduct(vRight).normalize();
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
@@ -199,13 +224,12 @@ public class Camera {
         List<Ray> rays = new LinkedList<>();
         for (int row = -halfGrid; row < gridSize; row++) {
             for (int col = -halfGrid; col < gridSize; col++) {
-                Point3D gridPij = isZero(col * xInterval) ? new Point3D(center.getX(), center.getY(), center.getZ())
-                        : center.add(vRight.scale(col * xInterval));
+                Point3D gridPij = isZero(col * xInterval) ? center : center.add(vRight.scale(col * xInterval));
                 gridPij = isZero(row * yInterval) ? gridPij : gridPij.add(vUp.scale(row * yInterval));
                 rays.add(new Ray(position, gridPij.subtract(position)));
             }
         }
-        if (rays.stream().parallel().noneMatch(ray -> ray.equals(centerRay))) {
+        if (gridSize == 2) {
             rays.add(0, centerRay);
         }
         return rays;
