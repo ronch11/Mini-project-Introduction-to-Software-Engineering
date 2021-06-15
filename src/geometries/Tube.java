@@ -12,7 +12,7 @@ import primitives.Vector;
  * 
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
-public class Tube extends Geometry {
+public class Tube extends BoundableGeometry {
     protected Ray axisRay;
     protected double radius;
 
@@ -54,6 +54,12 @@ public class Tube extends Geometry {
 
     @Override
     public List<GeoPoint> calculateGeoIntersection(Ray ray) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected AABB getAABB() {
         // TODO Auto-generated method stub
         return null;
     }

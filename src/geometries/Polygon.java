@@ -15,7 +15,7 @@ import primitives.Vector;
  * 
  * @author Dan
  */
-public class Polygon extends Geometry {
+public class Polygon extends BoundableGeometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -54,6 +54,7 @@ public class Polygon extends Geometry {
 		// polygon with this plane.
 		// The plane holds the invariant normal (orthogonal unit) vector to the polygon
 		plane = new Plane(vertices[0], vertices[1], vertices[2]);
+
 		if (vertices.length == 3)
 			return; // no need for more tests for a Triangle
 
@@ -84,44 +85,6 @@ public class Polygon extends Geometry {
 			if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
 				throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
 		}
-
-		// calculate minimum and maximum of x y and z coordinates in the polygon
-		// vertices.
-		double minX = Double.MAX_VALUE;
-		double minY = Double.MAX_VALUE;
-		double minZ = Double.MIN_VALUE;
-		double maxX = Double.MIN_VALUE;
-		double maxY = Double.MIN_VALUE;
-		double maxZ = Double.MIN_VALUE;
-
-		for (Point3D vertex : vertices) {
-			double vx = vertex.getX();
-			double vy = vertex.getY();
-			double vz = vertex.getZ();
-			if (vx < minX) {
-				minX = vx;
-			}
-			if (vx > maxX) {
-				maxX = vx;
-			}
-
-			if (vy < minY) {
-				minY = vy;
-			}
-			if (vy > maxY) {
-				maxY = vy;
-			}
-
-			if (vz < minZ) {
-				minZ = vz;
-			}
-			if (vz > maxZ) {
-				maxZ = vz;
-			}
-		}
-
-		setMin(new Point3D(minX, minY, minZ));
-		setMax(new Point3D(minX, minY, minZ));
 	}
 
 	@Override
@@ -158,5 +121,45 @@ public class Polygon extends Geometry {
 
 		tentativeIntersection.get(0).geometry = this;
 		return tentativeIntersection;
+	}
+
+	@Override
+	protected AABB getAABB() {
+		// calculate minimum and maximum of x y and z coordinates in the polygon
+		// vertices.
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
+		double minZ = Double.MAX_VALUE;
+		double maxX = Double.MIN_VALUE;
+		double maxY = Double.MIN_VALUE;
+		double maxZ = Double.MIN_VALUE;
+
+		for (Point3D vertex : vertices) {
+			double vx = vertex.getX();
+			double vy = vertex.getY();
+			double vz = vertex.getZ();
+			if (vx < minX) {
+				minX = vx;
+			}
+			if (vx > maxX) {
+				maxX = vx;
+			}
+
+			if (vy < minY) {
+				minY = vy;
+			}
+			if (vy > maxY) {
+				maxY = vy;
+			}
+
+			if (vz < minZ) {
+				minZ = vz;
+			}
+			if (vz > maxZ) {
+				maxZ = vz;
+			}
+		}
+		return new AABB(new Point3D(minX, minY, minZ), //
+				maxX - minX, maxY - minY, maxZ - minZ);
 	}
 }

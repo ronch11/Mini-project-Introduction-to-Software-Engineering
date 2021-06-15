@@ -15,7 +15,7 @@ import primitives.Vector;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 
-public class Sphere extends Geometry {
+public class Sphere extends BoundableGeometry {
     private Point3D center;
     private double radius;
     private double radiusSquared;
@@ -30,10 +30,6 @@ public class Sphere extends Geometry {
         this.center = point;
         this.radius = radius;
         this.radiusSquared = radius * radius;
-        Point3D min = point.add(new Vector(-radius, -radius, -radius));
-        Point3D max = point.add(new Vector(radius, radius, radius));
-        setMin(min);
-        setMax(max);
     }
 
     /**
@@ -85,5 +81,11 @@ public class Sphere extends Geometry {
                     List.of(gp1);
         }
         return null;
+    }
+
+    @Override
+    protected AABB getAABB() {
+        return new AABB(center.add(new Vector(-radius, -radius, -radius))//
+                , radius * 2, radius * 2, radius * 2);
     }
 }
