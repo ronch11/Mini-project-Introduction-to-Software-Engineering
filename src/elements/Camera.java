@@ -143,6 +143,10 @@ public class Camera {
     }
 
     private Vector rotateVRightByVTo(double angleInDeg) {
+        // Using this formula from wikipedia in order to rotate vector *V* around other
+        // vector *K* by *t*
+        // Vrot = Vcost + (KxV)sint + K(KV)(1 - cost)
+
         double cosT = Math.cos(Math.toRadians(angleInDeg));
         double sinT = Math.sin(Math.toRadians(angleInDeg));
         double kvOneMinusCosT = vTo.dotProduct(vRight) * (1 - cosT);
@@ -166,10 +170,6 @@ public class Camera {
      * @return self return for more mutations.
      */
     public Camera rotateCameraCounterClockWise(double angleInDeg) {
-        // Using this formula from wikipedia in order to rotate vector *V* around other
-        // vector *K* by *t*
-        // Vrot = Vcost + (KxV)sint + K(KV)(1 - cost)
-
         vRight = rotateVRightByVTo(-angleInDeg);
         vUp = vTo.crossProduct(vRight).normalize();
         vRight = vTo.crossProduct(vUp).normalize();
