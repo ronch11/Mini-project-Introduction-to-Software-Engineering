@@ -48,4 +48,24 @@ public class AABB {
         }
         return maxLocation;
     }
+
+    public Point3D getCenterLocation() {
+        Point3D center = minLocation;
+
+        double midX = xLength / 2;
+        if (!isZero(midX)) {
+            center = center.add(xAxis.scale(midX));
+        }
+
+        double midY = yLength / 2;
+        if (!isZero(midY)) {
+            center = center.add(yAxis.scale(midY));
+        }
+
+        double midZ = zLength / 2;
+        if (!isZero(midZ)) {
+            center = center.add(zAxis.scale(midZ));
+        }
+        return center;
+    }
 }

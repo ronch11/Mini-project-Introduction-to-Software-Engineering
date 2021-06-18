@@ -124,7 +124,7 @@ public class Polygon extends BoundableGeometry {
 	}
 
 	@Override
-	protected AABB getAABB() {
+	public AABB getAABB() {
 		// calculate minimum and maximum of x y and z coordinates in the polygon
 		// vertices.
 		double minX = Double.MAX_VALUE;

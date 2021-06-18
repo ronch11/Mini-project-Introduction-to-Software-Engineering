@@ -59,7 +59,7 @@ public class Tube extends BoundableGeometry {
     }
 
     @Override
-    protected AABB getAABB() {
+    public AABB getAABB() {
         // TODO Auto-generated method stub
         return null;
     }

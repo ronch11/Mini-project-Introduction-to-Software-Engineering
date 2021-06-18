@@ -185,7 +185,7 @@ public class MultiThreadsRender extends RenderBase {
             imageWriter.writePixel(col, row, color);
         } else {
             Color averageColor = Color.BLACK;
-            List<Ray> rays = camera.createGridCameraRays(nX, nY, col, row, antiAliasingLevel);
+            List<Ray> rays = camera.createGridCameraRays(camera.calculatePoints(nX, nY, col, row, antiAliasingLevel));
             for (Ray cameraRay : rays) {
                 averageColor = averageColor.add(rayTracer.traceRay(cameraRay));
             }

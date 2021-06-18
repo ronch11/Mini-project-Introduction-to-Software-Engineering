@@ -84,7 +84,7 @@ public class Sphere extends BoundableGeometry {
     }
 
     @Override
-    protected AABB getAABB() {
+    public AABB getAABB() {
         return new AABB(center.add(new Vector(-radius, -radius, -radius))//
                 , radius * 2, radius * 2, radius * 2);
     }

@@ -11,7 +11,7 @@ public abstract class RenderBase {
     private static final String CAMERA_COMPONENT = "Camera";
     private static final String RAY_TRACER_COMPONENT = "Ray tracer";
     private String renderClass;
-
+    protected boolean adaptive = false;
     /**
      * how much ray we will calculate in a grid. Level = number of Rows and Columns
      * in the grid. ex. level 1 is no super sampling 2 is using 2 by 2 grid (+
@@ -25,6 +25,14 @@ public abstract class RenderBase {
 
     protected RenderBase(String renderClass) {
         this.renderClass = renderClass;
+    }
+
+    /**
+     * @param adaptive the adaptive to set
+     */
+    public RenderBase setAdaptive(boolean adaptive) {
+        this.adaptive = adaptive;
+        return this;
     }
 
     /**

@@ -24,12 +24,13 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleInitial() {
 		scene.geometries.add( //
-				new Sphere(new Point3D(0, 0, -200), 60) //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
-				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
-						.setEmission(new Color(java.awt.Color.BLUE)) //
-						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+				(BoundableGeometry) new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0),
+						new Point3D(-68, -68, -4)) //
+								.setEmission(new Color(java.awt.Color.BLUE)) //
+								.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
@@ -50,12 +51,13 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleMoved1() {
 		scene.geometries.add( //
-				new Sphere(new Point3D(0, 0, -200), 60) //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
-				new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0), new Point3D(-48, -48, -8)) //
-						.setEmission(new Color(java.awt.Color.BLUE)) //
-						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+				(BoundableGeometry) new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0),
+						new Point3D(-48, -48, -8)) //
+								.setEmission(new Color(java.awt.Color.BLUE)) //
+								.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
@@ -76,12 +78,13 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleMoved2() {
 		scene.geometries.add( //
-				new Sphere(new Point3D(0, 0, -200), 60) //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
-				new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0), new Point3D(-53, -53, -6)) //
-						.setEmission(new Color(java.awt.Color.BLUE)) //
-						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+				(BoundableGeometry) new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0),
+						new Point3D(-53, -53, -6)) //
+								.setEmission(new Color(java.awt.Color.BLUE)) //
+								.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
@@ -102,12 +105,13 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleLightShifted1() {
 		scene.geometries.add( //
-				new Sphere(new Point3D(0, 0, -200), 60) //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
-				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
-						.setEmission(new Color(java.awt.Color.BLUE)) //
-						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+				(BoundableGeometry) new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0),
+						new Point3D(-68, -68, -4)) //
+								.setEmission(new Color(java.awt.Color.BLUE)) //
+								.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-85, -85, 150), new Vector(1, 1, -3)) //
@@ -128,12 +132,13 @@ public class ShadowTests {
 	@Test
 	public void sphereTriangleLightShifted2() {
 		scene.geometries.add( //
-				new Sphere(new Point3D(0, 0, -200), 60) //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)), //
-				new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
-						.setEmission(new Color(java.awt.Color.BLUE)) //
-						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
+				(BoundableGeometry) new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0),
+						new Point3D(-68, -68, -4)) //
+								.setEmission(new Color(java.awt.Color.BLUE)) //
+								.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
 		scene.lights.add( //
 				new SpotLight(new Color(400, 240, 0), new Point3D(-75, -75, 75), new Vector(1, 1, -3)) //
@@ -156,11 +161,13 @@ public class ShadowTests {
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
 		scene.geometries.add( //
-				new Triangle(new Point3D(-150, -150, -115), new Point3D(150, -150, -135), new Point3D(75, 75, -150)) //
-						.setMaterial(new Material().setKS(0.8).setNShininess(60)), //
-				new Triangle(new Point3D(-150, -150, -115), new Point3D(-70, 70, -140), new Point3D(75, 75, -150)) //
-						.setMaterial(new Material().setKS(0.8).setNShininess(60)), //
-				new Sphere(new Point3D(0, 0, -115), 30) //
+				(BoundableGeometry) new Triangle(new Point3D(-150, -150, -115), new Point3D(150, -150, -135),
+						new Point3D(75, 75, -150)) //
+								.setMaterial(new Material().setKS(0.8).setNShininess(60)), //
+				(BoundableGeometry) new Triangle(new Point3D(-150, -150, -115), new Point3D(-70, 70, -140),
+						new Point3D(75, 75, -150)) //
+								.setMaterial(new Material().setKS(0.8).setNShininess(60)), //
+				(BoundableGeometry) new Sphere(new Point3D(0, 0, -115), 30) //
 						.setEmission(new Color(java.awt.Color.BLUE)) //
 						.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)) //
 		);
