@@ -5,6 +5,7 @@ import org.junit.Test;
 import elements.AmbientLight;
 import elements.Camera;
 import elements.SpotLight;
+import geometries.BoundableGeometry;
 import geometries.Sphere;
 import geometries.Triangle;
 import primitives.*;
@@ -36,29 +37,41 @@ public class CameraRotationAndMovementTestsInScene {
          */
         @Test
         public void testCameraRotationClockWiseWithScene() {
-                scene1.geometries.add(new Sphere(new Point3D(0, 0, -100), 50), //
-                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
+                scene1.geometries.add((BoundableGeometry) new Sphere(new Point3D(0, 0, -100), 50), //
+                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(-100, 100, -100)) // up
                                                                               // left
                                                                 .setEmission(new Color(java.awt.Color.GREEN)),
-                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(100, 100, -100)), // up
                                                                               // right
-                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(-100, -100, -100)) // down
                                                                                // left
                                                                 .setEmission(new Color(java.awt.Color.RED)),
-                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(100, -100, -100)) // down
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
-                ImageWriter imageWriter = new ImageWriter("clockwise rotated color render test", 1000, 1000);
-                RenderBase render =  new Render() //
+                ImageWriter imageWriter = new ImageWriter("clockwise rotated color render test 1", 1000, 1000);
+                RenderBase render = new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera1) //
                                 .setRayTracer(new RayTracerBasic(scene1));
 
-                camera1.rotateCameraClockWise();
+                camera1.rotateCameraClockWise(45);
+
+                render.renderImage();
+                render.printGrid(100, new Color(java.awt.Color.WHITE));
+                render.writeToImage();
+
+                imageWriter = new ImageWriter("clockwise rotated color render test 2", 1000, 1000);
+                render = new Render() //
+                                .setImageWriter(imageWriter) //
+                                .setCamera(camera1) //
+                                .setRayTracer(new RayTracerBasic(scene1));
+
+                camera1.rotateCameraClockWise(45);
 
                 render.renderImage();
                 render.printGrid(100, new Color(java.awt.Color.WHITE));
@@ -71,30 +84,40 @@ public class CameraRotationAndMovementTestsInScene {
          */
         @Test
         public void testCameraRotationCounterClockWiseWithScene() {
-                scene1.geometries.add(new Sphere(new Point3D(0, 0, -100), 50), //
-                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
+                scene1.geometries.add((BoundableGeometry) new Sphere(new Point3D(0, 0, -100), 50), //
+                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(-100, 100, -100)) // up
                                                                               // left
                                                                 .setEmission(new Color(java.awt.Color.GREEN)),
-                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(100, 100, -100)), // up
                                                                               // right
-                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(-100, -100, -100)) // down
                                                                                // left
                                                                 .setEmission(new Color(java.awt.Color.RED)),
-                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
+                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(100, -100, -100)) // down
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
-                ImageWriter imageWriter = new ImageWriter("counter clockwise rotated color render test", 1000, 1000);
-                RenderBase render =  new Render() //
+                ImageWriter imageWriter = new ImageWriter("counter clockwise rotated color render test 1", 1000, 1000);
+                RenderBase render = new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera1) //
                                 .setRayTracer(new RayTracerBasic(scene1));
 
-                camera1.rotateCameraCounterClockWise();
+                camera1.rotateCameraCounterClockWise(45);
 
+                render.renderImage();
+                render.printGrid(100, new Color(java.awt.Color.WHITE));
+                render.writeToImage();
+                imageWriter = new ImageWriter("counter clockwise rotated color render test 2", 1000, 1000);
+                render = new Render() //
+                                .setImageWriter(imageWriter) //
+                                .setCamera(camera1) //
+                                .setRayTracer(new RayTracerBasic(scene1));
+
+                camera1.rotateCameraCounterClockWise(45);
                 render.renderImage();
                 render.printGrid(100, new Color(java.awt.Color.WHITE));
                 render.writeToImage();
@@ -107,11 +130,11 @@ public class CameraRotationAndMovementTestsInScene {
         @Test
         public void testCameraMovementWithScene() {
                 scene2.geometries.add( //
-                                new Sphere(new Point3D(0, 0, -200), 60) //
+                                (BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5) //
                                                                 .setNShininess(30)), //
-                                new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0),
+                                (BoundableGeometry) new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0),
                                                 new Point3D(-53, -53, -6)) //
                                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                                 .setMaterial(new Material().setKD(0.5) //
@@ -122,7 +145,7 @@ public class CameraRotationAndMovementTestsInScene {
                                                 new Vector(1, 1, -3)) //
                                                                 .setKL(1E-5).setKQ(1.5E-7));
 
-                RenderBase render =  new Render(). //
+                RenderBase render = new Render(). //
                                 setImageWriter(new ImageWriter("camera movement in scene", 400, 400)) //
                                 .setCamera(camera2) //
                                 .setRayTracer(new RayTracerBasic(scene2));

@@ -8,6 +8,7 @@ import static primitives.Util.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class point3D is the basic class representing a point in space of Euclidean
@@ -72,6 +73,20 @@ public class Camera {
      */
     public Vector getVRight() {
         return vRight;
+    }
+
+    /**
+     * @return the height
+     */
+    public double getHeight() {
+        return height;
+    }
+
+    /**
+     * @return the width
+     */
+    public double getWidth() {
+        return width;
     }
 
     /**
@@ -145,7 +160,7 @@ public class Camera {
     private Vector rotateVRightByVTo(double angleInDeg) {
         // Using this formula from wikipedia in order to rotate vector *V* around other
         // vector *K* by *t*
-        // Vrot = Vcost + (KxV)sint + K(KV)(1 - cost)
+        // vRot = vCos(t) + (KxV)sin(t) + K(KV)(1 - cost)
 
         double cosT = Math.cos(Math.toRadians(angleInDeg));
         double sinT = Math.sin(Math.toRadians(angleInDeg));
@@ -209,7 +224,12 @@ public class Camera {
                 && distance == camera.distance;
     }
 
-    public List<Ray> createGridCameraRays(int nx, int ny, int j, int i, int gridSize) {
+    public List<Ray> createGridCameraRays(List<Point3D> points) {
+        return points.stream().parallel().map(point -> new Ray(position, point.subtract(position)))
+                .collect(Collectors.toList());
+    }
+
+    public List<Point3D> calculatePoints(int nx, int ny, int j, int i, int gridSize) {
         // pixel size
         double rX = alignZero(width / nx);
         double rY = alignZero(height / ny);
@@ -221,18 +241,18 @@ public class Camera {
 
         Ray centerRay = constructRayThroughPixel(nx, ny, j, i);
         Point3D center = position.add(centerRay.getDir().scale(distance));
-        List<Ray> rays = new LinkedList<>();
+        List<Point3D> points = new LinkedList<>();
+
         for (int row = -halfGrid; row < gridSize; row++) {
             for (int col = -halfGrid; col < gridSize; col++) {
                 Point3D gridPij = isZero(col * xInterval) ? center : center.add(vRight.scale(col * xInterval));
                 gridPij = isZero(row * yInterval) ? gridPij : gridPij.add(vUp.scale(row * yInterval));
-                rays.add(new Ray(position, gridPij.subtract(position)));
+                points.add(gridPij);
             }
         }
         if (gridSize == 2) {
-            rays.add(0, centerRay);
+            points.add(center);
         }
-        return rays;
+        return points;
     }
-
 }

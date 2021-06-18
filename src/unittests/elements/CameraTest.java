@@ -76,7 +76,7 @@ public class CameraTest {
 		Camera camera = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0))
 				.setViewPlaneDistance(10);
 
-		camera.rotateCameraCounterClockWise();
+		camera.rotateCameraCounterClockWise(90);
 
 		Camera expected = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(1, 0, 0))
 				.setViewPlaneDistance(10);
@@ -92,7 +92,7 @@ public class CameraTest {
 		Camera camera = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0))
 				.setViewPlaneDistance(10);
 
-		camera.rotateCameraClockWise();
+		camera.rotateCameraClockWise(90);
 
 		Camera expected = new Camera(new Point3D(1, 0, 0), new Vector(0, 0, -1), new Vector(-1, 0, 0))
 				.setViewPlaneDistance(10);
