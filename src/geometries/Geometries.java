@@ -57,7 +57,8 @@ public class Geometries implements BoundedIntersectable {
     }
 
     public void buildBVHTree() {
-        Geometries root = boundGeometries();
+        boundGeometries();
+        Geometries root = this;
         double minimumDistance;
         while (root.geometriesList.size() > 1) {
             Geometries leftSon = null, rightSon = null;
@@ -82,7 +83,7 @@ public class Geometries implements BoundedIntersectable {
             root.geometriesList.remove(rightSon);
             root.geometriesList.add(newComposite);
         } // end of while
-        geometriesList = root.geometriesList;
+        geometriesList = List.of(root.geometriesList.get(0));
     }
 
     /**
@@ -104,13 +105,13 @@ public class Geometries implements BoundedIntersectable {
      * 
      * @return - Geometries tree (for BVH)
      */
-    private Geometries boundGeometries() {
+    private void boundGeometries() {
         List<BoundedIntersectable> list = new LinkedList<>();
         for (BoundedIntersectable boundedIntersectable : geometriesList) {
             Geometries g = new Geometries(boundedIntersectable);
             list.add(g);
         }
-        return new Geometries(list.toArray(new Geometries[0]));
+        geometriesList = list;
     }
 
     @Override

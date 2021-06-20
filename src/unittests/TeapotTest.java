@@ -559,6 +559,34 @@ public class TeapotTest {
 	 */
 	@Test
 	public void teapot1() {
+		setScene();
+		ImageWriter imageWriter = new ImageWriter("teapot before BVH", 800, 800);
+		RenderBase render = new MultiThreadsRender() //
+				.setMultithreading(3).setDebugPrint().setCamera(camera) //
+				.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.printGrid(50, new Color(java.awt.Color.YELLOW));
+		render.writeToImage();
+
+	}
+
+	@Test
+	public void teapot2() {
+		setScene();
+		scene.geometries.buildBVHTree();
+
+		ImageWriter imageWriter = new ImageWriter("teapot after BVH", 800, 800);
+		RenderBase render = new MultiThreadsRender() //
+				.setMultithreading(3).setDebugPrint().setCamera(camera) //
+				.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.printGrid(50, new Color(java.awt.Color.YELLOW));
+		render.writeToImage();
+	}
+
+	private void setScene() {
 		scene.geometries.add( //
 				(BoundableGeometry) new Triangle(points[7], points[6], points[1]).setEmission(color).setMaterial(mat), //
 				(BoundableGeometry) new Triangle(points[1], points[2], points[7]).setEmission(color).setMaterial(mat), //
@@ -2520,25 +2548,5 @@ public class TeapotTest {
 		);
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100)) //
 				.setKQ(0.000001));
-
-		ImageWriter imageWriter = new ImageWriter("teapot before BVH", 800, 800);
-		RenderBase render = new MultiThreadsRender() //
-				.setMultithreading(3).setDebugPrint().setCamera(camera) //
-				.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene));
-		render.renderImage();
-		render.printGrid(50, new Color(java.awt.Color.YELLOW));
-		render.writeToImage();
-
-		scene.geometries.buildBVHTree();
-
-		imageWriter = new ImageWriter("teapot after BVH", 800, 800);
-		render = new MultiThreadsRender() //
-				.setMultithreading(3).setDebugPrint().setCamera(camera) //
-				.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene));
-		render.renderImage();
-		render.printGrid(50, new Color(java.awt.Color.YELLOW));
-		render.writeToImage();
 	}
 }
