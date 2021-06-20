@@ -148,20 +148,36 @@ public class Geometries implements BoundedIntersectable {
         } else {
             List<AABB> boxes = geometriesList.stream().parallel().map(geo -> geo.getAABB())
                     .collect(Collectors.toList());
+            double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, minZ = Double.MAX_VALUE, maxX = Double.MIN_VALUE,
+                    maxY = Double.MIN_VALUE, maxZ = Double.MIN_VALUE;
+            for (AABB aabb : boxes) {
+                Point3D minPoint = aabb.getMinLocation();
+                Point3D maxPoint = aabb.getMaxLocation();
 
-            double minX = boxes.stream().parallel().map(box -> box.getMinLocation()).mapToDouble(point -> point.getX())
-                    .min().getAsDouble();
-            double minY = boxes.stream().parallel().map(box -> box.getMinLocation()).mapToDouble(point -> point.getY())
-                    .min().getAsDouble();
-            double minZ = boxes.stream().parallel().map(box -> box.getMinLocation()).mapToDouble(point -> point.getZ())
-                    .min().getAsDouble();
+                if (minPoint.getX() < minX) {
+                    minX = minPoint.getX();
+                }
 
-            double maxX = boxes.stream().parallel().map(box -> box.getMaxLocation()).mapToDouble(point -> point.getX())
-                    .max().getAsDouble();
-            double maxY = boxes.stream().parallel().map(box -> box.getMaxLocation()).mapToDouble(point -> point.getY())
-                    .max().getAsDouble();
-            double maxZ = boxes.stream().parallel().map(box -> box.getMaxLocation()).mapToDouble(point -> point.getZ())
-                    .max().getAsDouble();
+                if (minPoint.getY() < minY) {
+                    minY = minPoint.getY();
+                }
+
+                if (minPoint.getZ() < minZ) {
+                    minZ = minPoint.getZ();
+                }
+
+                if (maxPoint.getX() < maxX) {
+                    maxX = maxPoint.getX();
+                }
+
+                if (maxPoint.getY() < maxY) {
+                    maxY = maxPoint.getY();
+                }
+
+                if (maxPoint.getZ() < maxZ) {
+                    maxZ = maxPoint.getZ();
+                }
+            }
 
             boundingBox = new AABB(new Point3D(minX, minY, minZ), maxX - minX, maxY - minY, maxZ - minZ);
         }
