@@ -64,9 +64,9 @@ public class Geometries implements BoundedIntersectable {
             minimumDistance = Double.MAX_VALUE;
             int loopsCount = root.geometriesList.size();
             for (int i = 0; i < loopsCount; i++) {
-                Geometries geo1 = (Geometries) geometriesList.get(i);
+                Geometries geo1 = (Geometries) root.geometriesList.get(i);
                 for (int j = i + 1; j < loopsCount; j++) {
-                    Geometries geo2 = (Geometries) geometriesList.get(j);
+                    Geometries geo2 = (Geometries) root.geometriesList.get(j);
                     if (!(geo1.equals(geo2))) {
                         double distance = geo1.distance(geo2);
                         if (distance < minimumDistance) {
