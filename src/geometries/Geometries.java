@@ -56,7 +56,7 @@ public class Geometries implements BoundedIntersectable {
         return calculateGeoIntersection(ray);
     }
 
-    public Geometries buildBVHTree() {
+    public void buildBVHTree() {
         Geometries root = boundGeometries();
         double minimumDistance;
         while (root.geometriesList.size() > 1) {
@@ -82,7 +82,7 @@ public class Geometries implements BoundedIntersectable {
             root.geometriesList.remove(rightSon);
             root.geometriesList.add(newComposite);
         } // end of while
-        return root;
+        geometriesList = root.geometriesList;
     }
 
     /**

@@ -2521,8 +2521,19 @@ public class TeapotTest {
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100)) //
 				.setKQ(0.000001));
 
-		ImageWriter imageWriter = new ImageWriter("teapot", 800, 800);
+		ImageWriter imageWriter = new ImageWriter("teapot before BVH", 800, 800);
 		RenderBase render = new MultiThreadsRender() //
+				.setMultithreading(3).setDebugPrint().setCamera(camera) //
+				.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene));
+		render.renderImage();
+		render.printGrid(50, new Color(java.awt.Color.YELLOW));
+		render.writeToImage();
+
+		scene.geometries.buildBVHTree();
+
+		imageWriter = new ImageWriter("teapot after BVH", 800, 800);
+		render = new MultiThreadsRender() //
 				.setMultithreading(3).setDebugPrint().setCamera(camera) //
 				.setImageWriter(imageWriter) //
 				.setRayTracer(new RayTracerBasic(scene));
