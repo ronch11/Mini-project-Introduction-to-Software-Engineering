@@ -83,9 +83,9 @@ public class Sphere extends Geometry {
         return null;
     }
 
-    // @Override
-    // public AABB getAABB() {
-    // return new AABB(center.add(new Vector(-radius, -radius, -radius))//
-    // , radius * 2, radius * 2, radius * 2);
-    // }
+    @Override
+    public AABB getAABB() {
+        return new AABB(center.add(new Vector(-radius, -radius, -radius))//
+                , radius * 2, radius * 2, radius * 2);
+    }
 }

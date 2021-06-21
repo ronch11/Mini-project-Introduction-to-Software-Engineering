@@ -72,40 +72,40 @@ public class Plane extends Geometry {
         return normal;
     }
 
-    // @Override
-    // public AABB getAABB() {
-    //     // base of 2 that span the plane in 3D Cartesian 3-Dimensional coordinate
-    //     // system.
-    //     Vector base1 = normal.orthogonalVector();
-    //     Vector base2 = normal.crossProduct(base1).normalize();
+    @Override
+    public AABB getAABB() {
+        // base of 2 that span the plane in 3D Cartesian 3-Dimensional coordinate
+        // system.
+        Vector base1 = normal.orthogonalVector();
+        Vector base2 = normal.crossProduct(base1).normalize();
 
-    //     Point3D head1 = base1.getHead();
-    //     Point3D head2 = base2.getHead();
+        Point3D head1 = base1.getHead();
+        Point3D head2 = base2.getHead();
 
-    //     double minX, maxX, minY, maxY, minZ, maxZ;
+        double minX, maxX, minY, maxY, minZ, maxZ;
 
-    //     if (head1.getX() + head2.getX() == 0) {
-    //         minX = maxX = 0;
-    //     } else {
-    //         minX = Double.MIN_VALUE;
-    //         maxX = Double.MAX_VALUE;
-    //     }
+        if (head1.getX() + head2.getX() == 0) {
+            minX = maxX = 0;
+        } else {
+            minX = Double.MIN_VALUE;
+            maxX = Double.MAX_VALUE;
+        }
 
-    //     if (head1.getY() + head2.getY() == 0) {
-    //         minY = maxY = 0;
-    //     } else {
-    //         minY = Double.MIN_VALUE;
-    //         maxY = Double.MAX_VALUE;
-    //     }
+        if (head1.getY() + head2.getY() == 0) {
+            minY = maxY = 0;
+        } else {
+            minY = Double.MIN_VALUE;
+            maxY = Double.MAX_VALUE;
+        }
 
-    //     if (head1.getZ() + head2.getZ() == 0) {
-    //         minZ = maxZ = 0;
-    //     } else {
-    //         minZ = Double.MIN_VALUE;
-    //         maxZ = Double.MAX_VALUE;
-    //     }
-    //     return new AABB(new Point3D(minX, minY, minZ), maxX - minX, maxY - minY, maxZ - minZ);
-    // }
+        if (head1.getZ() + head2.getZ() == 0) {
+            minZ = maxZ = 0;
+        } else {
+            minZ = Double.MIN_VALUE;
+            maxZ = Double.MAX_VALUE;
+        }
+        return new AABB(new Point3D(minX, minY, minZ), maxX - minX, maxY - minY, maxZ - minZ);
+    }
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {

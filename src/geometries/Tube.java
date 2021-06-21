@@ -58,10 +58,10 @@ public class Tube extends Geometry {
         return null;
     }
 
-    // @Override
-    // public AABB getAABB() {
-    // // TODO Auto-generated method stub
-    // return null;
-    // }
+    @Override
+    public AABB getAABB() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

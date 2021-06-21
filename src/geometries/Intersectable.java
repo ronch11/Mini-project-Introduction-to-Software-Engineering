@@ -23,6 +23,8 @@ public interface Intersectable {
         return geoList == null ? null : geoList.stream().parallel().map(gp -> gp.point).collect(Collectors.toList());
     }
 
+    AABB getAABB();
+
     List<GeoPoint> findGeoIntersections(Ray ray);
 
     /**
