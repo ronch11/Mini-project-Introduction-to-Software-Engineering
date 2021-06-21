@@ -6,7 +6,6 @@ package unittests.elements;
 import org.junit.Test;
 
 import elements.*;
-import geometries.BoundableGeometry;
 import geometries.Sphere;
 import geometries.Triangle;
 import primitives.*;
@@ -31,11 +30,11 @@ public class ReflectionRefractionTests {
                                 .setViewPlaneSize(150, 150).setViewPlaneDistance(1000);
 
                 scene.geometries.add( //
-                                (BoundableGeometry) new Sphere(new Point3D(0, 0, -50), 50) //
+                                new Sphere(new Point3D(0, 0, -50), 50) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
-                                                .setMaterial(new Material().setKD(0.4).setKS(0.3).setNShininess(100)
-                                                                .setKT(0.3)),
-                                (BoundableGeometry) new Sphere(new Point3D(0, 0, -50), 25) //
+                                                .setMaterial(new Material()
+                                                                .setKD(0.4).setKS(0.3).setNShininess(100).setKT(0.3)),
+                                new Sphere(new Point3D(0, 0, -50), 25) //
                                                 .setEmission(new Color(java.awt.Color.RED)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
                 scene.lights.add( //
@@ -62,19 +61,19 @@ public class ReflectionRefractionTests {
                 scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));
 
                 scene.geometries.add( //
-                                (BoundableGeometry) new Sphere(new Point3D(-950, -900, -1000), 400) //
+                                new Sphere(new Point3D(-950, -900, -1000), 400) //
                                                 .setEmission(new Color(0, 0, 100)) //
                                                 .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)
                                                                 .setKT(0.5)),
-                                (BoundableGeometry) new Sphere(new Point3D(-950, -900, -1000), 200) //
+                                new Sphere(new Point3D(-950, -900, -1000), 200) //
                                                 .setEmission(new Color(100, 20, 20)) //
                                                 .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)),
-                                (BoundableGeometry) new Triangle(new Point3D(1500, -1500, -1500),
-                                                new Point3D(-1500, 1500, -1500), new Point3D(670, 670, 3000)) //
+                                new Triangle(new Point3D(1500, -1500, -1500), new Point3D(-1500, 1500, -1500),
+                                                new Point3D(670, 670, 3000)) //
                                                                 .setEmission(new Color(20, 20, 20)) //
                                                                 .setMaterial(new Material().setKR(1)),
-                                (BoundableGeometry) new Triangle(new Point3D(1500, -1500, -1500),
-                                                new Point3D(-1500, 1500, -1500), new Point3D(-1500, -1500, -2000)) //
+                                new Triangle(new Point3D(1500, -1500, -1500), new Point3D(-1500, 1500, -1500),
+                                                new Point3D(-1500, -1500, -2000)) //
                                                                 .setEmission(new Color(20, 20, 20)) //
                                                                 .setMaterial(new Material().setKR(0.5)));
 
@@ -104,15 +103,15 @@ public class ReflectionRefractionTests {
                 scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
                 scene.geometries.add( //
-                                (BoundableGeometry) new Triangle(new Point3D(-150, -150, -115),
-                                                new Point3D(150, -150, -135), new Point3D(75, 75, -150)) //
+                                new Triangle(new Point3D(-150, -150, -115), new Point3D(150, -150, -135),
+                                                new Point3D(75, 75, -150)) //
                                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5)
                                                                                 .setNShininess(60)), //
-                                (BoundableGeometry) new Triangle(new Point3D(-150, -150, -115),
-                                                new Point3D(-70, 70, -140), new Point3D(75, 75, -150)) //
+                                new Triangle(new Point3D(-150, -150, -115), new Point3D(-70, 70, -140),
+                                                new Point3D(75, 75, -150)) //
                                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5)
                                                                                 .setNShininess(60)), //
-                                (BoundableGeometry) new Sphere(new Point3D(60, 50, -50), 30) //
+                                new Sphere(new Point3D(60, 50, -50), 30) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.2).setKS(0.2).setNShininess(30)
                                                                 .setKT(0.6)));
@@ -138,22 +137,22 @@ public class ReflectionRefractionTests {
                 scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));
 
                 scene.geometries.add( //
-                                (BoundableGeometry) new Sphere(new Point3D(-800, -950, -900), 175) //
+                                new Sphere(new Point3D(-800, -950, -900), 175) //
                                                 .setEmission(new Color(100, 20, 20)) //
                                                 .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)),
-                                (BoundableGeometry) new Sphere(new Point3D(-800, -550, -900), 175) //
+                                new Sphere(new Point3D(-800, -550, -900), 175) //
                                                 .setEmission(new Color(100, 20, 20)) //
                                                 .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)),
-                                (BoundableGeometry) new Sphere(new Point3D(-600, -750, -950), 300) //
+                                new Sphere(new Point3D(-600, -750, -950), 300) //
                                                 .setEmission(new Color(0, 0, 255)) //
                                                 .setMaterial(new Material().setKD(0.25).setKS(0.25).setNShininess(20)
                                                                 .setKT(0.5)),
-                                (BoundableGeometry) new Triangle(new Point3D(2000, -2000, -1500),
-                                                new Point3D(-2000, 2000, -1500), new Point3D(1000, 1000, 3000)) //
+                                new Triangle(new Point3D(2000, -2000, -1500), new Point3D(-2000, 2000, -1500),
+                                                new Point3D(1000, 1000, 3000)) //
                                                                 .setEmission(new Color(20, 20, 20)) //
                                                                 .setMaterial(new Material().setKR(1)),
-                                (BoundableGeometry) new Triangle(new Point3D(2000, -2000, -1500),
-                                                new Point3D(-2000, 2000, -1500), new Point3D(-2000, -2000, -1800)) //
+                                new Triangle(new Point3D(2000, -2000, -1500), new Point3D(-2000, 2000, -1500),
+                                                new Point3D(-2000, -2000, -1800)) //
                                                                 .setEmission(new Color(20, 20, 20)) //
                                                                 .setMaterial(new Material().setKR(1)));
 

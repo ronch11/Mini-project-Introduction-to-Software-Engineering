@@ -15,7 +15,7 @@ import primitives.Vector;
  * 
  * @author Dan
  */
-public class Polygon extends BoundableGeometry {
+public class Polygon extends Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -93,7 +93,7 @@ public class Polygon extends BoundableGeometry {
 	}
 
 	@Override
-	public List<GeoPoint> calculateGeoIntersection(Ray ray) {
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
 		List<GeoPoint> tentativeIntersection = plane.findGeoIntersections(ray);
 		// if we do not intersect with plane we can not possibly intersect the triangle.
 		if (tentativeIntersection == null) {
@@ -123,43 +123,43 @@ public class Polygon extends BoundableGeometry {
 		return tentativeIntersection;
 	}
 
-	@Override
-	public AABB getAABB() {
-		// calculate minimum and maximum of x y and z coordinates in the polygon
-		// vertices.
-		double minX = Double.MAX_VALUE;
-		double minY = Double.MAX_VALUE;
-		double minZ = Double.MAX_VALUE;
-		double maxX = Double.MIN_VALUE;
-		double maxY = Double.MIN_VALUE;
-		double maxZ = Double.MIN_VALUE;
+	// @Override
+	// public AABB getAABB() {
+	// // calculate minimum and maximum of x y and z coordinates in the polygon
+	// // vertices.
+	// double minX = Double.MAX_VALUE;
+	// double minY = Double.MAX_VALUE;
+	// double minZ = Double.MAX_VALUE;
+	// double maxX = Double.MIN_VALUE;
+	// double maxY = Double.MIN_VALUE;
+	// double maxZ = Double.MIN_VALUE;
 
-		for (Point3D vertex : vertices) {
-			double vx = vertex.getX();
-			double vy = vertex.getY();
-			double vz = vertex.getZ();
-			if (vx < minX) {
-				minX = vx;
-			}
-			if (vx > maxX) {
-				maxX = vx;
-			}
+	// for (Point3D vertex : vertices) {
+	// double vx = vertex.getX();
+	// double vy = vertex.getY();
+	// double vz = vertex.getZ();
+	// if (vx < minX) {
+	// minX = vx;
+	// }
+	// if (vx > maxX) {
+	// maxX = vx;
+	// }
 
-			if (vy < minY) {
-				minY = vy;
-			}
-			if (vy > maxY) {
-				maxY = vy;
-			}
+	// if (vy < minY) {
+	// minY = vy;
+	// }
+	// if (vy > maxY) {
+	// maxY = vy;
+	// }
 
-			if (vz < minZ) {
-				minZ = vz;
-			}
-			if (vz > maxZ) {
-				maxZ = vz;
-			}
-		}
-		return new AABB(new Point3D(minX, minY, minZ), //
-				maxX - minX, maxY - minY, maxZ - minZ);
-	}
+	// if (vz < minZ) {
+	// minZ = vz;
+	// }
+	// if (vz > maxZ) {
+	// maxZ = vz;
+	// }
+	// }
+	// return new AABB(new Point3D(minX, minY, minZ), //
+	// maxX - minX, maxY - minY, maxZ - minZ);
+	// }
 }

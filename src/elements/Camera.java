@@ -224,6 +224,10 @@ public class Camera {
                 && distance == camera.distance;
     }
 
+    public Ray constructRayThroughPixel(Point3D point) {
+        return new Ray(position, point.subtract(position));
+    }
+
     public List<Ray> createGridCameraRays(List<Point3D> points) {
         return points.stream().parallel().map(point -> new Ray(position, point.subtract(position)))
                 .collect(Collectors.toList());
@@ -254,5 +258,15 @@ public class Camera {
             points.add(center);
         }
         return points;
+    }
+
+    public List<Point3D> pixelCorners(int nx, int ny, Point3D center) {
+        // pixel size
+        double rX = alignZero(width / nx);
+        double rY = alignZero(height / ny);
+
+        return List.of(center.add(vUp.scale(-rY)).add(vRight.scale(-rX)),
+                center.add(vUp.scale(-rY)).add(vRight.scale(rX)), center.add(vUp.scale(rY)).add(vRight.scale(-rX)),
+                center.add(vUp.scale(rY)).add(vRight.scale(rX)));
     }
 }

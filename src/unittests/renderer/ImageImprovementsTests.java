@@ -39,14 +39,11 @@ public class ImageImprovementsTests {
          */
         @Test
         public void testsSS() {
+                scene1.geometries.add(triangle1.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)),
+                                triangle2.setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)));
                 scene1.geometries.add(
-                                (BoundableGeometry) triangle1
-                                                .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)),
-                                (BoundableGeometry) triangle2
-                                                .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(300)));
-                scene1.geometries.add((BoundableGeometry) new Sphere(new Point3D(-60, -80, -150), 20)
-                                .setEmission(new Color(java.awt.Color.BLUE)) //
-                                .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
+                                new Sphere(new Point3D(-60, -80, -150), 20).setEmission(new Color(java.awt.Color.BLUE)) //
+                                                .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(100)));
 
                 scene1.lights.add(new SpotLight(new Color(800, 400, 400), new Point3D(10, -10, -130),
                                 new Vector(-2, -2, -1)).setNarrowBeam(3).setKC(1).setKL(0.000005).setKQ(0.00000025)
@@ -67,39 +64,39 @@ public class ImageImprovementsTests {
         private void setScene2() {
                 scene2.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
                 scene2.geometries.add( //
-                                (BoundableGeometry) new Polygon(new Point3D(200, 200, 0), new Point3D(200, -200, 0),
+                                new Polygon(new Point3D(200, 200, 0), new Point3D(200, -200, 0),
                                                 new Point3D(-200, -200, 0), new Point3D(-200, 200, 0)) //
                                                                 .setEmission(new Color(java.awt.Color.BLACK)) //
                                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5)
                                                                                 .setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(0, 0, 5), 5) //
+                                new Sphere(new Point3D(0, 0, 5), 5) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(20, 30, 10), 10) //
+                                new Sphere(new Point3D(20, 30, 10), 10) //
                                                 .setEmission(new Color(java.awt.Color.PINK)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(-40, -60, 30), 30) //
+                                new Sphere(new Point3D(-40, -60, 30), 30) //
                                                 .setEmission(new Color(java.awt.Color.YELLOW)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(40, -20, 12), 12) //
+                                new Sphere(new Point3D(40, -20, 12), 12) //
                                                 .setEmission(new Color(java.awt.Color.GRAY)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(-30, 50, 20), 20) //
+                                new Sphere(new Point3D(-30, 50, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.DARK_GRAY)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(70, 70, 15), 15) //
+                                new Sphere(new Point3D(70, 70, 15), 15) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(-60, 0, 20), 20) //
+                                new Sphere(new Point3D(-60, 0, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.PINK)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(160, 0, 20), 20) //
+                                new Sphere(new Point3D(160, 0, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.CYAN)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(120, -60, 20), 20) //
+                                new Sphere(new Point3D(120, -60, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.RED)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)),
-                                (BoundableGeometry) new Sphere(new Point3D(-30, 50, 20), 20) //
+                                new Sphere(new Point3D(-30, 50, 20), 20) //
                                                 .setEmission(new Color(java.awt.Color.DARK_GRAY)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5).setNShininess(30)));
         }

@@ -1,9 +1,13 @@
 package renderer;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import elements.Camera;
 import primitives.Color;
+import primitives.Point3D;
+import primitives.Ray;
 
 public abstract class RenderBase {
     private static final String RESOURCE_ERROR = "Renderer resource not set";
@@ -12,6 +16,8 @@ public abstract class RenderBase {
     private static final String RAY_TRACER_COMPONENT = "Ray tracer";
     private String renderClass;
     protected boolean adaptive = false;
+    private HashMap<Point3D, Color> colorRepo = new HashMap<>();
+
     /**
      * how much ray we will calculate in a grid. Level = number of Rows and Columns
      * in the grid. ex. level 1 is no super sampling 2 is using 2 by 2 grid (+
@@ -125,6 +131,96 @@ public abstract class RenderBase {
             throw new MissingResourceException(RESOURCE_ERROR, renderClass, RAY_TRACER_COMPONENT);
 
         renderAlg();
+    }
+
+    /**
+     * Cast ray from camera in order to color a pixel
+     * 
+     * @param nX  resolution on X axis (number of pixels in row)
+     * @param nY  resolution on Y axis (number of pixels in column)
+     * @param col pixel's column number (pixel index in row)
+     * @param row pixel's row number (pixel index in column)
+     */
+    protected void castRay(int nX, int nY, int col, int row) {
+        if (antiAliasingLevel == 1) { // no AA
+            Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
+            Color color = rayTracer.traceRay(ray);
+            imageWriter.writePixel(col, row, color);
+        } else if (adaptive) { // adaptive AA
+            Color averageColor = adaptiveSuperSampling(nX, nY, col, row);
+            imageWriter.writePixel(col, row, averageColor);
+        } else { // normal AA
+            Color averageColor = superSampling(nX, nY, col, row, antiAliasingLevel);
+            imageWriter.writePixel(col, row, averageColor);
+        }
+    }
+
+    protected Color adaptiveSuperSampling(int nx, int ny, int j, int i) {
+        Ray centerRay = camera.constructRayThroughPixel(nx, ny, j, i);
+        Color baseColor = getPointColor(centerRay.getP0());
+        return calculateColorAdaptive(nx, ny, antiAliasingLevel, centerRay.getP0(), baseColor);
+    }
+
+    protected Color getPointColor(Point3D point) {
+        if (colorRepo.containsKey(point)) {
+            return colorRepo.get(point);
+        }
+        Color color = rayTracer.traceRay(camera.constructRayThroughPixel(point));
+        colorRepo.put(point, color);
+        return color;
+    }
+
+    protected Color calculateColorAdaptive(int nx, int ny, int level, Point3D center, Color base) {
+        if (level == 1) { // end of recursion
+            return getPointColor(center);
+        }
+        List<Point3D> points = camera.pixelCorners(nx, ny, center);
+
+        Point3D tl = points.get(0); // top left
+        Point3D tr = points.get(1); // top right
+        Point3D bl = points.get(2); // bottom left
+        Point3D br = points.get(3); // bottom right
+        boolean difference = false;
+
+        Color tlRayColor = getPointColor(tl);
+        if (!tlRayColor.equals(base)) {
+            tlRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tl, base);
+            difference = true;
+        }
+
+        Color trRayColor = getPointColor(tr);
+        if (!trRayColor.equals(base)) {
+            trRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tr, base);
+            difference = true;
+        }
+
+        Color blRayColor = getPointColor(bl);
+        if (!blRayColor.equals(base)) {
+            blRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, bl, base);
+            difference = true;
+        }
+
+        Color brRayColor = getPointColor(br);
+        if (!brRayColor.equals(base)) {
+            brRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, br, base);
+            difference = true;
+        }
+
+        if (difference) {
+            return base.add(tlRayColor, trRayColor, blRayColor, brRayColor).reduce(4);
+        } else {
+            return base;
+        }
+    }
+
+    protected Color superSampling(int ny, int nx, int i, int j, int gridSize) {
+        Color averageColor = Color.BLACK;
+        List<Ray> rays = camera.createGridCameraRays(camera.calculatePoints(nx, ny, j, i, gridSize));
+        for (Ray cameraRay : rays) {
+            averageColor = averageColor.add(rayTracer.traceRay(cameraRay));
+        }
+        averageColor = averageColor.reduce(rays.size());
+        return averageColor;
     }
 
     protected abstract void renderAlg();

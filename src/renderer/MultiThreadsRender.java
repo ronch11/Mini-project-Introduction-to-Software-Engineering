@@ -1,9 +1,5 @@
 package renderer;
 
-import java.util.List;
-
-import primitives.*;
-
 /**
  * Renderer class is responsible for generating pixel color map from a graphic
  * scene, using ImageWriter class
@@ -167,30 +163,6 @@ public class MultiThreadsRender extends RenderBase {
                         System.out.flush();
                     } catch (Exception e) {
                     }
-        }
-    }
-
-    /**
-     * Cast ray from camera in order to color a pixel
-     * 
-     * @param nX  resolution on X axis (number of pixels in row)
-     * @param nY  resolution on Y axis (number of pixels in column)
-     * @param col pixel's column number (pixel index in row)
-     * @param row pixel's row number (pixel index in column)
-     */
-    private void castRay(int nX, int nY, int col, int row) {
-        if (antiAliasingLevel == 1) {
-            Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
-            Color color = rayTracer.traceRay(ray);
-            imageWriter.writePixel(col, row, color);
-        } else {
-            Color averageColor = Color.BLACK;
-            List<Ray> rays = camera.createGridCameraRays(camera.calculatePoints(nX, nY, col, row, antiAliasingLevel));
-            for (Ray cameraRay : rays) {
-                averageColor = averageColor.add(rayTracer.traceRay(cameraRay));
-            }
-            averageColor = averageColor.reduce(rays.size());
-            imageWriter.writePixel(col, row, averageColor);
         }
     }
 

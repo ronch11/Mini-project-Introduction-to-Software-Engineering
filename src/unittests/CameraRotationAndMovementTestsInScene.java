@@ -5,7 +5,6 @@ import org.junit.Test;
 import elements.AmbientLight;
 import elements.Camera;
 import elements.SpotLight;
-import geometries.BoundableGeometry;
 import geometries.Sphere;
 import geometries.Triangle;
 import primitives.*;
@@ -37,19 +36,19 @@ public class CameraRotationAndMovementTestsInScene {
          */
         @Test
         public void testCameraRotationClockWiseWithScene() {
-                scene1.geometries.add((BoundableGeometry) new Sphere(new Point3D(0, 0, -100), 50), //
-                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
+                scene1.geometries.add(new Sphere(new Point3D(0, 0, -100), 50), //
+                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(-100, 100, -100)) // up
                                                                               // left
                                                                 .setEmission(new Color(java.awt.Color.GREEN)),
-                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
+                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(100, 100, -100)), // up
                                                                               // right
-                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
+                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(-100, -100, -100)) // down
                                                                                // left
                                                                 .setEmission(new Color(java.awt.Color.RED)),
-                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
+                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(100, -100, -100)) // down
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
@@ -84,19 +83,19 @@ public class CameraRotationAndMovementTestsInScene {
          */
         @Test
         public void testCameraRotationCounterClockWiseWithScene() {
-                scene1.geometries.add((BoundableGeometry) new Sphere(new Point3D(0, 0, -100), 50), //
-                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
+                scene1.geometries.add(new Sphere(new Point3D(0, 0, -100), 50), //
+                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(-100, 100, -100)) // up
                                                                               // left
                                                                 .setEmission(new Color(java.awt.Color.GREEN)),
-                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
+                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(100, 100, -100)), // up
                                                                               // right
-                                (BoundableGeometry) new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
+                                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(-100, -100, -100)) // down
                                                                                // left
                                                                 .setEmission(new Color(java.awt.Color.RED)),
-                                (BoundableGeometry) new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
+                                new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(100, -100, -100)) // down
                                                                               // right
                                                                 .setEmission(new Color(java.awt.Color.BLUE)));
@@ -130,11 +129,11 @@ public class CameraRotationAndMovementTestsInScene {
         @Test
         public void testCameraMovementWithScene() {
                 scene2.geometries.add( //
-                                (BoundableGeometry) new Sphere(new Point3D(0, 0, -200), 60) //
+                                new Sphere(new Point3D(0, 0, -200), 60) //
                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                 .setMaterial(new Material().setKD(0.5).setKS(0.5) //
                                                                 .setNShininess(30)), //
-                                (BoundableGeometry) new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0),
+                                new Triangle(new Point3D(-55, -30, 0), new Point3D(-30, -55, 0),
                                                 new Point3D(-53, -53, -6)) //
                                                                 .setEmission(new Color(java.awt.Color.BLUE)) //
                                                                 .setMaterial(new Material().setKD(0.5) //

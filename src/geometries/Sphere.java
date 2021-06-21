@@ -15,7 +15,7 @@ import primitives.Vector;
  * @author SHAI FALACH and RON HAIM HODADEDI
  */
 
-public class Sphere extends BoundableGeometry {
+public class Sphere extends Geometry {
     private Point3D center;
     private double radius;
     private double radiusSquared;
@@ -56,7 +56,7 @@ public class Sphere extends BoundableGeometry {
     }
 
     @Override
-    public List<GeoPoint> calculateGeoIntersection(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         double tM, dSquared;
         try {
             Vector u = center.subtract(ray.getP0());
@@ -83,9 +83,9 @@ public class Sphere extends BoundableGeometry {
         return null;
     }
 
-    @Override
-    public AABB getAABB() {
-        return new AABB(center.add(new Vector(-radius, -radius, -radius))//
-                , radius * 2, radius * 2, radius * 2);
-    }
+    // @Override
+    // public AABB getAABB() {
+    // return new AABB(center.add(new Vector(-radius, -radius, -radius))//
+    // , radius * 2, radius * 2, radius * 2);
+    // }
 }
