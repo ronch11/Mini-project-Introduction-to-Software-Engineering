@@ -81,7 +81,7 @@ public class RenderingImprovementTests {
         }
 
         @Test
-        public void SoftShadowsBVH() {
+        public void softShadowsBVH() {
                 setScene();
                 scene.geometries.buildBVHTree();
                 RenderBase render = new MultiThreadsRender() //

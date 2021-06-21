@@ -52,7 +52,7 @@ public class Geometries implements Intersectable {
         if (geometriesList.isEmpty()) {
             return null;
         } else {
-            if (!isRayIntersectingAABB(ray)) {
+            if (boundingBox != null && !isRayIntersectingAABB(ray)) {
                 return null;
             }
             List<GeoPoint> intersections = null;
