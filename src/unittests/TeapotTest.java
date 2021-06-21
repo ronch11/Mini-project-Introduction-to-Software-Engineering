@@ -574,7 +574,7 @@ public class TeapotTest {
 	@Test
 	public void teapot2() {
 		setScene();
-		// scene.geometries.buildBVHTree();
+		scene.geometries.buildBVHTree();
 
 		ImageWriter imageWriter = new ImageWriter("teapot after BVH", 800, 800);
 		RenderBase render = new MultiThreadsRender() //
@@ -588,1963 +588,998 @@ public class TeapotTest {
 
 	private void setScene() {
 		scene.geometries.add( //
-				 new Triangle(points[7], points[6], points[1]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[1], points[2], points[7]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[8], points[7], points[2]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[2], points[3], points[8]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[9], points[8], points[3]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[3], points[4], points[9]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[10], points[9], points[4]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[4], points[5], points[10]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[12], points[11], points[6]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[6], points[7], points[12]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[13], points[12], points[7]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[7], points[8], points[13]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[14], points[13], points[8]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[8], points[9], points[14]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[15], points[14], points[9]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[9], points[10], points[15]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[17], points[16], points[11]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[11], points[12], points[17]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[18], points[17], points[12]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[12], points[13], points[18]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[19], points[18], points[13]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[13], points[14], points[19]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[20], points[19], points[14]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[14], points[15], points[20]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[22], points[21], points[16]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[16], points[17], points[22]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[23], points[22], points[17]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[17], points[18], points[23]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[24], points[23], points[18]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[18], points[19], points[24]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[25], points[24], points[19]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[19], points[20], points[25]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[27], points[26], points[21]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[21], points[22], points[27]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[28], points[27], points[22]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[22], points[23], points[28]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[29], points[28], points[23]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[23], points[24], points[29]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[30], points[29], points[24]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[24], points[25], points[30]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[32], points[31], points[26]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[26], points[27], points[32]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[33], points[32], points[27]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[27], points[28], points[33]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[34], points[33], points[28]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[28], points[29], points[34]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[35], points[34], points[29]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[29], points[30], points[35]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[37], points[36], points[31]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[31], points[32], points[37]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[38], points[37], points[32]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[32], points[33], points[38]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[39], points[38], points[33]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[33], points[34], points[39]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[40], points[39], points[34]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[34], points[35], points[40]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[42], points[41], points[36]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[36], points[37], points[42]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[43], points[42], points[37]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[37], points[38], points[43]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[44], points[43], points[38]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[38], points[39], points[44]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[45], points[44], points[39]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[39], points[40], points[45]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[47], points[46], points[41]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[41], points[42], points[47]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[48], points[47], points[42]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[42], points[43], points[48]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[49], points[48], points[43]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[43], points[44], points[49]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[50], points[49], points[44]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[44], points[45], points[50]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[52], points[51], points[46]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[46], points[47], points[52]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[53], points[52], points[47]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[47], points[48], points[53]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[54], points[53], points[48]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[48], points[49], points[54]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[55], points[54], points[49]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[49], points[50], points[55]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[57], points[56], points[51]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[51], points[52], points[57]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[58], points[57], points[52]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[52], points[53], points[58]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[59], points[58], points[53]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[53], points[54], points[59]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[60], points[59], points[54]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[54], points[55], points[60]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[62], points[61], points[56]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[56], points[57], points[62]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[63], points[62], points[57]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[57], points[58], points[63]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[64], points[63], points[58]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[58], points[59], points[64]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[65], points[64], points[59]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[59], points[60], points[65]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[67], points[66], points[61]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[61], points[62], points[67]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[68], points[67], points[62]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[62], points[63], points[68]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[69], points[68], points[63]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[63], points[64], points[69]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[70], points[69], points[64]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[64], points[65], points[70]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[72], points[71], points[66]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[66], points[67], points[72]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[73], points[72], points[67]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[67], points[68], points[73]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[74], points[73], points[68]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[68], points[69], points[74]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[75], points[74], points[69]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[69], points[70], points[75]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[77], points[76], points[71]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[71], points[72], points[77]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[78], points[77], points[72]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[72], points[73], points[78]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[79], points[78], points[73]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[73], points[74], points[79]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[80], points[79], points[74]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[74], points[75], points[80]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[2], points[1], points[76]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[76], points[77], points[2]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[3], points[2], points[77]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[77], points[78], points[3]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[4], points[3], points[78]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[78], points[79], points[4]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[5], points[4], points[79]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[79], points[80], points[5]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[85], points[10], points[5]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[5], points[81], points[85]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[86], points[85], points[81]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[81], points[82], points[86]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[87], points[86], points[82]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[82], points[83], points[87]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[88], points[87], points[83]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[83], points[84], points[88]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[89], points[15], points[10]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[10], points[85], points[89]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[90], points[89], points[85]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[85], points[86], points[90]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[91], points[90], points[86]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[86], points[87], points[91]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[92], points[91], points[87]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[87], points[88], points[92]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[93], points[20], points[15]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[15], points[89], points[93]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[94], points[93], points[89]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[89], points[90], points[94]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[95], points[94], points[90]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[90], points[91], points[95]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[96], points[95], points[91]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[91], points[92], points[96]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[97], points[25], points[20]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[20], points[93], points[97]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[98], points[97], points[93]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[93], points[94], points[98]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[99], points[98], points[94]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[94], points[95], points[99]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[100], points[99], points[95]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[95], points[96], points[100]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[101], points[30], points[25]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[25], points[97], points[101]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[102], points[101], points[97]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[97], points[98], points[102]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[103], points[102], points[98]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[98], points[99], points[103]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[104], points[103], points[99]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[99], points[100], points[104]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[105], points[35], points[30]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[30], points[101], points[105]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[106], points[105], points[101]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[101], points[102], points[106]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[107], points[106], points[102]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[102], points[103], points[107]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[108], points[107], points[103]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[103], points[104], points[108]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[109], points[40], points[35]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[35], points[105], points[109]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[110], points[109], points[105]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[105], points[106], points[110]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[111], points[110], points[106]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[106], points[107], points[111]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[112], points[111], points[107]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[107], points[108], points[112]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[113], points[45], points[40]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[40], points[109], points[113]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[114], points[113], points[109]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[109], points[110], points[114]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[115], points[114], points[110]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[110], points[111], points[115]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[116], points[115], points[111]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[111], points[112], points[116]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[117], points[50], points[45]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[45], points[113], points[117]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[118], points[117], points[113]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[113], points[114], points[118]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[119], points[118], points[114]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[114], points[115], points[119]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[120], points[119], points[115]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[115], points[116], points[120]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[121], points[55], points[50]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[50], points[117], points[121]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[122], points[121], points[117]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[117], points[118], points[122]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[123], points[122], points[118]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[118], points[119], points[123]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[124], points[123], points[119]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[119], points[120], points[124]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[125], points[60], points[55]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[55], points[121], points[125]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[126], points[125], points[121]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[121], points[122], points[126]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[127], points[126], points[122]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[122], points[123], points[127]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[128], points[127], points[123]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[123], points[124], points[128]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[129], points[65], points[60]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[60], points[125], points[129]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[130], points[129], points[125]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[125], points[126], points[130]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[131], points[130], points[126]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[126], points[127], points[131]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[132], points[131], points[127]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[127], points[128], points[132]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[133], points[70], points[65]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[65], points[129], points[133]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[134], points[133], points[129]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[129], points[130], points[134]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[135], points[134], points[130]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[130], points[131], points[135]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[136], points[135], points[131]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[131], points[132], points[136]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[137], points[75], points[70]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[70], points[133], points[137]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[138], points[137], points[133]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[133], points[134], points[138]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[139], points[138], points[134]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[134], points[135], points[139]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[140], points[139], points[135]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[135], points[136], points[140]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[141], points[80], points[75]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[75], points[137], points[141]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[142], points[141], points[137]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[137], points[138], points[142]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[143], points[142], points[138]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[138], points[139], points[143]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[144], points[143], points[139]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[139], points[140], points[144]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[81], points[5], points[80]).setEmission(color).setMaterial(mat), //
-				 new Triangle(points[80], points[141], points[81]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[82], points[81], points[141]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[141], points[142], points[82]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[83], points[82], points[142]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[142], points[143], points[83]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[84], points[83], points[143]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[143], points[144], points[84]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[149], points[88], points[84]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[84], points[145], points[149]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[150], points[149], points[145]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[145], points[146], points[150]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[151], points[150], points[146]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[146], points[147], points[151]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[152], points[151], points[147]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[147], points[148], points[152]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[153], points[92], points[88]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[88], points[149], points[153]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[154], points[153], points[149]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[149], points[150], points[154]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[155], points[154], points[150]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[150], points[151], points[155]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[156], points[155], points[151]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[151], points[152], points[156]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[157], points[96], points[92]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[92], points[153], points[157]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[158], points[157], points[153]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[153], points[154], points[158]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[159], points[158], points[154]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[154], points[155], points[159]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[160], points[159], points[155]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[155], points[156], points[160]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[161], points[100], points[96]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[96], points[157], points[161]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[162], points[161], points[157]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[157], points[158], points[162]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[163], points[162], points[158]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[158], points[159], points[163]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[164], points[163], points[159]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[159], points[160], points[164]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[165], points[104], points[100]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[100], points[161], points[165]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[166], points[165], points[161]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[161], points[162], points[166]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[167], points[166], points[162]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[162], points[163], points[167]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[168], points[167], points[163]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[163], points[164], points[168]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[169], points[108], points[104]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[104], points[165], points[169]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[170], points[169], points[165]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[165], points[166], points[170]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[171], points[170], points[166]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[166], points[167], points[171]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[172], points[171], points[167]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[167], points[168], points[172]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[173], points[112], points[108]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[108], points[169], points[173]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[174], points[173], points[169]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[169], points[170], points[174]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[175], points[174], points[170]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[170], points[171], points[175]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[176], points[175], points[171]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[171], points[172], points[176]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[177], points[116], points[112]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[112], points[173], points[177]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[178], points[177], points[173]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[173], points[174], points[178]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[179], points[178], points[174]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[174], points[175], points[179]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[180], points[179], points[175]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[175], points[176], points[180]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[181], points[120], points[116]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[116], points[177], points[181]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[182], points[181], points[177]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[177], points[178], points[182]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[183], points[182], points[178]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[178], points[179], points[183]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[184], points[183], points[179]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[179], points[180], points[184]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[185], points[124], points[120]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[120], points[181], points[185]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[186], points[185], points[181]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[181], points[182], points[186]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[187], points[186], points[182]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[182], points[183], points[187]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[188], points[187], points[183]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[183], points[184], points[188]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[189], points[128], points[124]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[124], points[185], points[189]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[190], points[189], points[185]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[185], points[186], points[190]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[191], points[190], points[186]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[186], points[187], points[191]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[192], points[191], points[187]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[187], points[188], points[192]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[193], points[132], points[128]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[128], points[189], points[193]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[194], points[193], points[189]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[189], points[190], points[194]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[195], points[194], points[190]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[190], points[191], points[195]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[196], points[195], points[191]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[191], points[192], points[196]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[197], points[136], points[132]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[132], points[193], points[197]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[198], points[197], points[193]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[193], points[194], points[198]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[199], points[198], points[194]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[194], points[195], points[199]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[200], points[199], points[195]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[195], points[196], points[200]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[201], points[140], points[136]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[136], points[197], points[201]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[202], points[201], points[197]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[197], points[198], points[202]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[203], points[202], points[198]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[198], points[199], points[203]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[204], points[203], points[199]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[199], points[200], points[204]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[205], points[144], points[140]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[140], points[201], points[205]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[206], points[205], points[201]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[201], points[202], points[206]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[207], points[206], points[202]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[202], points[203], points[207]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[208], points[207], points[203]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[203], points[204], points[208]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[145], points[84], points[144]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[144], points[205], points[145]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[146], points[145], points[205]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[205], points[206], points[146]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[147], points[146], points[206]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[206], points[207], points[147]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[148], points[147], points[207]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[207], points[208], points[148]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[213], points[152], points[148]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[148], points[209], points[213]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[214], points[213], points[209]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[209], points[210], points[214]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[215], points[214], points[210]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[210], points[211], points[215]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[215], points[211]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[216], points[156], points[152]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[152], points[213], points[216]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[217], points[216], points[213]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[213], points[214], points[217]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[218], points[217], points[214]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[214], points[215], points[218]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[218], points[215]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[219], points[160], points[156]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[156], points[216], points[219]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[220], points[219], points[216]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[216], points[217], points[220]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[221], points[220], points[217]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[217], points[218], points[221]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[221], points[218]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[222], points[164], points[160]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[160], points[219], points[222]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[223], points[222], points[219]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[219], points[220], points[223]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[224], points[223], points[220]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[220], points[221], points[224]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[224], points[221]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[225], points[168], points[164]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[164], points[222], points[225]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[226], points[225], points[222]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[222], points[223], points[226]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[227], points[226], points[223]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[223], points[224], points[227]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[227], points[224]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[228], points[172], points[168]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[168], points[225], points[228]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[229], points[228], points[225]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[225], points[226], points[229]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[230], points[229], points[226]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[226], points[227], points[230]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[230], points[227]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[231], points[176], points[172]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[172], points[228], points[231]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[232], points[231], points[228]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[228], points[229], points[232]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[233], points[232], points[229]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[229], points[230], points[233]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[233], points[230]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[234], points[180], points[176]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[176], points[231], points[234]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[235], points[234], points[231]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[231], points[232], points[235]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[236], points[235], points[232]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[232], points[233], points[236]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[236], points[233]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[237], points[184], points[180]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[180], points[234], points[237]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[238], points[237], points[234]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[234], points[235], points[238]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[239], points[238], points[235]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[235], points[236], points[239]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[239], points[236]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[240], points[188], points[184]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[184], points[237], points[240]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[241], points[240], points[237]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[237], points[238], points[241]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[242], points[241], points[238]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[238], points[239], points[242]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[242], points[239]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[243], points[192], points[188]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[188], points[240], points[243]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[244], points[243], points[240]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[240], points[241], points[244]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[245], points[244], points[241]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[241], points[242], points[245]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[245], points[242]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[246], points[196], points[192]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[192], points[243], points[246]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[247], points[246], points[243]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[243], points[244], points[247]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[248], points[247], points[244]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[244], points[245], points[248]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[248], points[245]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[249], points[200], points[196]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[196], points[246], points[249]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[250], points[249], points[246]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[246], points[247], points[250]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[251], points[250], points[247]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[247], points[248], points[251]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[251], points[248]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[252], points[204], points[200]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[200], points[249], points[252]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[253], points[252], points[249]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[249], points[250], points[253]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[254], points[253], points[250]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[250], points[251], points[254]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[254], points[251]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[255], points[208], points[204]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[204], points[252], points[255]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[256], points[255], points[252]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[252], points[253], points[256]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[257], points[256], points[253]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[253], points[254], points[257]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[257], points[254]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[209], points[148], points[208]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[208], points[255], points[209]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[210], points[209], points[255]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[255], points[256], points[210]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[211], points[210], points[256]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[256], points[257], points[211]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[212], points[211], points[257]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[264], points[263], points[258]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[258], points[259], points[264]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[265], points[264], points[259]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[259], points[260], points[265]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[266], points[265], points[260]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[260], points[261], points[266]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[267], points[266], points[261]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[261], points[262], points[267]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[269], points[268], points[263]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[263], points[264], points[269]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[270], points[269], points[264]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[264], points[265], points[270]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[271], points[270], points[265]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[265], points[266], points[271]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[272], points[271], points[266]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[266], points[267], points[272]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[274], points[273], points[268]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[268], points[269], points[274]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[275], points[274], points[269]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[269], points[270], points[275]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[276], points[275], points[270]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[270], points[271], points[276]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[277], points[276], points[271]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[271], points[272], points[277]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[279], points[278], points[273]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[273], points[274], points[279]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[280], points[279], points[274]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[274], points[275], points[280]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[281], points[280], points[275]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[275], points[276], points[281]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[282], points[281], points[276]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[276], points[277], points[282]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[284], points[283], points[278]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[278], points[279], points[284]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[285], points[284], points[279]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[279], points[280], points[285]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[286], points[285], points[280]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[280], points[281], points[286]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[287], points[286], points[281]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[281], points[282], points[287]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[289], points[288], points[283]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[283], points[284], points[289]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[290], points[289], points[284]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[284], points[285], points[290]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[291], points[290], points[285]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[285], points[286], points[291]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[292], points[291], points[286]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[286], points[287], points[292]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[294], points[293], points[288]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[288], points[289], points[294]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[295], points[294], points[289]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[289], points[290], points[295]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[296], points[295], points[290]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[290], points[291], points[296]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[297], points[296], points[291]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[291], points[292], points[297]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[259], points[258], points[293]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[293], points[294], points[259]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[260], points[259], points[294]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[294], points[295], points[260]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[261], points[260], points[295]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[295], points[296], points[261]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[262], points[261], points[296]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[296], points[297], points[262]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[302], points[267], points[262]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[262], points[298], points[302]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[303], points[302], points[298]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[298], points[299], points[303]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[304], points[303], points[299]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[299], points[300], points[304]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[305], points[304], points[300]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[300], points[301], points[305]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[306], points[272], points[267]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[267], points[302], points[306]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[307], points[306], points[302]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[302], points[303], points[307]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[308], points[307], points[303]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[303], points[304], points[308]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[309], points[308], points[304]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[304], points[305], points[309]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[310], points[277], points[272]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[272], points[306], points[310]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[311], points[310], points[306]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[306], points[307], points[311]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[312], points[311], points[307]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[307], points[308], points[312]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[313], points[312], points[308]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[308], points[309], points[313]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[314], points[282], points[277]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[277], points[310], points[314]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[315], points[314], points[310]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[310], points[311], points[315]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[316], points[315], points[311]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[311], points[312], points[316]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[317], points[316], points[312]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[312], points[313], points[317]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[318], points[287], points[282]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[282], points[314], points[318]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[319], points[318], points[314]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[314], points[315], points[319]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[320], points[319], points[315]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[315], points[316], points[320]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[321], points[320], points[316]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[316], points[317], points[321]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[322], points[292], points[287]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[287], points[318], points[322]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[323], points[322], points[318]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[318], points[319], points[323]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[324], points[323], points[319]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[319], points[320], points[324]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[325], points[324], points[320]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[320], points[321], points[325]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[326], points[297], points[292]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[292], points[322], points[326]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[327], points[326], points[322]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[322], points[323], points[327]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[328], points[327], points[323]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[323], points[324], points[328]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[329], points[328], points[324]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[324], points[325], points[329]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[298], points[262], points[297]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[297], points[326], points[298]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[299], points[298], points[326]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[326], points[327], points[299]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[300], points[299], points[327]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[327], points[328], points[300]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[301], points[300], points[328]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[328], points[329], points[301]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[336], points[335], points[330]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[330], points[331], points[336]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[337], points[336], points[331]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[331], points[332], points[337]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[338], points[337], points[332]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[332], points[333], points[338]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[339], points[338], points[333]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[333], points[334], points[339]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[341], points[340], points[335]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[335], points[336], points[341]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[342], points[341], points[336]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[336], points[337], points[342]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[343], points[342], points[337]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[337], points[338], points[343]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[344], points[343], points[338]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[338], points[339], points[344]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[346], points[345], points[340]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[340], points[341], points[346]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[347], points[346], points[341]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[341], points[342], points[347]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[348], points[347], points[342]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[342], points[343], points[348]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[349], points[348], points[343]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[343], points[344], points[349]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[351], points[350], points[345]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[345], points[346], points[351]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[352], points[351], points[346]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[346], points[347], points[352]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[353], points[352], points[347]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[347], points[348], points[353]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[354], points[353], points[348]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[348], points[349], points[354]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[356], points[355], points[350]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[350], points[351], points[356]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[357], points[356], points[351]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[351], points[352], points[357]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[358], points[357], points[352]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[352], points[353], points[358]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[359], points[358], points[353]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[353], points[354], points[359]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[361], points[360], points[355]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[355], points[356], points[361]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[362], points[361], points[356]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[356], points[357], points[362]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[363], points[362], points[357]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[357], points[358], points[363]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[364], points[363], points[358]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[358], points[359], points[364]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[366], points[365], points[360]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[360], points[361], points[366]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[367], points[366], points[361]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[361], points[362], points[367]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[368], points[367], points[362]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[362], points[363], points[368]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[369], points[368], points[363]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[363], points[364], points[369]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[331], points[330], points[365]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[365], points[366], points[331]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[332], points[331], points[366]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[366], points[367], points[332]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[333], points[332], points[367]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[367], points[368], points[333]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[334], points[333], points[368]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[368], points[369], points[334]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[374], points[339], points[334]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[334], points[370], points[374]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[375], points[374], points[370]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[370], points[371], points[375]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[376], points[375], points[371]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[371], points[372], points[376]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[377], points[376], points[372]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[372], points[373], points[377]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[378], points[344], points[339]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[339], points[374], points[378]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[379], points[378], points[374]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[374], points[375], points[379]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[380], points[379], points[375]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[375], points[376], points[380]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[381], points[380], points[376]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[376], points[377], points[381]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[382], points[349], points[344]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[344], points[378], points[382]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[383], points[382], points[378]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[378], points[379], points[383]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[384], points[383], points[379]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[379], points[380], points[384]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[385], points[384], points[380]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[380], points[381], points[385]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[386], points[354], points[349]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[349], points[382], points[386]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[387], points[386], points[382]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[382], points[383], points[387]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[388], points[387], points[383]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[383], points[384], points[388]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[389], points[388], points[384]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[384], points[385], points[389]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[390], points[359], points[354]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[354], points[386], points[390]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[391], points[390], points[386]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[386], points[387], points[391]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[392], points[391], points[387]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[387], points[388], points[392]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[393], points[392], points[388]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[388], points[389], points[393]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[394], points[364], points[359]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[359], points[390], points[394]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[395], points[394], points[390]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[390], points[391], points[395]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[396], points[395], points[391]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[391], points[392], points[396]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[397], points[396], points[392]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[392], points[393], points[397]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[398], points[369], points[364]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[364], points[394], points[398]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[399], points[398], points[394]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[394], points[395], points[399]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[400], points[399], points[395]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[395], points[396], points[400]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[401], points[400], points[396]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[396], points[397], points[401]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[370], points[334], points[369]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[369], points[398], points[370]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[371], points[370], points[398]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[398], points[399], points[371]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[372], points[371], points[399]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[399], points[400], points[372]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[373], points[372], points[400]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[400], points[401], points[373]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[403], points[407]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[408], points[407], points[403]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[403], points[404], points[408]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[409], points[408], points[404]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[404], points[405], points[409]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[410], points[409], points[405]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[405], points[406], points[410]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[407], points[411]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[412], points[411], points[407]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[407], points[408], points[412]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[413], points[412], points[408]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[408], points[409], points[413]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[414], points[413], points[409]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[409], points[410], points[414]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[411], points[415]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[416], points[415], points[411]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[411], points[412], points[416]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[417], points[416], points[412]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[412], points[413], points[417]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[418], points[417], points[413]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[413], points[414], points[418]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[415], points[419]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[420], points[419], points[415]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[415], points[416], points[420]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[421], points[420], points[416]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[416], points[417], points[421]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[422], points[421], points[417]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[417], points[418], points[422]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[419], points[423]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[424], points[423], points[419]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[419], points[420], points[424]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[425], points[424], points[420]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[420], points[421], points[425]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[426], points[425], points[421]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[421], points[422], points[426]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[423], points[427]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[428], points[427], points[423]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[423], points[424], points[428]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[429], points[428], points[424]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[424], points[425], points[429]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[430], points[429], points[425]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[425], points[426], points[430]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[427], points[431]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[432], points[431], points[427]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[427], points[428], points[432]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[433], points[432], points[428]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[428], points[429], points[433]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[434], points[433], points[429]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[429], points[430], points[434]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[431], points[435]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[436], points[435], points[431]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[431], points[432], points[436]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[437], points[436], points[432]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[432], points[433], points[437]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[438], points[437], points[433]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[433], points[434], points[438]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[435], points[439]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[440], points[439], points[435]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[435], points[436], points[440]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[441], points[440], points[436]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[436], points[437], points[441]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[442], points[441], points[437]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[437], points[438], points[442]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[439], points[443]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[444], points[443], points[439]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[439], points[440], points[444]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[445], points[444], points[440]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[440], points[441], points[445]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[446], points[445], points[441]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[441], points[442], points[446]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[443], points[447]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[448], points[447], points[443]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[443], points[444], points[448]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[449], points[448], points[444]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[444], points[445], points[449]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[450], points[449], points[445]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[445], points[446], points[450]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[447], points[451]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[452], points[451], points[447]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[447], points[448], points[452]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[453], points[452], points[448]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[448], points[449], points[453]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[454], points[453], points[449]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[449], points[450], points[454]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[451], points[455]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[456], points[455], points[451]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[451], points[452], points[456]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[457], points[456], points[452]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[452], points[453], points[457]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[458], points[457], points[453]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[453], points[454], points[458]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[455], points[459]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[460], points[459], points[455]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[455], points[456], points[460]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[461], points[460], points[456]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[456], points[457], points[461]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[462], points[461], points[457]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[457], points[458], points[462]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[459], points[463]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[464], points[463], points[459]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[459], points[460], points[464]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[465], points[464], points[460]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[460], points[461], points[465]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[466], points[465], points[461]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[461], points[462], points[466]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[402], points[463], points[403]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[404], points[403], points[463]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[463], points[464], points[404]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[405], points[404], points[464]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[464], points[465], points[405]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[406], points[405], points[465]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[465], points[466], points[406]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[471], points[410], points[406]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[406], points[467], points[471]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[472], points[471], points[467]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[467], points[468], points[472]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[473], points[472], points[468]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[468], points[469], points[473]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[474], points[473], points[469]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[469], points[470], points[474]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[475], points[414], points[410]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[410], points[471], points[475]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[476], points[475], points[471]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[471], points[472], points[476]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[477], points[476], points[472]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[472], points[473], points[477]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[478], points[477], points[473]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[473], points[474], points[478]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[479], points[418], points[414]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[414], points[475], points[479]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[480], points[479], points[475]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[475], points[476], points[480]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[481], points[480], points[476]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[476], points[477], points[481]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[482], points[481], points[477]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[477], points[478], points[482]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[483], points[422], points[418]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[418], points[479], points[483]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[484], points[483], points[479]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[479], points[480], points[484]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[485], points[484], points[480]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[480], points[481], points[485]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[486], points[485], points[481]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[481], points[482], points[486]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[487], points[426], points[422]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[422], points[483], points[487]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[488], points[487], points[483]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[483], points[484], points[488]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[489], points[488], points[484]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[484], points[485], points[489]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[490], points[489], points[485]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[485], points[486], points[490]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[491], points[430], points[426]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[426], points[487], points[491]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[492], points[491], points[487]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[487], points[488], points[492]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[493], points[492], points[488]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[488], points[489], points[493]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[494], points[493], points[489]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[489], points[490], points[494]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[495], points[434], points[430]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[430], points[491], points[495]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[496], points[495], points[491]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[491], points[492], points[496]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[497], points[496], points[492]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[492], points[493], points[497]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[498], points[497], points[493]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[493], points[494], points[498]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[499], points[438], points[434]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[434], points[495], points[499]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[500], points[499], points[495]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[495], points[496], points[500]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[501], points[500], points[496]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[496], points[497], points[501]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[502], points[501], points[497]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[497], points[498], points[502]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[503], points[442], points[438]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[438], points[499], points[503]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[504], points[503], points[499]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[499], points[500], points[504]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[505], points[504], points[500]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[500], points[501], points[505]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[506], points[505], points[501]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[501], points[502], points[506]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[507], points[446], points[442]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[442], points[503], points[507]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[508], points[507], points[503]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[503], points[504], points[508]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[509], points[508], points[504]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[504], points[505], points[509]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[510], points[509], points[505]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[505], points[506], points[510]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[511], points[450], points[446]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[446], points[507], points[511]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[512], points[511], points[507]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[507], points[508], points[512]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[513], points[512], points[508]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[508], points[509], points[513]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[514], points[513], points[509]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[509], points[510], points[514]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[515], points[454], points[450]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[450], points[511], points[515]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[516], points[515], points[511]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[511], points[512], points[516]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[517], points[516], points[512]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[512], points[513], points[517]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[518], points[517], points[513]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[513], points[514], points[518]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[519], points[458], points[454]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[454], points[515], points[519]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[520], points[519], points[515]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[515], points[516], points[520]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[521], points[520], points[516]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[516], points[517], points[521]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[522], points[521], points[517]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[517], points[518], points[522]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[523], points[462], points[458]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[458], points[519], points[523]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[524], points[523], points[519]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[519], points[520], points[524]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[525], points[524], points[520]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[520], points[521], points[525]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[526], points[525], points[521]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[521], points[522], points[526]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[527], points[466], points[462]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[462], points[523], points[527]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[528], points[527], points[523]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[523], points[524], points[528]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[529], points[528], points[524]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[524], points[525], points[529]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[530], points[529], points[525]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[525], points[526], points[530]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[467], points[406], points[466]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[466], points[527], points[467]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[468], points[467], points[527]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[527], points[528], points[468]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[469], points[468], points[528]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[528], points[529], points[469]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[470], points[469], points[529]).setEmission(color)
-						.setMaterial(mat), //
-				 new Triangle(points[529], points[530], points[470]).setEmission(color)
-						.setMaterial(mat) //
+				new Triangle(points[7], points[6], points[1]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[1], points[2], points[7]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[8], points[7], points[2]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[2], points[3], points[8]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[9], points[8], points[3]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[3], points[4], points[9]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[10], points[9], points[4]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[4], points[5], points[10]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[12], points[11], points[6]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[6], points[7], points[12]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[13], points[12], points[7]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[7], points[8], points[13]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[14], points[13], points[8]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[8], points[9], points[14]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[15], points[14], points[9]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[9], points[10], points[15]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[17], points[16], points[11]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[11], points[12], points[17]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[18], points[17], points[12]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[12], points[13], points[18]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[19], points[18], points[13]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[13], points[14], points[19]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[20], points[19], points[14]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[14], points[15], points[20]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[22], points[21], points[16]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[16], points[17], points[22]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[23], points[22], points[17]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[17], points[18], points[23]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[24], points[23], points[18]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[18], points[19], points[24]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[25], points[24], points[19]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[19], points[20], points[25]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[27], points[26], points[21]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[21], points[22], points[27]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[28], points[27], points[22]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[22], points[23], points[28]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[29], points[28], points[23]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[23], points[24], points[29]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[30], points[29], points[24]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[24], points[25], points[30]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[32], points[31], points[26]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[26], points[27], points[32]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[33], points[32], points[27]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[27], points[28], points[33]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[34], points[33], points[28]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[28], points[29], points[34]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[35], points[34], points[29]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[29], points[30], points[35]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[37], points[36], points[31]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[31], points[32], points[37]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[38], points[37], points[32]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[32], points[33], points[38]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[39], points[38], points[33]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[33], points[34], points[39]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[40], points[39], points[34]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[34], points[35], points[40]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[42], points[41], points[36]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[36], points[37], points[42]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[43], points[42], points[37]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[37], points[38], points[43]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[44], points[43], points[38]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[38], points[39], points[44]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[45], points[44], points[39]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[39], points[40], points[45]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[47], points[46], points[41]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[41], points[42], points[47]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[48], points[47], points[42]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[42], points[43], points[48]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[49], points[48], points[43]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[43], points[44], points[49]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[50], points[49], points[44]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[44], points[45], points[50]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[52], points[51], points[46]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[46], points[47], points[52]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[53], points[52], points[47]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[47], points[48], points[53]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[54], points[53], points[48]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[48], points[49], points[54]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[55], points[54], points[49]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[49], points[50], points[55]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[57], points[56], points[51]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[51], points[52], points[57]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[58], points[57], points[52]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[52], points[53], points[58]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[59], points[58], points[53]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[53], points[54], points[59]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[60], points[59], points[54]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[54], points[55], points[60]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[62], points[61], points[56]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[56], points[57], points[62]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[63], points[62], points[57]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[57], points[58], points[63]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[64], points[63], points[58]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[58], points[59], points[64]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[65], points[64], points[59]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[59], points[60], points[65]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[67], points[66], points[61]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[61], points[62], points[67]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[68], points[67], points[62]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[62], points[63], points[68]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[69], points[68], points[63]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[63], points[64], points[69]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[70], points[69], points[64]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[64], points[65], points[70]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[72], points[71], points[66]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[66], points[67], points[72]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[73], points[72], points[67]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[67], points[68], points[73]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[74], points[73], points[68]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[68], points[69], points[74]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[75], points[74], points[69]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[69], points[70], points[75]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[77], points[76], points[71]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[71], points[72], points[77]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[78], points[77], points[72]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[72], points[73], points[78]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[79], points[78], points[73]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[73], points[74], points[79]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[80], points[79], points[74]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[74], points[75], points[80]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[2], points[1], points[76]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[76], points[77], points[2]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[3], points[2], points[77]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[77], points[78], points[3]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[4], points[3], points[78]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[78], points[79], points[4]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[5], points[4], points[79]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[79], points[80], points[5]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[85], points[10], points[5]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[5], points[81], points[85]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[86], points[85], points[81]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[81], points[82], points[86]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[87], points[86], points[82]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[82], points[83], points[87]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[88], points[87], points[83]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[83], points[84], points[88]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[89], points[15], points[10]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[10], points[85], points[89]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[90], points[89], points[85]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[85], points[86], points[90]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[91], points[90], points[86]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[86], points[87], points[91]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[92], points[91], points[87]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[87], points[88], points[92]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[93], points[20], points[15]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[15], points[89], points[93]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[94], points[93], points[89]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[89], points[90], points[94]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[95], points[94], points[90]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[90], points[91], points[95]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[96], points[95], points[91]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[91], points[92], points[96]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[97], points[25], points[20]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[20], points[93], points[97]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[98], points[97], points[93]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[93], points[94], points[98]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[99], points[98], points[94]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[94], points[95], points[99]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[100], points[99], points[95]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[95], points[96], points[100]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[101], points[30], points[25]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[25], points[97], points[101]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[102], points[101], points[97]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[97], points[98], points[102]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[103], points[102], points[98]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[98], points[99], points[103]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[104], points[103], points[99]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[99], points[100], points[104]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[105], points[35], points[30]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[30], points[101], points[105]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[106], points[105], points[101]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[101], points[102], points[106]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[107], points[106], points[102]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[102], points[103], points[107]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[108], points[107], points[103]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[103], points[104], points[108]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[109], points[40], points[35]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[35], points[105], points[109]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[110], points[109], points[105]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[105], points[106], points[110]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[111], points[110], points[106]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[106], points[107], points[111]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[112], points[111], points[107]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[107], points[108], points[112]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[113], points[45], points[40]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[40], points[109], points[113]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[114], points[113], points[109]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[109], points[110], points[114]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[115], points[114], points[110]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[110], points[111], points[115]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[116], points[115], points[111]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[111], points[112], points[116]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[117], points[50], points[45]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[45], points[113], points[117]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[118], points[117], points[113]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[113], points[114], points[118]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[119], points[118], points[114]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[114], points[115], points[119]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[120], points[119], points[115]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[115], points[116], points[120]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[121], points[55], points[50]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[50], points[117], points[121]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[122], points[121], points[117]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[117], points[118], points[122]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[123], points[122], points[118]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[118], points[119], points[123]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[124], points[123], points[119]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[119], points[120], points[124]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[125], points[60], points[55]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[55], points[121], points[125]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[126], points[125], points[121]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[121], points[122], points[126]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[127], points[126], points[122]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[122], points[123], points[127]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[128], points[127], points[123]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[123], points[124], points[128]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[129], points[65], points[60]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[60], points[125], points[129]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[130], points[129], points[125]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[125], points[126], points[130]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[131], points[130], points[126]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[126], points[127], points[131]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[132], points[131], points[127]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[127], points[128], points[132]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[133], points[70], points[65]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[65], points[129], points[133]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[134], points[133], points[129]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[129], points[130], points[134]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[135], points[134], points[130]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[130], points[131], points[135]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[136], points[135], points[131]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[131], points[132], points[136]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[137], points[75], points[70]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[70], points[133], points[137]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[138], points[137], points[133]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[133], points[134], points[138]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[139], points[138], points[134]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[134], points[135], points[139]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[140], points[139], points[135]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[135], points[136], points[140]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[141], points[80], points[75]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[75], points[137], points[141]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[142], points[141], points[137]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[137], points[138], points[142]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[143], points[142], points[138]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[138], points[139], points[143]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[144], points[143], points[139]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[139], points[140], points[144]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[81], points[5], points[80]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[80], points[141], points[81]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[82], points[81], points[141]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[141], points[142], points[82]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[83], points[82], points[142]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[142], points[143], points[83]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[84], points[83], points[143]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[143], points[144], points[84]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[149], points[88], points[84]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[84], points[145], points[149]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[150], points[149], points[145]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[145], points[146], points[150]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[151], points[150], points[146]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[146], points[147], points[151]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[152], points[151], points[147]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[147], points[148], points[152]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[153], points[92], points[88]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[88], points[149], points[153]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[154], points[153], points[149]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[149], points[150], points[154]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[155], points[154], points[150]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[150], points[151], points[155]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[156], points[155], points[151]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[151], points[152], points[156]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[157], points[96], points[92]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[92], points[153], points[157]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[158], points[157], points[153]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[153], points[154], points[158]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[159], points[158], points[154]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[154], points[155], points[159]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[160], points[159], points[155]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[155], points[156], points[160]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[161], points[100], points[96]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[96], points[157], points[161]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[162], points[161], points[157]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[157], points[158], points[162]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[163], points[162], points[158]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[158], points[159], points[163]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[164], points[163], points[159]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[159], points[160], points[164]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[165], points[104], points[100]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[100], points[161], points[165]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[166], points[165], points[161]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[161], points[162], points[166]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[167], points[166], points[162]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[162], points[163], points[167]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[168], points[167], points[163]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[163], points[164], points[168]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[169], points[108], points[104]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[104], points[165], points[169]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[170], points[169], points[165]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[165], points[166], points[170]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[171], points[170], points[166]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[166], points[167], points[171]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[172], points[171], points[167]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[167], points[168], points[172]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[173], points[112], points[108]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[108], points[169], points[173]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[174], points[173], points[169]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[169], points[170], points[174]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[175], points[174], points[170]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[170], points[171], points[175]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[176], points[175], points[171]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[171], points[172], points[176]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[177], points[116], points[112]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[112], points[173], points[177]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[178], points[177], points[173]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[173], points[174], points[178]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[179], points[178], points[174]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[174], points[175], points[179]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[180], points[179], points[175]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[175], points[176], points[180]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[181], points[120], points[116]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[116], points[177], points[181]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[182], points[181], points[177]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[177], points[178], points[182]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[183], points[182], points[178]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[178], points[179], points[183]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[184], points[183], points[179]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[179], points[180], points[184]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[185], points[124], points[120]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[120], points[181], points[185]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[186], points[185], points[181]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[181], points[182], points[186]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[187], points[186], points[182]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[182], points[183], points[187]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[188], points[187], points[183]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[183], points[184], points[188]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[189], points[128], points[124]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[124], points[185], points[189]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[190], points[189], points[185]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[185], points[186], points[190]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[191], points[190], points[186]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[186], points[187], points[191]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[192], points[191], points[187]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[187], points[188], points[192]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[193], points[132], points[128]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[128], points[189], points[193]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[194], points[193], points[189]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[189], points[190], points[194]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[195], points[194], points[190]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[190], points[191], points[195]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[196], points[195], points[191]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[191], points[192], points[196]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[197], points[136], points[132]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[132], points[193], points[197]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[198], points[197], points[193]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[193], points[194], points[198]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[199], points[198], points[194]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[194], points[195], points[199]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[200], points[199], points[195]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[195], points[196], points[200]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[201], points[140], points[136]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[136], points[197], points[201]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[202], points[201], points[197]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[197], points[198], points[202]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[203], points[202], points[198]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[198], points[199], points[203]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[204], points[203], points[199]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[199], points[200], points[204]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[205], points[144], points[140]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[140], points[201], points[205]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[206], points[205], points[201]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[201], points[202], points[206]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[207], points[206], points[202]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[202], points[203], points[207]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[208], points[207], points[203]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[203], points[204], points[208]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[145], points[84], points[144]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[144], points[205], points[145]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[146], points[145], points[205]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[205], points[206], points[146]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[147], points[146], points[206]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[206], points[207], points[147]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[148], points[147], points[207]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[207], points[208], points[148]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[213], points[152], points[148]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[148], points[209], points[213]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[214], points[213], points[209]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[209], points[210], points[214]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[215], points[214], points[210]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[210], points[211], points[215]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[215], points[211]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[216], points[156], points[152]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[152], points[213], points[216]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[217], points[216], points[213]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[213], points[214], points[217]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[218], points[217], points[214]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[214], points[215], points[218]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[218], points[215]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[219], points[160], points[156]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[156], points[216], points[219]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[220], points[219], points[216]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[216], points[217], points[220]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[221], points[220], points[217]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[217], points[218], points[221]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[221], points[218]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[222], points[164], points[160]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[160], points[219], points[222]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[223], points[222], points[219]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[219], points[220], points[223]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[224], points[223], points[220]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[220], points[221], points[224]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[224], points[221]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[225], points[168], points[164]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[164], points[222], points[225]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[226], points[225], points[222]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[222], points[223], points[226]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[227], points[226], points[223]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[223], points[224], points[227]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[227], points[224]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[228], points[172], points[168]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[168], points[225], points[228]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[229], points[228], points[225]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[225], points[226], points[229]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[230], points[229], points[226]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[226], points[227], points[230]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[230], points[227]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[231], points[176], points[172]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[172], points[228], points[231]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[232], points[231], points[228]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[228], points[229], points[232]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[233], points[232], points[229]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[229], points[230], points[233]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[233], points[230]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[234], points[180], points[176]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[176], points[231], points[234]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[235], points[234], points[231]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[231], points[232], points[235]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[236], points[235], points[232]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[232], points[233], points[236]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[236], points[233]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[237], points[184], points[180]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[180], points[234], points[237]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[238], points[237], points[234]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[234], points[235], points[238]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[239], points[238], points[235]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[235], points[236], points[239]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[239], points[236]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[240], points[188], points[184]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[184], points[237], points[240]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[241], points[240], points[237]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[237], points[238], points[241]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[242], points[241], points[238]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[238], points[239], points[242]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[242], points[239]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[243], points[192], points[188]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[188], points[240], points[243]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[244], points[243], points[240]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[240], points[241], points[244]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[245], points[244], points[241]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[241], points[242], points[245]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[245], points[242]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[246], points[196], points[192]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[192], points[243], points[246]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[247], points[246], points[243]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[243], points[244], points[247]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[248], points[247], points[244]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[244], points[245], points[248]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[248], points[245]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[249], points[200], points[196]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[196], points[246], points[249]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[250], points[249], points[246]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[246], points[247], points[250]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[251], points[250], points[247]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[247], points[248], points[251]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[251], points[248]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[252], points[204], points[200]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[200], points[249], points[252]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[253], points[252], points[249]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[249], points[250], points[253]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[254], points[253], points[250]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[250], points[251], points[254]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[254], points[251]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[255], points[208], points[204]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[204], points[252], points[255]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[256], points[255], points[252]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[252], points[253], points[256]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[257], points[256], points[253]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[253], points[254], points[257]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[257], points[254]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[209], points[148], points[208]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[208], points[255], points[209]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[210], points[209], points[255]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[255], points[256], points[210]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[211], points[210], points[256]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[256], points[257], points[211]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[212], points[211], points[257]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[264], points[263], points[258]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[258], points[259], points[264]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[265], points[264], points[259]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[259], points[260], points[265]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[266], points[265], points[260]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[260], points[261], points[266]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[267], points[266], points[261]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[261], points[262], points[267]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[269], points[268], points[263]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[263], points[264], points[269]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[270], points[269], points[264]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[264], points[265], points[270]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[271], points[270], points[265]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[265], points[266], points[271]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[272], points[271], points[266]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[266], points[267], points[272]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[274], points[273], points[268]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[268], points[269], points[274]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[275], points[274], points[269]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[269], points[270], points[275]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[276], points[275], points[270]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[270], points[271], points[276]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[277], points[276], points[271]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[271], points[272], points[277]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[279], points[278], points[273]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[273], points[274], points[279]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[280], points[279], points[274]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[274], points[275], points[280]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[281], points[280], points[275]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[275], points[276], points[281]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[282], points[281], points[276]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[276], points[277], points[282]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[284], points[283], points[278]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[278], points[279], points[284]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[285], points[284], points[279]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[279], points[280], points[285]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[286], points[285], points[280]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[280], points[281], points[286]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[287], points[286], points[281]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[281], points[282], points[287]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[289], points[288], points[283]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[283], points[284], points[289]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[290], points[289], points[284]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[284], points[285], points[290]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[291], points[290], points[285]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[285], points[286], points[291]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[292], points[291], points[286]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[286], points[287], points[292]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[294], points[293], points[288]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[288], points[289], points[294]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[295], points[294], points[289]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[289], points[290], points[295]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[296], points[295], points[290]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[290], points[291], points[296]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[297], points[296], points[291]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[291], points[292], points[297]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[259], points[258], points[293]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[293], points[294], points[259]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[260], points[259], points[294]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[294], points[295], points[260]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[261], points[260], points[295]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[295], points[296], points[261]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[262], points[261], points[296]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[296], points[297], points[262]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[302], points[267], points[262]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[262], points[298], points[302]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[303], points[302], points[298]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[298], points[299], points[303]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[304], points[303], points[299]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[299], points[300], points[304]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[305], points[304], points[300]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[300], points[301], points[305]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[306], points[272], points[267]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[267], points[302], points[306]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[307], points[306], points[302]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[302], points[303], points[307]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[308], points[307], points[303]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[303], points[304], points[308]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[309], points[308], points[304]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[304], points[305], points[309]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[310], points[277], points[272]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[272], points[306], points[310]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[311], points[310], points[306]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[306], points[307], points[311]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[312], points[311], points[307]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[307], points[308], points[312]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[313], points[312], points[308]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[308], points[309], points[313]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[314], points[282], points[277]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[277], points[310], points[314]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[315], points[314], points[310]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[310], points[311], points[315]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[316], points[315], points[311]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[311], points[312], points[316]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[317], points[316], points[312]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[312], points[313], points[317]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[318], points[287], points[282]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[282], points[314], points[318]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[319], points[318], points[314]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[314], points[315], points[319]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[320], points[319], points[315]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[315], points[316], points[320]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[321], points[320], points[316]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[316], points[317], points[321]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[322], points[292], points[287]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[287], points[318], points[322]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[323], points[322], points[318]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[318], points[319], points[323]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[324], points[323], points[319]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[319], points[320], points[324]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[325], points[324], points[320]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[320], points[321], points[325]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[326], points[297], points[292]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[292], points[322], points[326]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[327], points[326], points[322]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[322], points[323], points[327]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[328], points[327], points[323]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[323], points[324], points[328]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[329], points[328], points[324]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[324], points[325], points[329]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[298], points[262], points[297]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[297], points[326], points[298]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[299], points[298], points[326]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[326], points[327], points[299]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[300], points[299], points[327]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[327], points[328], points[300]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[301], points[300], points[328]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[328], points[329], points[301]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[336], points[335], points[330]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[330], points[331], points[336]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[337], points[336], points[331]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[331], points[332], points[337]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[338], points[337], points[332]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[332], points[333], points[338]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[339], points[338], points[333]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[333], points[334], points[339]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[341], points[340], points[335]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[335], points[336], points[341]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[342], points[341], points[336]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[336], points[337], points[342]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[343], points[342], points[337]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[337], points[338], points[343]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[344], points[343], points[338]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[338], points[339], points[344]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[346], points[345], points[340]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[340], points[341], points[346]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[347], points[346], points[341]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[341], points[342], points[347]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[348], points[347], points[342]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[342], points[343], points[348]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[349], points[348], points[343]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[343], points[344], points[349]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[351], points[350], points[345]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[345], points[346], points[351]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[352], points[351], points[346]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[346], points[347], points[352]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[353], points[352], points[347]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[347], points[348], points[353]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[354], points[353], points[348]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[348], points[349], points[354]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[356], points[355], points[350]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[350], points[351], points[356]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[357], points[356], points[351]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[351], points[352], points[357]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[358], points[357], points[352]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[352], points[353], points[358]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[359], points[358], points[353]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[353], points[354], points[359]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[361], points[360], points[355]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[355], points[356], points[361]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[362], points[361], points[356]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[356], points[357], points[362]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[363], points[362], points[357]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[357], points[358], points[363]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[364], points[363], points[358]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[358], points[359], points[364]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[366], points[365], points[360]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[360], points[361], points[366]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[367], points[366], points[361]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[361], points[362], points[367]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[368], points[367], points[362]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[362], points[363], points[368]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[369], points[368], points[363]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[363], points[364], points[369]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[331], points[330], points[365]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[365], points[366], points[331]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[332], points[331], points[366]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[366], points[367], points[332]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[333], points[332], points[367]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[367], points[368], points[333]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[334], points[333], points[368]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[368], points[369], points[334]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[374], points[339], points[334]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[334], points[370], points[374]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[375], points[374], points[370]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[370], points[371], points[375]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[376], points[375], points[371]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[371], points[372], points[376]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[377], points[376], points[372]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[372], points[373], points[377]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[378], points[344], points[339]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[339], points[374], points[378]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[379], points[378], points[374]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[374], points[375], points[379]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[380], points[379], points[375]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[375], points[376], points[380]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[381], points[380], points[376]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[376], points[377], points[381]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[382], points[349], points[344]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[344], points[378], points[382]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[383], points[382], points[378]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[378], points[379], points[383]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[384], points[383], points[379]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[379], points[380], points[384]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[385], points[384], points[380]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[380], points[381], points[385]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[386], points[354], points[349]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[349], points[382], points[386]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[387], points[386], points[382]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[382], points[383], points[387]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[388], points[387], points[383]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[383], points[384], points[388]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[389], points[388], points[384]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[384], points[385], points[389]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[390], points[359], points[354]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[354], points[386], points[390]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[391], points[390], points[386]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[386], points[387], points[391]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[392], points[391], points[387]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[387], points[388], points[392]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[393], points[392], points[388]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[388], points[389], points[393]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[394], points[364], points[359]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[359], points[390], points[394]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[395], points[394], points[390]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[390], points[391], points[395]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[396], points[395], points[391]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[391], points[392], points[396]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[397], points[396], points[392]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[392], points[393], points[397]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[398], points[369], points[364]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[364], points[394], points[398]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[399], points[398], points[394]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[394], points[395], points[399]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[400], points[399], points[395]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[395], points[396], points[400]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[401], points[400], points[396]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[396], points[397], points[401]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[370], points[334], points[369]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[369], points[398], points[370]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[371], points[370], points[398]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[398], points[399], points[371]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[372], points[371], points[399]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[399], points[400], points[372]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[373], points[372], points[400]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[400], points[401], points[373]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[403], points[407]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[408], points[407], points[403]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[403], points[404], points[408]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[409], points[408], points[404]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[404], points[405], points[409]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[410], points[409], points[405]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[405], points[406], points[410]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[407], points[411]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[412], points[411], points[407]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[407], points[408], points[412]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[413], points[412], points[408]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[408], points[409], points[413]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[414], points[413], points[409]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[409], points[410], points[414]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[411], points[415]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[416], points[415], points[411]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[411], points[412], points[416]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[417], points[416], points[412]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[412], points[413], points[417]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[418], points[417], points[413]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[413], points[414], points[418]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[415], points[419]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[420], points[419], points[415]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[415], points[416], points[420]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[421], points[420], points[416]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[416], points[417], points[421]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[422], points[421], points[417]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[417], points[418], points[422]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[419], points[423]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[424], points[423], points[419]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[419], points[420], points[424]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[425], points[424], points[420]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[420], points[421], points[425]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[426], points[425], points[421]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[421], points[422], points[426]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[423], points[427]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[428], points[427], points[423]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[423], points[424], points[428]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[429], points[428], points[424]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[424], points[425], points[429]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[430], points[429], points[425]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[425], points[426], points[430]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[427], points[431]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[432], points[431], points[427]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[427], points[428], points[432]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[433], points[432], points[428]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[428], points[429], points[433]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[434], points[433], points[429]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[429], points[430], points[434]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[431], points[435]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[436], points[435], points[431]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[431], points[432], points[436]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[437], points[436], points[432]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[432], points[433], points[437]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[438], points[437], points[433]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[433], points[434], points[438]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[435], points[439]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[440], points[439], points[435]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[435], points[436], points[440]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[441], points[440], points[436]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[436], points[437], points[441]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[442], points[441], points[437]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[437], points[438], points[442]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[439], points[443]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[444], points[443], points[439]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[439], points[440], points[444]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[445], points[444], points[440]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[440], points[441], points[445]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[446], points[445], points[441]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[441], points[442], points[446]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[443], points[447]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[448], points[447], points[443]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[443], points[444], points[448]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[449], points[448], points[444]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[444], points[445], points[449]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[450], points[449], points[445]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[445], points[446], points[450]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[447], points[451]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[452], points[451], points[447]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[447], points[448], points[452]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[453], points[452], points[448]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[448], points[449], points[453]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[454], points[453], points[449]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[449], points[450], points[454]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[451], points[455]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[456], points[455], points[451]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[451], points[452], points[456]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[457], points[456], points[452]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[452], points[453], points[457]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[458], points[457], points[453]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[453], points[454], points[458]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[455], points[459]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[460], points[459], points[455]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[455], points[456], points[460]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[461], points[460], points[456]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[456], points[457], points[461]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[462], points[461], points[457]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[457], points[458], points[462]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[459], points[463]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[464], points[463], points[459]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[459], points[460], points[464]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[465], points[464], points[460]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[460], points[461], points[465]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[466], points[465], points[461]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[461], points[462], points[466]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[402], points[463], points[403]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[404], points[403], points[463]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[463], points[464], points[404]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[405], points[404], points[464]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[464], points[465], points[405]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[406], points[405], points[465]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[465], points[466], points[406]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[471], points[410], points[406]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[406], points[467], points[471]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[472], points[471], points[467]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[467], points[468], points[472]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[473], points[472], points[468]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[468], points[469], points[473]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[474], points[473], points[469]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[469], points[470], points[474]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[475], points[414], points[410]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[410], points[471], points[475]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[476], points[475], points[471]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[471], points[472], points[476]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[477], points[476], points[472]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[472], points[473], points[477]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[478], points[477], points[473]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[473], points[474], points[478]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[479], points[418], points[414]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[414], points[475], points[479]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[480], points[479], points[475]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[475], points[476], points[480]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[481], points[480], points[476]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[476], points[477], points[481]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[482], points[481], points[477]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[477], points[478], points[482]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[483], points[422], points[418]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[418], points[479], points[483]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[484], points[483], points[479]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[479], points[480], points[484]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[485], points[484], points[480]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[480], points[481], points[485]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[486], points[485], points[481]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[481], points[482], points[486]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[487], points[426], points[422]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[422], points[483], points[487]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[488], points[487], points[483]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[483], points[484], points[488]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[489], points[488], points[484]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[484], points[485], points[489]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[490], points[489], points[485]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[485], points[486], points[490]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[491], points[430], points[426]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[426], points[487], points[491]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[492], points[491], points[487]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[487], points[488], points[492]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[493], points[492], points[488]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[488], points[489], points[493]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[494], points[493], points[489]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[489], points[490], points[494]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[495], points[434], points[430]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[430], points[491], points[495]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[496], points[495], points[491]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[491], points[492], points[496]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[497], points[496], points[492]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[492], points[493], points[497]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[498], points[497], points[493]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[493], points[494], points[498]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[499], points[438], points[434]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[434], points[495], points[499]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[500], points[499], points[495]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[495], points[496], points[500]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[501], points[500], points[496]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[496], points[497], points[501]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[502], points[501], points[497]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[497], points[498], points[502]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[503], points[442], points[438]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[438], points[499], points[503]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[504], points[503], points[499]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[499], points[500], points[504]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[505], points[504], points[500]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[500], points[501], points[505]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[506], points[505], points[501]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[501], points[502], points[506]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[507], points[446], points[442]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[442], points[503], points[507]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[508], points[507], points[503]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[503], points[504], points[508]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[509], points[508], points[504]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[504], points[505], points[509]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[510], points[509], points[505]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[505], points[506], points[510]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[511], points[450], points[446]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[446], points[507], points[511]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[512], points[511], points[507]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[507], points[508], points[512]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[513], points[512], points[508]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[508], points[509], points[513]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[514], points[513], points[509]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[509], points[510], points[514]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[515], points[454], points[450]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[450], points[511], points[515]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[516], points[515], points[511]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[511], points[512], points[516]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[517], points[516], points[512]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[512], points[513], points[517]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[518], points[517], points[513]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[513], points[514], points[518]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[519], points[458], points[454]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[454], points[515], points[519]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[520], points[519], points[515]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[515], points[516], points[520]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[521], points[520], points[516]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[516], points[517], points[521]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[522], points[521], points[517]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[517], points[518], points[522]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[523], points[462], points[458]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[458], points[519], points[523]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[524], points[523], points[519]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[519], points[520], points[524]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[525], points[524], points[520]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[520], points[521], points[525]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[526], points[525], points[521]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[521], points[522], points[526]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[527], points[466], points[462]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[462], points[523], points[527]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[528], points[527], points[523]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[523], points[524], points[528]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[529], points[528], points[524]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[524], points[525], points[529]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[530], points[529], points[525]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[525], points[526], points[530]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[467], points[406], points[466]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[466], points[527], points[467]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[468], points[467], points[527]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[527], points[528], points[468]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[469], points[468], points[528]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[528], points[529], points[469]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[470], points[469], points[529]).setEmission(color).setMaterial(mat), //
+				new Triangle(points[529], points[530], points[470]).setEmission(color).setMaterial(mat) //
 		);
 		scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100)) //
 				.setKQ(0.000001));
