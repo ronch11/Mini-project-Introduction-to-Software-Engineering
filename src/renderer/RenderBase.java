@@ -157,7 +157,7 @@ public abstract class RenderBase {
 
     protected Color adaptiveSuperSampling(int nx, int ny, int j, int i) {
         Ray centerRay = camera.constructRayThroughPixel(nx, ny, j, i);
-        Color baseColor = getPointColor(centerRay.getP0());
+        Color baseColor = getPointColor(camera.getPixelCenter(centerRay));
         return calculateColorAdaptive(nx, ny, antiAliasingLevel, centerRay.getP0(), baseColor);
     }
 
