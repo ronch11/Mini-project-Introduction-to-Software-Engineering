@@ -151,9 +151,8 @@ public class Camera {
     public Camera moveCamera(Point3D newPos, Point3D lookAtPoint) {
         position = newPos;
         vTo = lookAtPoint.subtract(position).normalize();
-        vUp = vTo.crossProduct(vRight).normalize();
+        vUp = vTo.crossProduct(new Vector(1, 0, 0)).normalize();
         vRight = vTo.crossProduct(vUp).normalize();
-
         return this;
     }
 
@@ -188,7 +187,7 @@ public class Camera {
      * @return self return for more mutations.
      */
     public Camera rotateCameraCounterClockWise(double angleInDeg) {
-        vUp = rotateVUpByVTo(-angleInDeg);
+        vUp = rotateVUpByVTo(angleInDeg);
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
@@ -200,7 +199,7 @@ public class Camera {
      * @return self return for more mutations.
      */
     public Camera rotateCameraClockWise(double angleInDeg) {
-        vUp = rotateVUpByVTo(angleInDeg);
+        vUp = rotateVUpByVTo(-angleInDeg);
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
@@ -270,4 +269,5 @@ public class Camera {
                 center.add(vUp.scale(-rY)).add(vRight.scale(rX)), center.add(vUp.scale(rY)).add(vRight.scale(-rX)),
                 center.add(vUp.scale(rY)).add(vRight.scale(rX)));
     }
+
 }
