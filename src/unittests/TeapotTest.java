@@ -571,20 +571,20 @@ public class TeapotTest {
 
 	}
 
-	@Test
-	public void teapot2() {
-		setScene();
-		scene.geometries.buildBVHTree();
+	// @Test
+	// public void teapot2() {
+	// 	setScene();
+	// 	scene.geometries.buildBVHTree();
 
-		ImageWriter imageWriter = new ImageWriter("teapot after BVH", 800, 800);
-		RenderBase render = new MultiThreadsRender() //
-				.setMultithreading(3).setDebugPrint().setCamera(camera) //
-				.setImageWriter(imageWriter) //
-				.setRayTracer(new RayTracerBasic(scene));
-		render.renderImage();
-		render.printGrid(50, new Color(java.awt.Color.YELLOW));
-		render.writeToImage();
-	}
+	// 	ImageWriter imageWriter = new ImageWriter("teapot after BVH", 800, 800);
+	// 	RenderBase render = new MultiThreadsRender() //
+	// 			.setMultithreading(3).setDebugPrint().setCamera(camera) //
+	// 			.setImageWriter(imageWriter) //
+	// 			.setRayTracer(new RayTracerBasic(scene));
+	// 	render.renderImage();
+	// 	render.printGrid(50, new Color(java.awt.Color.YELLOW));
+	// 	render.writeToImage();
+	// }
 
 	private void setScene() {
 		scene.geometries.add( //
