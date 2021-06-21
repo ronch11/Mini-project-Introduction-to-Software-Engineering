@@ -113,7 +113,7 @@ public class Geometries implements Intersectable {
     }
 
     /**
-     * return new Geometries that has all the old Geometry object inside
+     * return new Geometries that has all the old Geometry objects inside
      * geometriesList encapsulated in separated Geometries object, creating a base
      * for building a BVH tree(as every shape is inside a "Node")
      * 
@@ -143,8 +143,8 @@ public class Geometries implements Intersectable {
         } else {
             List<AABB> boxes = geometriesList.stream().parallel().map(geo -> geo.getAABB())
                     .collect(Collectors.toList());
-            double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, minZ = Double.MAX_VALUE, maxX = Double.MIN_VALUE,
-                    maxY = Double.MIN_VALUE, maxZ = Double.MIN_VALUE;
+            double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, minZ = Double.MAX_VALUE, maxX = -Double.MAX_VALUE,
+                    maxY = -Double.MAX_VALUE, maxZ = -Double.MAX_VALUE;
             for (AABB aabb : boxes) {
                 Point3D minPoint = aabb.getMinLocation();
                 Point3D maxPoint = aabb.getMaxLocation();
