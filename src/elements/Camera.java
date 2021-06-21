@@ -281,7 +281,7 @@ public class Camera {
                 pixelCorners.get(3).add(vUp.scale(-rY)).add(vRight.scale(-rX)));
     }
 
-    public Point3D getPixelCenter(Ray centerRay) {
+    public Point3D getPixel(Ray centerRay) {
         return position.add(centerRay.getDir().scale(distance));
     }
 
