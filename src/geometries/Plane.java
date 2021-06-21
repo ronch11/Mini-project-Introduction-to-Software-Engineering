@@ -87,21 +87,21 @@ public class Plane extends Geometry {
         if (head1.getX() + head2.getX() == 0) {
             minX = maxX = 0;
         } else {
-            minX = Double.MIN_VALUE;
+            minX = -Double.MAX_VALUE;
             maxX = Double.MAX_VALUE;
         }
 
         if (head1.getY() + head2.getY() == 0) {
             minY = maxY = 0;
         } else {
-            minY = Double.MIN_VALUE;
+            minY = -Double.MAX_VALUE;
             maxY = Double.MAX_VALUE;
         }
 
         if (head1.getZ() + head2.getZ() == 0) {
             minZ = maxZ = 0;
         } else {
-            minZ = Double.MIN_VALUE;
+            minZ = -Double.MAX_VALUE;
             maxZ = Double.MAX_VALUE;
         }
         return new AABB(new Point3D(minX, minY, minZ), maxX - minX, maxY - minY, maxZ - minZ);
