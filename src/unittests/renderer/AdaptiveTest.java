@@ -58,6 +58,7 @@ public class AdaptiveTest {
 
     @Test
     public void simpleAntiAliasingTest() {
+        setScene();
         RenderBase render = new MultiThreadsRender() //
                 .setDebugPrint().setMultithreading(3).setAntiAliasingLevel(10)
                 .setImageWriter(new ImageWriter("antialiasingWithImprovement", 600, 600)) //
@@ -69,6 +70,7 @@ public class AdaptiveTest {
 
     @Test
     public void adaptiveAntiAliasingTest() {
+        setScene();
         RenderBase render = new MultiThreadsRender() //
                 .setDebugPrint().setMultithreading(3)//
                 .setAntiAliasingLevel(10).setAdaptive(true)
