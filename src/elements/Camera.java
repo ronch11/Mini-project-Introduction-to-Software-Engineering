@@ -157,20 +157,23 @@ public class Camera {
         return this;
     }
 
-    private Vector rotateVRightByVTo(double angleInDeg) {
+    private Vector rotateVUpByVTo(double angleInDeg) {
         // Using this formula from wikipedia in order to rotate vector *V* around other
         // vector *K* by *t*
         // vRot = vCos(t) + (KxV)sin(t) + K(KV)(1 - cost)
 
+        // vRot = v*(u * v) + costT(uXv)Xu+sinT(uXv)
+
         double cosT = Math.cos(Math.toRadians(angleInDeg));
         double sinT = Math.sin(Math.toRadians(angleInDeg));
-        double kvOneMinusCosT = vTo.dotProduct(vRight) * (1 - cosT);
+
+        double kvOneMinusCosT = vTo.dotProduct(vUp) * (1 - cosT);
         Point3D rotatedVectorHead = Point3D.ZERO;
         if (!isZero(cosT)) {
-            rotatedVectorHead = rotatedVectorHead.add(vRight.scale(cosT));
+            rotatedVectorHead = rotatedVectorHead.add(vUp.scale(cosT));
         }
         if (!isZero(sinT)) {
-            rotatedVectorHead = rotatedVectorHead.add(vTo.crossProduct(vRight).scale(sinT));
+            rotatedVectorHead = rotatedVectorHead.add(vTo.crossProduct(vUp).scale(sinT));
         }
         if (!isZero(kvOneMinusCosT)) {
             rotatedVectorHead = rotatedVectorHead.add(vTo.scale(kvOneMinusCosT));
@@ -185,8 +188,7 @@ public class Camera {
      * @return self return for more mutations.
      */
     public Camera rotateCameraCounterClockWise(double angleInDeg) {
-        vRight = rotateVRightByVTo(-angleInDeg);
-        vUp = vTo.crossProduct(vRight).normalize();
+        vUp = rotateVUpByVTo(-angleInDeg);
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
@@ -198,8 +200,7 @@ public class Camera {
      * @return self return for more mutations.
      */
     public Camera rotateCameraClockWise(double angleInDeg) {
-        vRight = rotateVRightByVTo(angleInDeg);
-        vUp = vTo.crossProduct(vRight).normalize();
+        vUp = rotateVUpByVTo(angleInDeg);
         vRight = vTo.crossProduct(vUp).normalize();
         return this;
     }
