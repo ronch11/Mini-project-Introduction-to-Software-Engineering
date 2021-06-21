@@ -213,7 +213,7 @@ public abstract class RenderBase {
         }
     }
 
-    protected Color superSampling(int ny, int nx, int i, int j, int gridSize) {
+    protected Color superSampling(int ny, int nx, int j, int i, int gridSize) {
         Color averageColor = Color.BLACK;
         List<Ray> rays = camera.createGridCameraRays(camera.calculatePoints(nx, ny, j, i, gridSize));
         for (Ray cameraRay : rays) {
