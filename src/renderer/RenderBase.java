@@ -175,35 +175,36 @@ public abstract class RenderBase {
         if (level == 1) { // end of recursion
             return getPointColor(colorRepo, center);
         }
-        List<Point3D> points = camera.pixelCorners(nx, ny, center);
+        List<Point3D> corners = camera.pixelCorners(nx, ny, center);
+        List<Point3D> centers = camera.getNewCenters(nx, ny, corners);
 
-        Point3D tl = points.get(0); // top left
-        Point3D tr = points.get(1); // top right
-        Point3D bl = points.get(2); // bottom left
-        Point3D br = points.get(3); // bottom right
+        Point3D tl = corners.get(0); // top left
+        Point3D tr = corners.get(1); // top right
+        Point3D bl = corners.get(2); // bottom left
+        Point3D br = corners.get(3); // bottom right
         boolean difference = false;
 
         Color tlRayColor = getPointColor(colorRepo, tl);
         if (!tlRayColor.equals(base)) {
-            tlRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tl, base, colorRepo);
+            tlRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, centers.get(0), base, colorRepo);
             difference = true;
         }
 
         Color trRayColor = getPointColor(colorRepo, tr);
         if (!trRayColor.equals(base)) {
-            trRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tr, base, colorRepo);
+            trRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, centers.get(1), base, colorRepo);
             difference = true;
         }
 
         Color blRayColor = getPointColor(colorRepo, bl);
         if (!blRayColor.equals(base)) {
-            blRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, bl, base, colorRepo);
+            blRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, centers.get(2), base, colorRepo);
             difference = true;
         }
 
         Color brRayColor = getPointColor(colorRepo, br);
         if (!brRayColor.equals(base)) {
-            brRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, br, base, colorRepo);
+            brRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, centers.get(3), base, colorRepo);
             difference = true;
         }
 

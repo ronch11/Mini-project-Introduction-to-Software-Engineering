@@ -270,6 +270,17 @@ public class Camera {
                 center.add(vUp.scale(rY)).add(vRight.scale(rX)));
     }
 
+    public List<Point3D> getNewCenters(int nx, int ny, List<Point3D> pixelCorners) {
+        // pixel size
+        double rX = alignZero((width / nx) / 4);
+        double rY = alignZero((height / ny) / 4);
+
+        return List.of(pixelCorners.get(0).add(vUp.scale(rY)).add(vRight.scale(rX)),
+                pixelCorners.get(1).add(vUp.scale(rY)).add(vRight.scale(-rX)),
+                pixelCorners.get(2).add(vUp.scale(-rY)).add(vRight.scale(rX)),
+                pixelCorners.get(3).add(vUp.scale(-rY)).add(vRight.scale(-rX)));
+    }
+
     public Point3D getPixelCenter(Ray centerRay) {
         return position.add(centerRay.getDir().scale(distance));
     }
