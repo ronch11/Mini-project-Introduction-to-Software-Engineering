@@ -262,8 +262,8 @@ public class Camera {
 
     public List<Point3D> pixelCorners(int nx, int ny, Point3D center) {
         // pixel size
-        double rX = alignZero(width / nx);
-        double rY = alignZero(height / ny);
+        double rX = alignZero((width / nx) / 2);
+        double rY = alignZero((height / ny) / 2);
 
         return List.of(center.add(vUp.scale(-rY)).add(vRight.scale(-rX)),
                 center.add(vUp.scale(-rY)).add(vRight.scale(rX)), center.add(vUp.scale(rY)).add(vRight.scale(-rX)),
