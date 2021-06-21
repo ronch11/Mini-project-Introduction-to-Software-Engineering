@@ -96,6 +96,7 @@ public class Geometries implements Intersectable {
             geometriesList.remove(rightSon);
             newComposite.setBox();
             geometriesList.add(newComposite);
+            setBox();
         } // end of while
     }
 
