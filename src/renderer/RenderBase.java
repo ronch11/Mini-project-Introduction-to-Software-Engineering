@@ -16,7 +16,6 @@ public abstract class RenderBase {
     private static final String RAY_TRACER_COMPONENT = "Ray tracer";
     private String renderClass;
     protected boolean adaptive = false;
-    private HashMap<Point3D, Color> colorRepo = new HashMap<>();
 
     /**
      * how much ray we will calculate in a grid. Level = number of Rows and Columns
@@ -156,12 +155,13 @@ public abstract class RenderBase {
     }
 
     protected Color adaptiveSuperSampling(int nx, int ny, int j, int i) {
+        HashMap<Point3D, Color> colorRepo = new HashMap<>();
         Ray centerRay = camera.constructRayThroughPixel(nx, ny, j, i);
-        Color baseColor = getPointColor(camera.getPixelCenter(centerRay));
-        return calculateColorAdaptive(nx, ny, antiAliasingLevel, centerRay.getP0(), baseColor);
+        Color baseColor = getPointColor(colorRepo, camera.getPixelCenter(centerRay));
+        return calculateColorAdaptive(nx, ny, antiAliasingLevel, centerRay.getP0(), baseColor, colorRepo);
     }
 
-    protected Color getPointColor(Point3D point) {
+    protected Color getPointColor(HashMap<Point3D, Color> colorRepo, Point3D point) {
         if (colorRepo.containsKey(point)) {
             return colorRepo.get(point);
         }
@@ -170,9 +170,10 @@ public abstract class RenderBase {
         return color;
     }
 
-    protected Color calculateColorAdaptive(int nx, int ny, int level, Point3D center, Color base) {
+    protected Color calculateColorAdaptive(int nx, int ny, int level, Point3D center, Color base,
+            HashMap<Point3D, Color> colorRepo) {
         if (level == 1) { // end of recursion
-            return getPointColor(center);
+            return getPointColor(colorRepo, center);
         }
         List<Point3D> points = camera.pixelCorners(nx, ny, center);
 
@@ -182,27 +183,27 @@ public abstract class RenderBase {
         Point3D br = points.get(3); // bottom right
         boolean difference = false;
 
-        Color tlRayColor = getPointColor(tl);
+        Color tlRayColor = getPointColor(colorRepo, tl);
         if (!tlRayColor.equals(base)) {
-            tlRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tl, base);
+            tlRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tl, base, colorRepo);
             difference = true;
         }
 
-        Color trRayColor = getPointColor(tr);
+        Color trRayColor = getPointColor(colorRepo, tr);
         if (!trRayColor.equals(base)) {
-            trRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tr, base);
+            trRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, tr, base, colorRepo);
             difference = true;
         }
 
-        Color blRayColor = getPointColor(bl);
+        Color blRayColor = getPointColor(colorRepo, bl);
         if (!blRayColor.equals(base)) {
-            blRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, bl, base);
+            blRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, bl, base, colorRepo);
             difference = true;
         }
 
-        Color brRayColor = getPointColor(br);
+        Color brRayColor = getPointColor(colorRepo, br);
         if (!brRayColor.equals(base)) {
-            brRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, br, base);
+            brRayColor = calculateColorAdaptive(nx / 2, ny / 2, level - 1, br, base, colorRepo);
             difference = true;
         }
 
