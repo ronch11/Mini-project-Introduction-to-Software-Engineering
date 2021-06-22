@@ -178,18 +178,6 @@ public class Geometries implements Intersectable {
         }
     }
 
-    private boolean isOverlapping(double minCoord, double maxCoord, double pointCoord, double dirInverted) {
-        double min, max;
-        if (dirInverted > 0) {
-            min = alignZero((minCoord - pointCoord) * dirInverted);
-            max = alignZero((maxCoord - pointCoord) * dirInverted);
-        } else {
-            min = alignZero((maxCoord - pointCoord) * dirInverted);
-            max = alignZero((minCoord - pointCoord) * dirInverted);
-        }
-        return !(min > max);
-    }
-
     /**
      * check if a ray is intersecting with the AABB of the geometry shape.
      *
@@ -208,39 +196,45 @@ public class Geometries implements Intersectable {
         double dirInvertedY = alignZero(1d / dirHead.getY());
         double dirInvertedZ = alignZero(1d / dirHead.getZ());
 
-        if (!isOverlapping(min.getX(), max.getX(), p0.getX(), dirInvertedX)) {
-            return false;
+        double xMin, xMax, yMin, yMax, zMin, zMax;
+        // calculate distance between min/max and p0 in 3D dimensions separately:
+        if (dirInvertedX >= 0) {
+            xMin = alignZero((min.getX() - p0.getX()) * dirInvertedX);
+            xMax = alignZero((max.getX() - p0.getX()) * dirInvertedX);
+        } else {
+            xMin = alignZero((max.getX() - p0.getX()) * dirInvertedX);
+            xMax = alignZero((min.getX() - p0.getX()) * dirInvertedX);
         }
 
-        if (!isOverlapping(min.getY(), max.getY(), p0.getY(), dirInvertedY)) {
-            return false;
+        if (dirInvertedY >= 0) {
+            yMin = alignZero((min.getY() - p0.getY()) * dirInvertedY);
+            yMax = alignZero((max.getY() - p0.getY()) * dirInvertedY);
+        } else {
+            yMin = alignZero((max.getY() - p0.getY()) * dirInvertedY);
+            yMax = alignZero((min.getY() - p0.getY()) * dirInvertedY);
         }
 
-        if (!isOverlapping(min.getZ(), max.getZ(), p0.getZ(), dirInvertedZ)) {
+        if (dirInvertedZ >= 0) {
+            zMin = alignZero((min.getZ() - p0.getZ()) * dirInvertedZ);
+            zMax = alignZero((max.getZ() - p0.getZ()) * dirInvertedZ);
+        } else {
+            zMin = alignZero((max.getZ() - p0.getZ()) * dirInvertedZ);
+            zMax = alignZero((min.getZ() - p0.getZ()) * dirInvertedZ);
+        }
+
+        // pick the maximum between minimum values in the 3D dimensions.
+        double tMin = Math.max(Math.max(Math.min(xMin, xMax), Math.min(yMin, yMax)), Math.min(zMin, zMax));
+        // pick the minimum between the maximum values in the 3D dimensions.
+        double tMax = Math.min(Math.min(Math.max(xMin, xMax), Math.max(yMin, yMax)), Math.max(zMin, zMax));
+
+        // if tMax < 0, ray (line) is intersecting AABB, but the whole AABB is behind us
+        if (tMax < 0) {
+            return false;
+        }
+        // if tMin > tMax, ray doesn't intersect AABB
+        if (tMin > tMax) {
             return false;
         }
         return true;
-        // calculate distance between min/max and p0 in 3D dimensions separately:
-        // double xMin = alignZero((min.getX() - p0.getX()) * dirInvertedX);
-        // double xMax = alignZero((max.getX() - p0.getX()) * dirInvertedX);
-        // double yMin = alignZero((min.getY() - p0.getY()) * dirInvertedY);
-        // double yMax = alignZero((max.getY() - p0.getY()) * dirInvertedY);
-        // double zMin = alignZero((min.getZ() - p0.getZ()) * dirInvertedZ);
-        // double zMax = alignZero((max.getZ() - p0.getZ()) * dirInvertedZ);
-
-        // pick the maximum between minimum values in the 3D dimensions.
-        // double tMin = Math.max(Math.max(Math.min(xMin, xMax), Math.min(yMin, yMax)),
-        // Math.min(zMin, zMax));
-        // pick the minimum between the maximum values in the 3D dimensions.
-        // double tMax = Math.min(Math.min(Math.max(xMin, xMax), Math.max(yMin, yMax)),
-        // Math.max(zMin, zMax));
-
-        // if tMax < 0, ray (line) is intersecting AABB, but the whole AABB is behind
-        // us
-        // if tMin > tMax, ray doesn't intersect AABB
-        // which in both cases we return false.
-        // else, ray intersecting with the Axis Aligned Bounding Box and we return
-        // true.
-        // return !(tMax < 0 || tMin > tMax);
     }
 }
